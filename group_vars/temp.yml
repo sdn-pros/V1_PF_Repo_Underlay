@@ -1,0 +1,101 @@
+ p2p_links:
+    - nodes: [ pEthernet1, p1 ]
+      interfaces: [ Ethernet2, Ethernet2 ]
+      profile: core_profile
+      id: 1
+    - nodes: [ pEthernet1, p2 ]
+      interfaces: [ Ethernet3, Ethernet2 ]
+      profile: core_profile
+      id: 2
+    - nodes: [ pEthernet2, p1 ]
+      interfaces: [ Ethernet2, Ethernet3 ]
+      profile: core_profile
+      id: 3
+    - nodes: [ pEthernet2, p2 ]
+      interfaces: [ Ethernet3, Ethernet3 ]
+      profile: core_profile
+      id: 4
+    - nodes: [ pEthernet1, pEthernet2 ]
+      interfaces: [ Ethernet1, Ethernet1 ]
+      profile: core_profile
+      id: 5
+    - nodes: [ pEthernet1, rr5 ]
+      interfaces: [ Ethernet6, Ethernet6 ]
+      profile: core_profile
+      id: 6
+    - nodes: [ pEthernet1, rr6 ]
+      interfaces: [ e8, Ethernet10 ]
+      profile: core_profile
+      id: 7
+    - nodes: [ pEthernet2, rr5 ]
+      interfaces: [ Ethernet6, e7 ]
+      profile: core_profile
+      id: 8
+    - nodes: [ pEthernet2, rr6 ]
+      interfaces: [ e8, Ethernet13 ]
+      profile: core_profile
+      id: 9
+    - nodes: [ p1, p5 ]
+      interfaces: [ Ethernet1, Ethernet2 ]
+      profile: core_profile
+      id: 10
+    - nodes: [ p1, p6 ]
+      interfaces: [ e4, e4 ]
+      profile: core_profile
+      id: 11
+    - nodes: [ p2, p5 ]
+      interfaces: [ e4, e4 ]
+      profile: core_profile
+      id: 13
+    - nodes: [ p2, p6 ]
+      interfaces: [ Ethernet1, Ethernet2 ]
+      profile: core_profile
+      id: 14
+    - nodes: [ p5, p6 ]
+      interfaces: [ Ethernet1, Ethernet1 ]
+      profile: core_profile
+      id: 15
+    - nodes: [ p5, p3 ]
+      interfaces: [ Ethernet3, Ethernet1 ]
+      profile: core_profile
+      id: 16
+    - nodes: [ p5, p4 ]
+      interfaces: [ e5, e4 ]
+      profile: core_profile
+      id: 17      
+    - nodes: [ p6, p3 ]
+      interfaces: [ e5, e4 ]
+      profile: core_profile
+      id: 17      
+    - nodes: [ p6, p4 ]
+      interfaces: [ Ethernet3, Ethernet1 ]
+      profile: core_profile
+      id: 18
+    - nodes: [ p3, pEthernet3 ]
+      interfaces: [ Ethernet2, Ethernet2 ]
+      id: 19
+    - nodes: [ p3, pe4 ]
+      interfaces: [ Ethernet3, Ethernet2 ]
+      id: 20
+    - nodes: [ p4, pEthernet3 ]
+      interfaces: [ Ethernet2, Ethernet3 ]
+      id: 21
+    - nodes: [ p4, pe4 ]
+      interfaces: [ Ethernet3, Ethernet3, ]
+      id: 22
+    - nodes: [ pEthernet3, pe4 ]
+      interfaces: [ Ethernet1, Ethernet1 ]
+      id: 23
+    - nodes: [ pEthernet3, rr5 ]
+      interfaces: [ e8, Ethernet10 ]
+      id: 24
+    - nodes: [ pEthernet3, rr6 ]
+      interfaces: [ Ethernet6, Ethernet6 ]
+      id: 25
+    - nodes: [ pe4, rr5 ]
+      interfaces: [ e8, Ethernet13 ]
+      id: 26
+    - nodes: [ pe4, rr6 ]
+      interfaces: [ Ethernet6, e7 ]
+      id: 27
+    

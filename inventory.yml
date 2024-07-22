@@ -1,0 +1,72 @@
+---
+all:
+  hosts: 
+    cvaas: 
+      ansible_host: www.arista.io
+      ansible_user: cvaas
+      ansible_password: "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjcwODkzNDMxODEzNjM3MDI5MjUsImRzbiI6ImF2ZCB0b255IiwiZHN0IjoiYWNjb3VudCIsImV4cCI6MTc4MDE3MTMwNywiaWF0IjoxNzIxNjc4NTE3LCJvZ2kiOjcwODkzNDMxODEzNjM3MDEzMDksIm9nbiI6ImFyaXN0YS10bmctMDEiLCJzaWQiOiJjNWRjZTQ5MWU4ZTFlMDZiNTA4NjdmMmUzNGM2MzhmNjRlNGJjY2YxMzgzOTE3Yzg1MTY5YjdiYTk4MTNkODQxLWVPcENXdlVGS0R4bWdUM0dzcTlQalZVXzhCS3p6ajF0bGdFM3JzQUsifQ.204g2mksxNPiv5C2bqO7odzsrlYfZRUfBx2gK7K3LYIZ3abGo8lBMBh9xf_CCDdyGwT0q9Aswy4UqkvEWquzSg"
+      ansible_connection: httpapi
+      ansible_httpapi_use_ssl: True
+      ansible_httpapi_validate_certs: False
+      ansible_network_os: eos
+      ansible_httpapi_port: 443
+  children:
+    MPLS_FABRIC:
+      vars:
+        ansible_user: arista
+        ansible_ssh_pass: arista4qw4 # If using SSH keys, this can be removed
+# Use this section if you want to perform testing via the eAPI
+        # ansible_connection: httpapi
+        # ansible_httpapi_use_ssl: True
+        # ansible_httpapi_validate_certs: False
+        # ansible_network_os: eos
+        # ansible_httpapi_port: 443
+# Use this section if you want to perform testing via the CLI through SSH
+        ansible_connection: network_cli
+        ansible_network_os: eos
+        # ansible_become: yes
+        # ansible_become_method: enable
+      children:
+        WAN1:
+          children:
+            P_ROUTERS:
+              vars:
+                type: p
+              hosts:
+                P1:
+                  ansible_host: 192.168.0.94
+                P2:
+                  ansible_host: 192.168.0.96
+                P3:
+                  ansible_host: 192.168.0.95
+                P4:
+                  ansible_host: 192.168.0.97
+                P5:
+                  ansible_host: 192.168.0.91
+                P6:
+                  ansible_host: 192.168.0.92
+            RR_ROUTERS:
+              vars: 
+                type: rr
+              hosts:
+                RR5:
+                  ansible_host: 192.168.0.73
+                RR6:
+                  ansible_host: 192.168.0.74
+            PE_ROUTERS:
+              vars: 
+                type: pe
+              hosts:
+                PE1:
+                  ansible_host: 192.168.0.81
+                PE2:
+                  ansible_host: 192.168.0.82
+                PE3:
+                  ansible_host: 192.168.0.83
+                PE4:
+                  ansible_host: 192.168.0.84              
+    NETWORK_SERVICES:
+      children:
+        PE_ROUTERS:
+
+   
