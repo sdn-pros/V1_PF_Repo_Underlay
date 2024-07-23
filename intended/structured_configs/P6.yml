@@ -24,9 +24,6 @@ loopback_interfaces:
   description: LSR_Router_ID
   shutdown: false
   ip_address: 192.168.101.6/32
-  mpls:
-    ldp:
-      interface: true
   isis_enable: CORE
   isis_passive: true
   node_segment:
@@ -40,7 +37,6 @@ router_isis:
   address_family_ipv4:
     enabled: true
     maximum_paths: 4
-  mpls_ldp_sync_default: true
   advertise:
     passive_only: false
   segment_routing_mpls:
@@ -48,11 +44,6 @@ router_isis:
     enabled: true
 mpls:
   ip: true
-  ldp:
-    interface_disabled_default: true
-    router_id: 192.168.101.6
-    shutdown: false
-    transport_address_interface: Loopback0
 ethernet_interfaces:
 - name: e4
   peer: P1
@@ -61,7 +52,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P1_e4
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.21/31
   isis_enable: CORE
   isis_metric: 50
@@ -70,9 +61,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: e2
   peer: P2
   peer_interface: e1
@@ -80,7 +68,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P2_e1
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.27/31
   isis_enable: CORE
   isis_metric: 50
@@ -89,9 +77,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: e1
   peer: P5
   peer_interface: e1
@@ -99,7 +84,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P5_e1
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.29/31
   isis_enable: CORE
   isis_metric: 50
@@ -108,9 +93,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: e5
   peer: P3
   peer_interface: e4
@@ -118,7 +100,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P3_e4
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.32/31
   isis_enable: CORE
   isis_metric: 50
@@ -127,9 +109,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: e3
   peer: P4
   peer_interface: e1
@@ -137,7 +116,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P4_e1
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.34/31
   isis_enable: CORE
   isis_metric: 50
@@ -146,6 +125,3 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true

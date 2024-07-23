@@ -1,0 +1,46 @@
+---
+tenants:
+  - name: TENANT_A
+    mac_vrf_id_base: 10000
+    pseudowire_rt_base: 1000
+    vrfs: 
+      - name: VRF_A
+        vrf_id: 19
+        address_families:
+          - vpn-ipv4
+        l3_interfaces:
+          - description: SITE1
+            enabled: true
+            interfaces:
+              - Ethernet4
+              - Ethernet4
+            ip_addresses: 
+              - 10.1.5.1/31
+              - 10.1.5.3/31
+            nodes: 
+              - PE1
+              - PE2
+          - description: SITE2
+            enabled: true
+            interfaces:
+              - Ethernet4
+              - Ethernet4
+            ip_addresses: 
+              - 10.1.5.5/31
+              - 10.1.5.7/31
+            nodes: 
+              - PE3
+              - PE4
+        bgp_peers:
+          - ip_address: 10.1.5.0
+            nodes: [PE1]
+            remote_as: 65101
+          - ip_address: 10.1.5.2
+            nodes: [PE2]
+            remote_as: 65101
+          - ip_address: 10.1.5.4
+            nodes: [PE3]
+            remote_as: 65201
+          - ip_address: 10.1.5.6
+            nodes: [PE4]
+            remote_as: 65201

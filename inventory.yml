@@ -11,6 +11,14 @@ all:
       ansible_network_os: eos
       ansible_httpapi_port: 443
   children:
+    SITE1_CE:
+      hosts:
+        P10:
+        Edge14:
+    SITE2_CE:
+      hosts:
+        P20:
+        Edge24:
     MPLS_FABRIC:
       vars:
         ansible_user: arista

@@ -1,390 +1,384 @@
 cvp_configlets:
+  AVD_Edge14: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
+    Edge14\n!\nno enable password\nno aaa root\n!\ninterface Ethernet4\n   no shutdown\n
+    \  mtu 1500\n   no switchport\n   ip address 172.16.10.14/24\n!\nip routing\n!\nip
+    route 0.0.0.0/0 172.16.10.1\n!\nend\n"
+  AVD_Edge24: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
+    Edge24\n!\nno enable password\nno aaa root\n!\ninterface Ethernet4\n   no shutdown\n
+    \  mtu 1500\n   no switchport\n   ip address 172.16.20.24/24\n!\nip routing\n!\nip
+    route 0.0.0.0/0 172.16.20.1\n!\nend\n"
   AVD_P1: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P1\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
     enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface e1\n   description
-    P2P_LINK_TO_P5_e2\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.18/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
-    enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e2\n   description P2P_LINK_TO_PE1_e2\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.1/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e3\n   description P2P_LINK_TO_PE2_e2\n   no
-    shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.5/31\n   mpls
-    ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis
-    circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis network
-    point-to-point\n!\ninterface e4\n   description P2P_LINK_TO_P6_e4\n   no shutdown\n
-    \  mtu 1550\n   no switchport\n   ip address 192.168.102.20/31\n   mpls ldp igp
-    sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    P2P_LINK_TO_P5_e2\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.18/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e2\n   description P2P_LINK_TO_PE1_e2\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.1/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e3\n   description P2P_LINK_TO_PE2_e2\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.5/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e4\n   description P2P_LINK_TO_P6_e4\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.20/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
     level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
     Loopback0\n   description LSR_Router_ID\n   no shutdown\n   ip address 192.168.101.1/32\n
-    \  isis enable CORE\n   isis passive\n   mpls ldp interface\n   node-segment ipv4
-    index 301\n!\nip routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0
-    192.168.0.1\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0001.00\n   is-type
-    level-1\n   router-id ipv4 192.168.101.1\n   log-adjacency-changes\n   mpls ldp
-    sync default\n   !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n
-    \  segment-routing mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface
-    disabled default\n   router-id 192.168.101.1\n   no shutdown\n   transport-address
-    interface Loopback0\n!\nmanagement api http-commands\n   protocol https\n   no
-    shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    \  isis enable CORE\n   isis passive\n   node-segment ipv4 index 301\n!\nip routing\nip
+    routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter traffic-engineering\n
+    \  router-id ipv4 192.168.101.21\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0001.00\n
+    \  is-type level-1\n   router-id ipv4 192.168.101.1\n   log-adjacency-changes\n
+    \  !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
+    mpls\n      no shutdown\n!\nmpls ip\n!\nmanagement api http-commands\n   protocol
+    https\n   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+  AVD_P10: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
+    P10\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf instance
+    TENANT_A\n!\ninterface Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n
+    \  ip address 10.1.5.0/31\n!\ninterface Ethernet5\n   no shutdown\n   mtu 1500\n
+    \  no switchport\n   ip address 10.1.5.2/31\n!\ninterface Ethernet7\n   no shutdown\n
+    \  mtu 1500\n   no switchport\n   ip address 172.16.10.1/24\n!\ninterface Loopback0\n
+    \  description SITE1_lo0\n   no shutdown\n   ip address 1.1.1.1/32\n!\nip routing\nip
+    routing vrf TENANT_A\n!\nrouter bgp 65101\n   router-id 1.1.1.1\n   neighbor CORE
+    peer group\n   neighbor CORE remote-as 65001\n   neighbor 10.1.5.1 peer group
+    CORE\n   neighbor 10.1.5.3 peer group CORE\n   !\n   address-family ipv4\n      network
+    1.1.1.1/32\n      network 172.16.10.0/24\n!\nend\n"
   AVD_P2: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P2\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
     enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface e1\n   description
-    P2P_LINK_TO_P6_e2\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.26/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
-    enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e2\n   description P2P_LINK_TO_PE1_e3\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.3/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e3\n   description P2P_LINK_TO_PE2_e3\n   no
-    shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.7/31\n   mpls
-    ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis
-    circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis network
-    point-to-point\n!\ninterface e4\n   description P2P_LINK_TO_P5_e4\n   no shutdown\n
-    \  mtu 1550\n   no switchport\n   ip address 192.168.102.24/31\n   mpls ldp igp
-    sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    P2P_LINK_TO_P6_e2\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.26/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e2\n   description P2P_LINK_TO_PE1_e3\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.3/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e3\n   description P2P_LINK_TO_PE2_e3\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.7/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e4\n   description P2P_LINK_TO_P5_e4\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.24/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
     level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
     Loopback0\n   description LSR_Router_ID\n   no shutdown\n   ip address 192.168.101.2/32\n
-    \  isis enable CORE\n   isis passive\n   mpls ldp interface\n   node-segment ipv4
-    index 302\n!\nip routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0
-    192.168.0.1\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0002.00\n   is-type
-    level-1\n   router-id ipv4 192.168.101.2\n   log-adjacency-changes\n   mpls ldp
-    sync default\n   !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n
-    \  segment-routing mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface
-    disabled default\n   router-id 192.168.101.2\n   no shutdown\n   transport-address
-    interface Loopback0\n!\nmanagement api http-commands\n   protocol https\n   no
-    shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    \  isis enable CORE\n   isis passive\n   node-segment ipv4 index 302\n!\nip routing\nip
+    routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter traffic-engineering\n
+    \  router-id ipv4 192.168.101.21\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0002.00\n
+    \  is-type level-1\n   router-id ipv4 192.168.101.2\n   log-adjacency-changes\n
+    \  !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
+    mpls\n      no shutdown\n!\nmpls ip\n!\nmanagement api http-commands\n   protocol
+    https\n   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+  AVD_P20: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
+    P20\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf instance
+    TENANT_A\n!\ninterface Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n
+    \  ip address 10.1.5.4/31\n!\ninterface Ethernet5\n   no shutdown\n   mtu 1500\n
+    \  no switchport\n   ip address 10.1.5.6/31\n!\ninterface Ethernet7\n   no shutdown\n
+    \  mtu 1500\n   no switchport\n   ip address 172.16.20.1/24\n!\ninterface Loopback0\n
+    \  description SITE1_lo0\n   no shutdown\n   ip address 2.2.2.2/32\n!\nip routing\nip
+    routing vrf TENANT_A\n!\nrouter bgp 65201\n   router-id 2.2.2.2\n   neighbor CORE
+    peer group\n   neighbor CORE remote-as 65001\n   neighbor 10.1.5.5 peer group
+    CORE\n   neighbor 10.1.5.7 peer group CORE\n   !\n   address-family ipv4\n      network
+    2.2.2.2/32\n      network 172.16.20.0/24\n!\nend\n"
   AVD_P3: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P3\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
     enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface e1\n   description
-    P2P_LINK_TO_P5_e3\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.31/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
-    enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e2\n   description P2P_LINK_TO_PE3_e2\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.36/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e3\n   description P2P_LINK_TO_PE4_e2\n   no
-    shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.38/31\n   mpls
-    ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis
-    circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis network
-    point-to-point\n!\ninterface e4\n   description P2P_LINK_TO_P6_e5\n   no shutdown\n
-    \  mtu 1550\n   no switchport\n   ip address 192.168.102.33/31\n   mpls ldp igp
-    sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    P2P_LINK_TO_P5_e3\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.31/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e2\n   description P2P_LINK_TO_PE3_e2\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.36/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e3\n   description P2P_LINK_TO_PE4_e2\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.38/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e4\n   description P2P_LINK_TO_P6_e5\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.33/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
     level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
     Loopback0\n   description LSR_Router_ID\n   no shutdown\n   ip address 192.168.101.3/32\n
-    \  isis enable CORE\n   isis passive\n   mpls ldp interface\n   node-segment ipv4
-    index 303\n!\nip routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0
-    192.168.0.1\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0003.00\n   is-type
-    level-1\n   router-id ipv4 192.168.101.3\n   log-adjacency-changes\n   mpls ldp
-    sync default\n   !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n
-    \  segment-routing mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface
-    disabled default\n   router-id 192.168.101.3\n   no shutdown\n   transport-address
-    interface Loopback0\n!\nmanagement api http-commands\n   protocol https\n   no
-    shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    \  isis enable CORE\n   isis passive\n   node-segment ipv4 index 303\n!\nip routing\nip
+    routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter traffic-engineering\n
+    \  router-id ipv4 192.168.101.21\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0003.00\n
+    \  is-type level-1\n   router-id ipv4 192.168.101.3\n   log-adjacency-changes\n
+    \  !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
+    mpls\n      no shutdown\n!\nmpls ip\n!\nmanagement api http-commands\n   protocol
+    https\n   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
   AVD_P4: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P4\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
     enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface e1\n   description
-    P2P_LINK_TO_P6_e3\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.35/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
-    enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e2\n   description P2P_LINK_TO_PE3_e3\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.40/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e3\n   description P2P_LINK_TO_PE4_e3\n   no
-    shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.42/31\n   mpls
-    ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis
-    circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis network
-    point-to-point\n!\ninterface e4\n   description P2P_LINK_TO_P5_e5\n   no shutdown\n
-    \  mtu 1550\n   no switchport\n   ip address 192.168.102.33/31\n   mpls ldp igp
-    sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    P2P_LINK_TO_P6_e3\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.35/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e2\n   description P2P_LINK_TO_PE3_e3\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.40/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e3\n   description P2P_LINK_TO_PE4_e3\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.42/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e4\n   description P2P_LINK_TO_P5_e5\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.33/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
     level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
     Loopback0\n   description LSR_Router_ID\n   no shutdown\n   ip address 192.168.101.4/32\n
-    \  isis enable CORE\n   isis passive\n   mpls ldp interface\n   node-segment ipv4
-    index 304\n!\nip routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0
-    192.168.0.1\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0004.00\n   is-type
-    level-1\n   router-id ipv4 192.168.101.4\n   log-adjacency-changes\n   mpls ldp
-    sync default\n   !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n
-    \  segment-routing mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface
-    disabled default\n   router-id 192.168.101.4\n   no shutdown\n   transport-address
-    interface Loopback0\n!\nmanagement api http-commands\n   protocol https\n   no
-    shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    \  isis enable CORE\n   isis passive\n   node-segment ipv4 index 304\n!\nip routing\nip
+    routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter traffic-engineering\n
+    \  router-id ipv4 192.168.101.21\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0004.00\n
+    \  is-type level-1\n   router-id ipv4 192.168.101.4\n   log-adjacency-changes\n
+    \  !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
+    mpls\n      no shutdown\n!\nmpls ip\n!\nmanagement api http-commands\n   protocol
+    https\n   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
   AVD_P5: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P5\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
     enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface e1\n   description
-    P2P_LINK_TO_P6_e1\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.28/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
-    enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e2\n   description P2P_LINK_TO_P1_e1\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.19/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e3\n   description P2P_LINK_TO_P3_e1\n   no
-    shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.30/31\n   mpls
-    ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis
-    circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis network
-    point-to-point\n!\ninterface e4\n   description P2P_LINK_TO_P2_e4\n   no shutdown\n
-    \  mtu 1550\n   no switchport\n   ip address 192.168.102.25/31\n   mpls ldp igp
-    sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    P2P_LINK_TO_P6_e1\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.28/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e2\n   description P2P_LINK_TO_P1_e1\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.19/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
     level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
-    e5\n   description P2P_LINK_TO_P4_e4\n   no shutdown\n   mtu 1550\n   no switchport\n
-    \  ip address 192.168.102.32/31\n   mpls ldp igp sync\n   mpls ldp interface\n
-    \  mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n   isis metric
-    50\n   isis hello padding\n   isis network point-to-point\n!\ninterface Loopback0\n
-    \  description LSR_Router_ID\n   no shutdown\n   ip address 192.168.101.5/32\n
-    \  isis enable CORE\n   isis passive\n   mpls ldp interface\n   node-segment ipv4
-    index 305\n!\nip routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0
-    192.168.0.1\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0005.00\n   is-type
-    level-1\n   router-id ipv4 192.168.101.5\n   log-adjacency-changes\n   mpls ldp
-    sync default\n   !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n
-    \  segment-routing mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface
-    disabled default\n   router-id 192.168.101.5\n   no shutdown\n   transport-address
-    interface Loopback0\n!\nmanagement api http-commands\n   protocol https\n   no
-    shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    e3\n   description P2P_LINK_TO_P3_e1\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.30/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e4\n   description P2P_LINK_TO_P2_e4\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.25/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e5\n   description P2P_LINK_TO_P4_e4\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.32/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    Loopback0\n   description LSR_Router_ID\n   no shutdown\n   ip address 192.168.101.5/32\n
+    \  isis enable CORE\n   isis passive\n   node-segment ipv4 index 305\n!\nip routing\nip
+    routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter traffic-engineering\n
+    \  router-id ipv4 192.168.101.21\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0005.00\n
+    \  is-type level-1\n   router-id ipv4 192.168.101.5\n   log-adjacency-changes\n
+    \  !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
+    mpls\n      no shutdown\n!\nmpls ip\n!\nmanagement api http-commands\n   protocol
+    https\n   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
   AVD_P6: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P6\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
     enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface e1\n   description
-    P2P_LINK_TO_P5_e1\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.29/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
-    enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e2\n   description P2P_LINK_TO_P2_e1\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.27/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e3\n   description P2P_LINK_TO_P4_e1\n   no
-    shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.34/31\n   mpls
-    ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis
-    circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis network
-    point-to-point\n!\ninterface e4\n   description P2P_LINK_TO_P1_e4\n   no shutdown\n
-    \  mtu 1550\n   no switchport\n   ip address 192.168.102.21/31\n   mpls ldp igp
-    sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    P2P_LINK_TO_P5_e1\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.29/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e2\n   description P2P_LINK_TO_P2_e1\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.27/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
     level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
-    e5\n   description P2P_LINK_TO_P3_e4\n   no shutdown\n   mtu 1550\n   no switchport\n
-    \  ip address 192.168.102.32/31\n   mpls ldp igp sync\n   mpls ldp interface\n
-    \  mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n   isis metric
-    50\n   isis hello padding\n   isis network point-to-point\n!\ninterface Loopback0\n
-    \  description LSR_Router_ID\n   no shutdown\n   ip address 192.168.101.6/32\n
-    \  isis enable CORE\n   isis passive\n   mpls ldp interface\n   node-segment ipv4
-    index 306\n!\nip routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0
-    192.168.0.1\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0006.00\n   is-type
-    level-1\n   router-id ipv4 192.168.101.6\n   log-adjacency-changes\n   mpls ldp
-    sync default\n   !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n
-    \  segment-routing mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface
-    disabled default\n   router-id 192.168.101.6\n   no shutdown\n   transport-address
-    interface Loopback0\n!\nmanagement api http-commands\n   protocol https\n   no
-    shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    e3\n   description P2P_LINK_TO_P4_e1\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.34/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e4\n   description P2P_LINK_TO_P1_e4\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.21/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e5\n   description P2P_LINK_TO_P3_e4\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.32/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    Loopback0\n   description LSR_Router_ID\n   no shutdown\n   ip address 192.168.101.6/32\n
+    \  isis enable CORE\n   isis passive\n   node-segment ipv4 index 306\n!\nip routing\nip
+    routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter traffic-engineering\n
+    \  router-id ipv4 192.168.101.21\n!\nrouter isis CORE\n   net 49.0001.0000.0001.0006.00\n
+    \  is-type level-1\n   router-id ipv4 192.168.101.6\n   log-adjacency-changes\n
+    \  !\n   address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
+    mpls\n      no shutdown\n!\nmpls ip\n!\nmanagement api http-commands\n   protocol
+    https\n   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
   AVD_PE1: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname PE1\ndns domain atd.lab\n!\nspanning-tree mode mstp\nspanning-tree
-    mst 0 priority 32768\n!\nno enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface
-    e1\n   description P2P_LINK_TO_PE2_e1\n   no shutdown\n   mtu 1550\n   no switchport\n
-    \  ip address 192.168.102.8/31\n   mpls ldp igp sync\n   mpls ldp interface\n
-    \  mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n   isis metric
-    50\n   isis hello padding\n   isis network point-to-point\n!\ninterface e2\n   description
-    P2P_LINK_TO_P1_e2\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.0/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
+    mst 0 priority 32768\n!\nno enable password\nno aaa root\n!\nvrf instance MGMT\n!\nvrf
+    instance VRF_A\n!\ninterface e1\n   description P2P_LINK_TO_PE2_e1\n   no shutdown\n
+    \  mtu 1497\n   no switchport\n   ip address 192.168.102.8/31\n   mpls ip\n   isis
     enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e3\n   description P2P_LINK_TO_P2_e2\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.2/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e6\n   description P2P_LINK_TO_RR5_e6\n   no
-    shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.10/31\n   mpls
-    ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis
-    circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis network
-    point-to-point\n!\ninterface e8\n   description P2P_LINK_TO_RR6_e10\n   no shutdown\n
-    \  mtu 1550\n   no switchport\n   ip address 192.168.102.12/31\n   mpls ldp igp
-    sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    \  isis network point-to-point\n!\ninterface e2\n   description P2P_LINK_TO_P1_e2\n
+    \  no shutdown\n   mtu 1497\n   no switchport\n   ip address 192.168.102.0/31\n
+    \  mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n   isis metric
+    50\n   isis hello padding\n   isis network point-to-point\n!\ninterface e3\n   description
+    P2P_LINK_TO_P2_e2\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.2/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e6\n   description P2P_LINK_TO_RR5_e6\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.10/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
     level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
-    Loopback0\n   description MPLS_Overlay_peering\n   no shutdown\n   ip address
-    192.168.101.21/32\n   isis enable CORE\n   isis passive\n   mpls ldp interface\n
-    \  node-segment ipv4 index 221\n!\nip virtual-router mac-address 02:1c:73:00:dc:00\n!\nip
-    routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter
-    bfd\n   multihop interval 300 min-rx 300 multiplier 3\n!\nrouter bgp 65001\n   router-id
-    192.168.101.21\n   maximum-paths 4 ecmp 4\n   no bgp default ipv4-unicast\n   neighbor
-    MPLS-OVERLAY-PEERS peer group\n   neighbor MPLS-OVERLAY-PEERS remote-as 65001\n
-    \  neighbor MPLS-OVERLAY-PEERS update-source Loopback0\n   neighbor MPLS-OVERLAY-PEERS
-    bfd\n   neighbor MPLS-OVERLAY-PEERS send-community\n   neighbor MPLS-OVERLAY-PEERS
-    maximum-routes 0\n   neighbor 192.168.101.35 peer group MPLS-OVERLAY-PEERS\n   neighbor
-    192.168.101.35 description RR5\n   neighbor 192.168.101.36 peer group MPLS-OVERLAY-PEERS\n
-    \  neighbor 192.168.101.36 description RR6\n   !\n   address-family evpn\n   !\n
-    \  address-family ipv4\n      no neighbor MPLS-OVERLAY-PEERS activate\n   !\n
-    \  address-family vpn-ipv4\n      neighbor MPLS-OVERLAY-PEERS activate\n      neighbor
-    default encapsulation mpls next-hop-self source-interface Loopback0\n!\nrouter
-    isis CORE\n   net 49.0001.0000.0001.0021.00\n   is-type level-1\n   router-id
-    ipv4 192.168.101.21\n   log-adjacency-changes\n   mpls ldp sync default\n   !\n
-    \  address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
-    mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface disabled default\n
-    \  router-id 192.168.101.21\n   no shutdown\n   transport-address interface Loopback0\n!\nmanagement
-    api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n      no
-    shutdown\n!\nend\n"
+    e8\n   description P2P_LINK_TO_RR6_e10\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.12/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    Ethernet4\n   description SITE1\n   no shutdown\n   no switchport\n   vrf VRF_A\n
+    \  ip address 10.1.5.1/31\n!\ninterface Loopback0\n   description MPLS_Overlay_peering\n
+    \  no shutdown\n   ip address 192.168.101.21/32\n   isis enable CORE\n   isis
+    passive\n   node-segment ipv4 index 221\n!\nip virtual-router mac-address 02:1c:73:00:dc:00\n!\nip
+    routing\nip routing vrf MGMT\nip routing vrf VRF_A\n!\nip route vrf MGMT 0.0.0.0/0
+    192.168.0.1\n!\nrouter bfd\n   multihop interval 300 min-rx 300 multiplier 3\n!\nrouter
+    bgp 65001\n   router-id 192.168.101.21\n   maximum-paths 4 ecmp 4\n   no bgp default
+    ipv4-unicast\n   neighbor MPLS-OVERLAY-PEERS peer group\n   neighbor MPLS-OVERLAY-PEERS
+    remote-as 65001\n   neighbor MPLS-OVERLAY-PEERS update-source Loopback0\n   neighbor
+    MPLS-OVERLAY-PEERS bfd\n   neighbor MPLS-OVERLAY-PEERS send-community\n   neighbor
+    MPLS-OVERLAY-PEERS maximum-routes 0\n   neighbor 192.168.101.35 peer group MPLS-OVERLAY-PEERS\n
+    \  neighbor 192.168.101.35 description RR5\n   neighbor 192.168.101.36 peer group
+    MPLS-OVERLAY-PEERS\n   neighbor 192.168.101.36 description RR6\n   !\n   address-family
+    evpn\n   !\n   address-family ipv4\n      no neighbor MPLS-OVERLAY-PEERS activate\n
+    \  !\n   address-family vpn-ipv4\n      neighbor MPLS-OVERLAY-PEERS activate\n
+    \     neighbor default encapsulation mpls next-hop-self source-interface Loopback0\n
+    \  !\n   vrf VRF_A\n      rd 192.168.101.21:19\n      route-target import vpn-ipv4
+    65000:19\n      route-target export vpn-ipv4 65000:19\n      router-id 192.168.101.21\n
+    \     neighbor 10.1.5.0 remote-as 65101\n      redistribute connected\n      !\n
+    \     address-family ipv4\n         neighbor 10.1.5.0 activate\n!\nrouter isis
+    CORE\n   net 49.0001.0000.0001.0021.00\n   is-type level-1\n   router-id ipv4
+    192.168.101.21\n   log-adjacency-changes\n   !\n   address-family ipv4 unicast\n
+    \     maximum-paths 4\n   !\n   segment-routing mpls\n      no shutdown\n!\nmpls
+    ip\n!\nmanagement api http-commands\n   protocol https\n   no shutdown\n   !\n
+    \  vrf MGMT\n      no shutdown\n!\nend\n"
   AVD_PE2: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname PE2\ndns domain atd.lab\n!\nspanning-tree mode mstp\nspanning-tree
-    mst 0 priority 32768\n!\nno enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface
-    e1\n   description P2P_LINK_TO_PE1_e1\n   no shutdown\n   mtu 1550\n   no switchport\n
-    \  ip address 192.168.102.9/31\n   mpls ldp igp sync\n   mpls ldp interface\n
-    \  mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n   isis metric
-    50\n   isis hello padding\n   isis network point-to-point\n!\ninterface e2\n   description
-    P2P_LINK_TO_P1_e3\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.4/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
+    mst 0 priority 32768\n!\nno enable password\nno aaa root\n!\nvrf instance MGMT\n!\nvrf
+    instance VRF_A\n!\ninterface e1\n   description P2P_LINK_TO_PE1_e1\n   no shutdown\n
+    \  mtu 1497\n   no switchport\n   ip address 192.168.102.9/31\n   mpls ip\n   isis
     enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e3\n   description P2P_LINK_TO_P2_e3\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.6/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e6\n   description P2P_LINK_TO_RR5_e7\n   no
-    shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.14/31\n   mpls
-    ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis
-    circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis network
-    point-to-point\n!\ninterface e8\n   description P2P_LINK_TO_RR6_e13\n   no shutdown\n
-    \  mtu 1550\n   no switchport\n   ip address 192.168.102.16/31\n   mpls ldp igp
-    sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    \  isis network point-to-point\n!\ninterface e2\n   description P2P_LINK_TO_P1_e3\n
+    \  no shutdown\n   mtu 1497\n   no switchport\n   ip address 192.168.102.4/31\n
+    \  mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n   isis metric
+    50\n   isis hello padding\n   isis network point-to-point\n!\ninterface e3\n   description
+    P2P_LINK_TO_P2_e3\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.6/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e6\n   description P2P_LINK_TO_RR5_e7\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.14/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
     level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
-    Loopback0\n   description MPLS_Overlay_peering\n   no shutdown\n   ip address
-    192.168.101.22/32\n   isis enable CORE\n   isis passive\n   mpls ldp interface\n
-    \  node-segment ipv4 index 222\n!\nip virtual-router mac-address 02:1c:73:00:dc:00\n!\nip
-    routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter
-    bfd\n   multihop interval 300 min-rx 300 multiplier 3\n!\nrouter bgp 65001\n   router-id
-    192.168.101.22\n   maximum-paths 4 ecmp 4\n   no bgp default ipv4-unicast\n   neighbor
-    MPLS-OVERLAY-PEERS peer group\n   neighbor MPLS-OVERLAY-PEERS remote-as 65001\n
-    \  neighbor MPLS-OVERLAY-PEERS update-source Loopback0\n   neighbor MPLS-OVERLAY-PEERS
-    bfd\n   neighbor MPLS-OVERLAY-PEERS send-community\n   neighbor MPLS-OVERLAY-PEERS
-    maximum-routes 0\n   neighbor 192.168.101.35 peer group MPLS-OVERLAY-PEERS\n   neighbor
-    192.168.101.35 description RR5\n   neighbor 192.168.101.36 peer group MPLS-OVERLAY-PEERS\n
-    \  neighbor 192.168.101.36 description RR6\n   !\n   address-family evpn\n   !\n
-    \  address-family ipv4\n      no neighbor MPLS-OVERLAY-PEERS activate\n   !\n
-    \  address-family vpn-ipv4\n      neighbor MPLS-OVERLAY-PEERS activate\n      neighbor
-    default encapsulation mpls next-hop-self source-interface Loopback0\n!\nrouter
-    isis CORE\n   net 49.0001.0000.0001.0022.00\n   is-type level-1\n   router-id
-    ipv4 192.168.101.22\n   log-adjacency-changes\n   mpls ldp sync default\n   !\n
-    \  address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
-    mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface disabled default\n
-    \  router-id 192.168.101.22\n   no shutdown\n   transport-address interface Loopback0\n!\nmanagement
-    api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n      no
-    shutdown\n!\nend\n"
+    e8\n   description P2P_LINK_TO_RR6_e13\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.16/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    Ethernet4\n   description SITE1\n   no shutdown\n   no switchport\n   vrf VRF_A\n
+    \  ip address 10.1.5.3/31\n!\ninterface Loopback0\n   description MPLS_Overlay_peering\n
+    \  no shutdown\n   ip address 192.168.101.22/32\n   isis enable CORE\n   isis
+    passive\n   node-segment ipv4 index 222\n!\nip virtual-router mac-address 02:1c:73:00:dc:00\n!\nip
+    routing\nip routing vrf MGMT\nip routing vrf VRF_A\n!\nip route vrf MGMT 0.0.0.0/0
+    192.168.0.1\n!\nrouter bfd\n   multihop interval 300 min-rx 300 multiplier 3\n!\nrouter
+    bgp 65001\n   router-id 192.168.101.22\n   maximum-paths 4 ecmp 4\n   no bgp default
+    ipv4-unicast\n   neighbor MPLS-OVERLAY-PEERS peer group\n   neighbor MPLS-OVERLAY-PEERS
+    remote-as 65001\n   neighbor MPLS-OVERLAY-PEERS update-source Loopback0\n   neighbor
+    MPLS-OVERLAY-PEERS bfd\n   neighbor MPLS-OVERLAY-PEERS send-community\n   neighbor
+    MPLS-OVERLAY-PEERS maximum-routes 0\n   neighbor 192.168.101.35 peer group MPLS-OVERLAY-PEERS\n
+    \  neighbor 192.168.101.35 description RR5\n   neighbor 192.168.101.36 peer group
+    MPLS-OVERLAY-PEERS\n   neighbor 192.168.101.36 description RR6\n   !\n   address-family
+    evpn\n   !\n   address-family ipv4\n      no neighbor MPLS-OVERLAY-PEERS activate\n
+    \  !\n   address-family vpn-ipv4\n      neighbor MPLS-OVERLAY-PEERS activate\n
+    \     neighbor default encapsulation mpls next-hop-self source-interface Loopback0\n
+    \  !\n   vrf VRF_A\n      rd 192.168.101.22:19\n      route-target import vpn-ipv4
+    65000:19\n      route-target export vpn-ipv4 65000:19\n      router-id 192.168.101.22\n
+    \     neighbor 10.1.5.2 remote-as 65101\n      redistribute connected\n      !\n
+    \     address-family ipv4\n         neighbor 10.1.5.2 activate\n!\nrouter isis
+    CORE\n   net 49.0001.0000.0001.0022.00\n   is-type level-1\n   router-id ipv4
+    192.168.101.22\n   log-adjacency-changes\n   !\n   address-family ipv4 unicast\n
+    \     maximum-paths 4\n   !\n   segment-routing mpls\n      no shutdown\n!\nmpls
+    ip\n!\nmanagement api http-commands\n   protocol https\n   no shutdown\n   !\n
+    \  vrf MGMT\n      no shutdown\n!\nend\n"
   AVD_PE3: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname PE3\ndns domain atd.lab\n!\nspanning-tree mode mstp\nspanning-tree
-    mst 0 priority 32768\n!\nno enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface
-    e1\n   description P2P_LINK_TO_PE4_e1\n   no shutdown\n   mtu 1550\n   no switchport\n
-    \  ip address 192.168.102.44/31\n   mpls ldp igp sync\n   mpls ldp interface\n
-    \  mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n   isis metric
-    50\n   isis hello padding\n   isis network point-to-point\n!\ninterface e2\n   description
-    P2P_LINK_TO_P3_e2\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.37/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
+    mst 0 priority 32768\n!\nno enable password\nno aaa root\n!\nvrf instance MGMT\n!\nvrf
+    instance VRF_A\n!\ninterface e1\n   description P2P_LINK_TO_PE4_e1\n   no shutdown\n
+    \  mtu 1497\n   no switchport\n   ip address 192.168.102.44/31\n   mpls ip\n   isis
     enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e3\n   description P2P_LINK_TO_P4_e2\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.41/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e6\n   description P2P_LINK_TO_RR6_e6\n   no
-    shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.48/31\n   mpls
-    ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis
-    circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis network
-    point-to-point\n!\ninterface e8\n   description P2P_LINK_TO_RR5_e10\n   no shutdown\n
-    \  mtu 1550\n   no switchport\n   ip address 192.168.102.46/31\n   mpls ldp igp
-    sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    \  isis network point-to-point\n!\ninterface e2\n   description P2P_LINK_TO_P3_e2\n
+    \  no shutdown\n   mtu 1497\n   no switchport\n   ip address 192.168.102.37/31\n
+    \  mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n   isis metric
+    50\n   isis hello padding\n   isis network point-to-point\n!\ninterface e3\n   description
+    P2P_LINK_TO_P4_e2\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.41/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e6\n   description P2P_LINK_TO_RR6_e6\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.48/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
     level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
-    Loopback0\n   description MPLS_Overlay_peering\n   no shutdown\n   ip address
-    192.168.101.23/32\n   isis enable CORE\n   isis passive\n   mpls ldp interface\n
-    \  node-segment ipv4 index 223\n!\nip virtual-router mac-address 02:1c:73:00:dc:00\n!\nip
-    routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter
-    bfd\n   multihop interval 300 min-rx 300 multiplier 3\n!\nrouter bgp 65001\n   router-id
-    192.168.101.23\n   maximum-paths 4 ecmp 4\n   no bgp default ipv4-unicast\n   neighbor
-    MPLS-OVERLAY-PEERS peer group\n   neighbor MPLS-OVERLAY-PEERS remote-as 65001\n
-    \  neighbor MPLS-OVERLAY-PEERS update-source Loopback0\n   neighbor MPLS-OVERLAY-PEERS
-    bfd\n   neighbor MPLS-OVERLAY-PEERS send-community\n   neighbor MPLS-OVERLAY-PEERS
-    maximum-routes 0\n   neighbor 192.168.101.35 peer group MPLS-OVERLAY-PEERS\n   neighbor
-    192.168.101.35 description RR5\n   neighbor 192.168.101.36 peer group MPLS-OVERLAY-PEERS\n
-    \  neighbor 192.168.101.36 description RR6\n   !\n   address-family evpn\n   !\n
-    \  address-family ipv4\n      no neighbor MPLS-OVERLAY-PEERS activate\n   !\n
-    \  address-family vpn-ipv4\n      neighbor MPLS-OVERLAY-PEERS activate\n      neighbor
-    default encapsulation mpls next-hop-self source-interface Loopback0\n!\nrouter
-    isis CORE\n   net 49.0001.0000.0001.0023.00\n   is-type level-1\n   router-id
-    ipv4 192.168.101.23\n   log-adjacency-changes\n   mpls ldp sync default\n   !\n
-    \  address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
-    mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface disabled default\n
-    \  router-id 192.168.101.23\n   no shutdown\n   transport-address interface Loopback0\n!\nmanagement
-    api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n      no
-    shutdown\n!\nend\n"
+    e8\n   description P2P_LINK_TO_RR5_e10\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.46/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    Ethernet4\n   description SITE2\n   no shutdown\n   no switchport\n   vrf VRF_A\n
+    \  ip address 10.1.5.5/31\n!\ninterface Loopback0\n   description MPLS_Overlay_peering\n
+    \  no shutdown\n   ip address 192.168.101.23/32\n   isis enable CORE\n   isis
+    passive\n   node-segment ipv4 index 223\n!\nip virtual-router mac-address 02:1c:73:00:dc:00\n!\nip
+    routing\nip routing vrf MGMT\nip routing vrf VRF_A\n!\nip route vrf MGMT 0.0.0.0/0
+    192.168.0.1\n!\nrouter bfd\n   multihop interval 300 min-rx 300 multiplier 3\n!\nrouter
+    bgp 65001\n   router-id 192.168.101.23\n   maximum-paths 4 ecmp 4\n   no bgp default
+    ipv4-unicast\n   neighbor MPLS-OVERLAY-PEERS peer group\n   neighbor MPLS-OVERLAY-PEERS
+    remote-as 65001\n   neighbor MPLS-OVERLAY-PEERS update-source Loopback0\n   neighbor
+    MPLS-OVERLAY-PEERS bfd\n   neighbor MPLS-OVERLAY-PEERS send-community\n   neighbor
+    MPLS-OVERLAY-PEERS maximum-routes 0\n   neighbor 192.168.101.35 peer group MPLS-OVERLAY-PEERS\n
+    \  neighbor 192.168.101.35 description RR5\n   neighbor 192.168.101.36 peer group
+    MPLS-OVERLAY-PEERS\n   neighbor 192.168.101.36 description RR6\n   !\n   address-family
+    evpn\n   !\n   address-family ipv4\n      no neighbor MPLS-OVERLAY-PEERS activate\n
+    \  !\n   address-family vpn-ipv4\n      neighbor MPLS-OVERLAY-PEERS activate\n
+    \     neighbor default encapsulation mpls next-hop-self source-interface Loopback0\n
+    \  !\n   vrf VRF_A\n      rd 192.168.101.23:19\n      route-target import vpn-ipv4
+    65000:19\n      route-target export vpn-ipv4 65000:19\n      router-id 192.168.101.23\n
+    \     neighbor 10.1.5.4 remote-as 65201\n      redistribute connected\n      !\n
+    \     address-family ipv4\n         neighbor 10.1.5.4 activate\n!\nrouter isis
+    CORE\n   net 49.0001.0000.0001.0023.00\n   is-type level-1\n   router-id ipv4
+    192.168.101.23\n   log-adjacency-changes\n   !\n   address-family ipv4 unicast\n
+    \     maximum-paths 4\n   !\n   segment-routing mpls\n      no shutdown\n!\nmpls
+    ip\n!\nmanagement api http-commands\n   protocol https\n   no shutdown\n   !\n
+    \  vrf MGMT\n      no shutdown\n!\nend\n"
   AVD_PE4: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname PE4\ndns domain atd.lab\n!\nspanning-tree mode mstp\nspanning-tree
-    mst 0 priority 32768\n!\nno enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface
-    e1\n   description P2P_LINK_TO_PE3_e1\n   no shutdown\n   mtu 1550\n   no switchport\n
-    \  ip address 192.168.102.45/31\n   mpls ldp igp sync\n   mpls ldp interface\n
-    \  mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n   isis metric
-    50\n   isis hello padding\n   isis network point-to-point\n!\ninterface e2\n   description
-    P2P_LINK_TO_P3_e3\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.39/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
+    mst 0 priority 32768\n!\nno enable password\nno aaa root\n!\nvrf instance MGMT\n!\nvrf
+    instance VRF_A\n!\ninterface e1\n   description P2P_LINK_TO_PE3_e1\n   no shutdown\n
+    \  mtu 1497\n   no switchport\n   ip address 192.168.102.45/31\n   mpls ip\n   isis
     enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e3\n   description P2P_LINK_TO_P4_e3\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.43/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e6\n   description P2P_LINK_TO_RR6_e7\n   no
-    shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.52/31\n   mpls
-    ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis
-    circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis network
-    point-to-point\n!\ninterface e8\n   description P2P_LINK_TO_RR5_e13\n   no shutdown\n
-    \  mtu 1550\n   no switchport\n   ip address 192.168.102.50/31\n   mpls ldp igp
-    sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    \  isis network point-to-point\n!\ninterface e2\n   description P2P_LINK_TO_P3_e3\n
+    \  no shutdown\n   mtu 1497\n   no switchport\n   ip address 192.168.102.39/31\n
+    \  mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n   isis metric
+    50\n   isis hello padding\n   isis network point-to-point\n!\ninterface e3\n   description
+    P2P_LINK_TO_P4_e3\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.43/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e6\n   description P2P_LINK_TO_RR6_e7\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.52/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
     level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
-    Loopback0\n   description MPLS_Overlay_peering\n   no shutdown\n   ip address
-    192.168.101.24/32\n   isis enable CORE\n   isis passive\n   mpls ldp interface\n
-    \  node-segment ipv4 index 224\n!\nip virtual-router mac-address 02:1c:73:00:dc:00\n!\nip
-    routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter
-    bfd\n   multihop interval 300 min-rx 300 multiplier 3\n!\nrouter bgp 65001\n   router-id
-    192.168.101.24\n   maximum-paths 4 ecmp 4\n   no bgp default ipv4-unicast\n   neighbor
-    MPLS-OVERLAY-PEERS peer group\n   neighbor MPLS-OVERLAY-PEERS remote-as 65001\n
-    \  neighbor MPLS-OVERLAY-PEERS update-source Loopback0\n   neighbor MPLS-OVERLAY-PEERS
-    bfd\n   neighbor MPLS-OVERLAY-PEERS send-community\n   neighbor MPLS-OVERLAY-PEERS
-    maximum-routes 0\n   neighbor 192.168.101.35 peer group MPLS-OVERLAY-PEERS\n   neighbor
-    192.168.101.35 description RR5\n   neighbor 192.168.101.36 peer group MPLS-OVERLAY-PEERS\n
-    \  neighbor 192.168.101.36 description RR6\n   !\n   address-family evpn\n   !\n
-    \  address-family ipv4\n      no neighbor MPLS-OVERLAY-PEERS activate\n   !\n
-    \  address-family vpn-ipv4\n      neighbor MPLS-OVERLAY-PEERS activate\n      neighbor
-    default encapsulation mpls next-hop-self source-interface Loopback0\n!\nrouter
-    isis CORE\n   net 49.0001.0000.0001.0024.00\n   is-type level-1\n   router-id
-    ipv4 192.168.101.24\n   log-adjacency-changes\n   mpls ldp sync default\n   !\n
-    \  address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
-    mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface disabled default\n
-    \  router-id 192.168.101.24\n   no shutdown\n   transport-address interface Loopback0\n!\nmanagement
-    api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n      no
-    shutdown\n!\nend\n"
+    e8\n   description P2P_LINK_TO_RR5_e13\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.50/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    Ethernet4\n   description SITE2\n   no shutdown\n   no switchport\n   vrf VRF_A\n
+    \  ip address 10.1.5.7/31\n!\ninterface Loopback0\n   description MPLS_Overlay_peering\n
+    \  no shutdown\n   ip address 192.168.101.24/32\n   isis enable CORE\n   isis
+    passive\n   node-segment ipv4 index 224\n!\nip virtual-router mac-address 02:1c:73:00:dc:00\n!\nip
+    routing\nip routing vrf MGMT\nip routing vrf VRF_A\n!\nip route vrf MGMT 0.0.0.0/0
+    192.168.0.1\n!\nrouter bfd\n   multihop interval 300 min-rx 300 multiplier 3\n!\nrouter
+    bgp 65001\n   router-id 192.168.101.24\n   maximum-paths 4 ecmp 4\n   no bgp default
+    ipv4-unicast\n   neighbor MPLS-OVERLAY-PEERS peer group\n   neighbor MPLS-OVERLAY-PEERS
+    remote-as 65001\n   neighbor MPLS-OVERLAY-PEERS update-source Loopback0\n   neighbor
+    MPLS-OVERLAY-PEERS bfd\n   neighbor MPLS-OVERLAY-PEERS send-community\n   neighbor
+    MPLS-OVERLAY-PEERS maximum-routes 0\n   neighbor 192.168.101.35 peer group MPLS-OVERLAY-PEERS\n
+    \  neighbor 192.168.101.35 description RR5\n   neighbor 192.168.101.36 peer group
+    MPLS-OVERLAY-PEERS\n   neighbor 192.168.101.36 description RR6\n   !\n   address-family
+    evpn\n   !\n   address-family ipv4\n      no neighbor MPLS-OVERLAY-PEERS activate\n
+    \  !\n   address-family vpn-ipv4\n      neighbor MPLS-OVERLAY-PEERS activate\n
+    \     neighbor default encapsulation mpls next-hop-self source-interface Loopback0\n
+    \  !\n   vrf VRF_A\n      rd 192.168.101.24:19\n      route-target import vpn-ipv4
+    65000:19\n      route-target export vpn-ipv4 65000:19\n      router-id 192.168.101.24\n
+    \     neighbor 10.1.5.6 remote-as 65201\n      redistribute connected\n      !\n
+    \     address-family ipv4\n         neighbor 10.1.5.6 activate\n!\nrouter isis
+    CORE\n   net 49.0001.0000.0001.0024.00\n   is-type level-1\n   router-id ipv4
+    192.168.101.24\n   log-adjacency-changes\n   !\n   address-family ipv4 unicast\n
+    \     maximum-paths 4\n   !\n   segment-routing mpls\n      no shutdown\n!\nmpls
+    ip\n!\nmanagement api http-commands\n   protocol https\n   no shutdown\n   !\n
+    \  vrf MGMT\n      no shutdown\n!\nend\n"
   AVD_RR5: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname RR5\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
     enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface e6\n   description
-    P2P_LINK_TO_PE1_e6\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.11/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
-    enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e7\n   description P2P_LINK_TO_PE2_e6\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.15/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e10\n   description P2P_LINK_TO_PE3_e8\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.47/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e13\n   description P2P_LINK_TO_PE4_e8\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.51/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface Loopback0\n   description MPLS_Overlay_peering\n
-    \  no shutdown\n   ip address 192.168.101.35/32\n   isis enable CORE\n   isis
-    passive\n   mpls ldp interface\n   node-segment ipv4 index 35\n!\nip routing\nip
-    routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter bfd\n
-    \  multihop interval 300 min-rx 300 multiplier 3\n!\nrouter bgp 65001\n   router-id
+    P2P_LINK_TO_PE1_e6\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.11/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e7\n   description P2P_LINK_TO_PE2_e6\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.15/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e10\n   description P2P_LINK_TO_PE3_e8\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.47/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e13\n   description P2P_LINK_TO_PE4_e8\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.51/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    Loopback0\n   description MPLS_Overlay_peering\n   no shutdown\n   ip address
+    192.168.101.35/32\n   isis enable CORE\n   isis passive\n   node-segment ipv4
+    index 35\n!\nip routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter
+    bfd\n   multihop interval 300 min-rx 300 multiplier 3\n!\nrouter bgp 65001\n   router-id
     192.168.101.35\n   maximum-paths 4 ecmp 4\n   no bgp default ipv4-unicast\n   bgp
     cluster-id 192.168.101.35\n   neighbor MPLS-OVERLAY-PEERS peer group\n   neighbor
     MPLS-OVERLAY-PEERS remote-as 65001\n   neighbor MPLS-OVERLAY-PEERS update-source
@@ -403,36 +397,30 @@ cvp_configlets:
     \     no neighbor RR-OVERLAY-PEERS activate\n   !\n   address-family vpn-ipv4\n
     \     neighbor MPLS-OVERLAY-PEERS activate\n      neighbor RR-OVERLAY-PEERS activate\n!\nrouter
     isis CORE\n   net 49.0001.0000.0001.0035.00\n   is-type level-1\n   router-id
-    ipv4 192.168.101.35\n   log-adjacency-changes\n   mpls ldp sync default\n   !\n
-    \  address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
-    mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface disabled default\n
-    \  router-id 192.168.101.35\n   no shutdown\n   transport-address interface Loopback0\n!\nmanagement
-    api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n      no
-    shutdown\n!\nend\n"
+    ipv4 192.168.101.35\n   log-adjacency-changes\n   !\n   address-family ipv4 unicast\n
+    \     maximum-paths 4\n   !\n   segment-routing mpls\n      no shutdown\n!\nmpls
+    ip\n!\nmanagement api http-commands\n   protocol https\n   no shutdown\n   !\n
+    \  vrf MGMT\n      no shutdown\n!\nend\n"
   AVD_RR6: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname RR6\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
     enable password\nno aaa root\n!\nvrf instance MGMT\n!\ninterface e6\n   description
-    P2P_LINK_TO_PE3_e6\n   no shutdown\n   mtu 1550\n   no switchport\n   ip address
-    192.168.102.49/31\n   mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis
-    enable CORE\n   isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n
-    \  isis network point-to-point\n!\ninterface e7\n   description P2P_LINK_TO_PE4_e6\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.53/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e10\n   description P2P_LINK_TO_PE1_e8\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.13/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface e13\n   description P2P_LINK_TO_PE2_e8\n
-    \  no shutdown\n   mtu 1550\n   no switchport\n   ip address 192.168.102.17/31\n
-    \  mpls ldp igp sync\n   mpls ldp interface\n   mpls ip\n   isis enable CORE\n
-    \  isis circuit-type level-1\n   isis metric 50\n   isis hello padding\n   isis
-    network point-to-point\n!\ninterface Loopback0\n   description MPLS_Overlay_peering\n
-    \  no shutdown\n   ip address 192.168.101.36/32\n   isis enable CORE\n   isis
-    passive\n   mpls ldp interface\n   node-segment ipv4 index 36\n!\nip routing\nip
-    routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter bfd\n
-    \  multihop interval 300 min-rx 300 multiplier 3\n!\nrouter bgp 65001\n   router-id
+    P2P_LINK_TO_PE3_e6\n   no shutdown\n   mtu 1497\n   no switchport\n   ip address
+    192.168.102.49/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type level-1\n
+    \  isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e7\n   description P2P_LINK_TO_PE4_e6\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.53/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e10\n   description P2P_LINK_TO_PE1_e8\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.13/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    e13\n   description P2P_LINK_TO_PE2_e8\n   no shutdown\n   mtu 1497\n   no switchport\n
+    \  ip address 192.168.102.17/31\n   mpls ip\n   isis enable CORE\n   isis circuit-type
+    level-1\n   isis metric 50\n   isis hello padding\n   isis network point-to-point\n!\ninterface
+    Loopback0\n   description MPLS_Overlay_peering\n   no shutdown\n   ip address
+    192.168.101.36/32\n   isis enable CORE\n   isis passive\n   node-segment ipv4
+    index 36\n!\nip routing\nip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nrouter
+    bfd\n   multihop interval 300 min-rx 300 multiplier 3\n!\nrouter bgp 65001\n   router-id
     192.168.101.36\n   maximum-paths 4 ecmp 4\n   no bgp default ipv4-unicast\n   bgp
     cluster-id 192.168.101.36\n   neighbor MPLS-OVERLAY-PEERS peer group\n   neighbor
     MPLS-OVERLAY-PEERS remote-as 65001\n   neighbor MPLS-OVERLAY-PEERS update-source
@@ -451,12 +439,10 @@ cvp_configlets:
     \     no neighbor RR-OVERLAY-PEERS activate\n   !\n   address-family vpn-ipv4\n
     \     neighbor MPLS-OVERLAY-PEERS activate\n      neighbor RR-OVERLAY-PEERS activate\n!\nrouter
     isis CORE\n   net 49.0001.0000.0001.0036.00\n   is-type level-1\n   router-id
-    ipv4 192.168.101.36\n   log-adjacency-changes\n   mpls ldp sync default\n   !\n
-    \  address-family ipv4 unicast\n      maximum-paths 4\n   !\n   segment-routing
-    mpls\n      no shutdown\n!\nmpls ip\n!\nmpls ldp\n   interface disabled default\n
-    \  router-id 192.168.101.36\n   no shutdown\n   transport-address interface Loopback0\n!\nmanagement
-    api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n      no
-    shutdown\n!\nend\n"
+    ipv4 192.168.101.36\n   log-adjacency-changes\n   !\n   address-family ipv4 unicast\n
+    \     maximum-paths 4\n   !\n   segment-routing mpls\n      no shutdown\n!\nmpls
+    ip\n!\nmanagement api http-commands\n   protocol https\n   no shutdown\n   !\n
+    \  vrf MGMT\n      no shutdown\n!\nend\n"
 cvp_topology:
   MPLS_FABRIC:
     devices: []

@@ -124,11 +124,12 @@ vlan internal order ascending range 1006 1199
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| e1 | P2P_LINK_TO_PE1_e1 | routed | - | 192.168.102.9/31 | default | 1550 | False | - | - |
-| e2 | P2P_LINK_TO_P1_e3 | routed | - | 192.168.102.4/31 | default | 1550 | False | - | - |
-| e3 | P2P_LINK_TO_P2_e3 | routed | - | 192.168.102.6/31 | default | 1550 | False | - | - |
-| e6 | P2P_LINK_TO_RR5_e7 | routed | - | 192.168.102.14/31 | default | 1550 | False | - | - |
-| e8 | P2P_LINK_TO_RR6_e13 | routed | - | 192.168.102.16/31 | default | 1550 | False | - | - |
+| e1 | P2P_LINK_TO_PE1_e1 | routed | - | 192.168.102.9/31 | default | 1497 | False | - | - |
+| e2 | P2P_LINK_TO_P1_e3 | routed | - | 192.168.102.4/31 | default | 1497 | False | - | - |
+| e3 | P2P_LINK_TO_P2_e3 | routed | - | 192.168.102.6/31 | default | 1497 | False | - | - |
+| e6 | P2P_LINK_TO_RR5_e7 | routed | - | 192.168.102.14/31 | default | 1497 | False | - | - |
+| e8 | P2P_LINK_TO_RR6_e13 | routed | - | 192.168.102.16/31 | default | 1497 | False | - | - |
+| Ethernet4 | SITE1 | routed | - | 10.1.5.3/31 | VRF_A | - | False | - | - |
 
 ##### ISIS
 
@@ -147,11 +148,9 @@ vlan internal order ascending range 1006 1199
 interface e1
    description P2P_LINK_TO_PE1_e1
    no shutdown
-   mtu 1550
+   mtu 1497
    no switchport
    ip address 192.168.102.9/31
-   mpls ldp igp sync
-   mpls ldp interface
    mpls ip
    isis enable CORE
    isis circuit-type level-1
@@ -162,11 +161,9 @@ interface e1
 interface e2
    description P2P_LINK_TO_P1_e3
    no shutdown
-   mtu 1550
+   mtu 1497
    no switchport
    ip address 192.168.102.4/31
-   mpls ldp igp sync
-   mpls ldp interface
    mpls ip
    isis enable CORE
    isis circuit-type level-1
@@ -177,11 +174,9 @@ interface e2
 interface e3
    description P2P_LINK_TO_P2_e3
    no shutdown
-   mtu 1550
+   mtu 1497
    no switchport
    ip address 192.168.102.6/31
-   mpls ldp igp sync
-   mpls ldp interface
    mpls ip
    isis enable CORE
    isis circuit-type level-1
@@ -192,11 +187,9 @@ interface e3
 interface e6
    description P2P_LINK_TO_RR5_e7
    no shutdown
-   mtu 1550
+   mtu 1497
    no switchport
    ip address 192.168.102.14/31
-   mpls ldp igp sync
-   mpls ldp interface
    mpls ip
    isis enable CORE
    isis circuit-type level-1
@@ -207,17 +200,22 @@ interface e6
 interface e8
    description P2P_LINK_TO_RR6_e13
    no shutdown
-   mtu 1550
+   mtu 1497
    no switchport
    ip address 192.168.102.16/31
-   mpls ldp igp sync
-   mpls ldp interface
    mpls ip
    isis enable CORE
    isis circuit-type level-1
    isis metric 50
    isis hello padding
    isis network point-to-point
+!
+interface Ethernet4
+   description SITE1
+   no shutdown
+   no switchport
+   vrf VRF_A
+   ip address 10.1.5.3/31
 ```
 
 ### Loopback Interfaces
@@ -252,7 +250,6 @@ interface Loopback0
    ip address 192.168.101.22/32
    isis enable CORE
    isis passive
-   mpls ldp interface
    node-segment ipv4 index 222
 ```
 
@@ -288,6 +285,7 @@ ip virtual-router mac-address 02:1c:73:00:dc:00
 | --- | --------------- |
 | default | True |
 | MGMT | True |
+| VRF_A | True |
 
 #### IP Routing Device Configuration
 
@@ -295,6 +293,7 @@ ip virtual-router mac-address 02:1c:73:00:dc:00
 !
 ip routing
 ip routing vrf MGMT
+ip routing vrf VRF_A
 ```
 
 ### IPv6 Routing
@@ -305,6 +304,7 @@ ip routing vrf MGMT
 | --- | --------------- |
 | default | False |
 | MGMT | false |
+| VRF_A | false |
 
 ### Static Routes
 
@@ -332,7 +332,6 @@ ip route vrf MGMT 0.0.0.0/0 192.168.0.1
 | Type | level-1 |
 | Router-ID | 192.168.101.22 |
 | Log Adjacency Changes | True |
-| MPLS LDP Sync Default | True |
 | SR MPLS Enabled | True |
 
 #### ISIS Interfaces Summary
@@ -368,7 +367,6 @@ router isis CORE
    is-type level-1
    router-id ipv4 192.168.101.22
    log-adjacency-changes
-   mpls ldp sync default
    !
    address-family ipv4 unicast
       maximum-paths 4
@@ -409,6 +407,7 @@ router isis CORE
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- |
 | 192.168.101.35 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - |
 | 192.168.101.36 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - |
+| 10.1.5.2 | 65101 | VRF_A | - | - | - | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -424,6 +423,12 @@ router isis CORE
 | Peer Group | Activate | Route-map In | Route-map Out |
 | ---------- | -------- | ------------ | ------------- |
 | MPLS-OVERLAY-PEERS | True | - | - |
+
+#### Router BGP VRFs
+
+| VRF | Route-Distinguisher | Redistribute |
+| --- | ------------------- | ------------ |
+| VRF_A | 192.168.101.22:19 | connected |
 
 #### Router BGP Device Configuration
 
@@ -452,6 +457,17 @@ router bgp 65001
    address-family vpn-ipv4
       neighbor MPLS-OVERLAY-PEERS activate
       neighbor default encapsulation mpls next-hop-self source-interface Loopback0
+   !
+   vrf VRF_A
+      rd 192.168.101.22:19
+      route-target import vpn-ipv4 65000:19
+      route-target export vpn-ipv4 65000:19
+      router-id 192.168.101.22
+      neighbor 10.1.5.2 remote-as 65101
+      redistribute connected
+      !
+      address-family ipv4
+         neighbor 10.1.5.2 activate
 ```
 
 ## BFD
@@ -481,34 +497,27 @@ router bfd
 | Setting | Value |
 | -------- | ---- |
 | MPLS IP Enabled | True |
-| LDP Enabled | True |
-| LDP Router ID | 192.168.101.22 |
-| LDP Interface Disabled Default | True |
-| LDP Transport-Address Interface | Loopback0 |
+| LDP Enabled | False |
+| LDP Router ID | - |
+| LDP Interface Disabled Default | - |
+| LDP Transport-Address Interface | - |
 
 #### MPLS and LDP Configuration
 
 ```eos
 !
 mpls ip
-!
-mpls ldp
-   interface disabled default
-   router-id 192.168.101.22
-   no shutdown
-   transport-address interface Loopback0
 ```
 
 ### MPLS Interfaces
 
 | Interface | MPLS IP Enabled | LDP Enabled | IGP Sync |
 | --------- | --------------- | ----------- | -------- |
-| e1 | True | True | True |
-| e2 | True | True | True |
-| e3 | True | True | True |
-| e6 | True | True | True |
-| e8 | True | True | True |
-| Loopback0 | - | True | - |
+| e1 | True | - | - |
+| e2 | True | - | - |
+| e3 | True | - | - |
+| e6 | True | - | - |
+| e8 | True | - | - |
 
 ## Multicast
 
@@ -532,10 +541,13 @@ mpls ldp
 | VRF Name | IP Routing |
 | -------- | ---------- |
 | MGMT | enabled |
+| VRF_A | enabled |
 
 ### VRF Instances Device Configuration
 
 ```eos
 !
 vrf instance MGMT
+!
+vrf instance VRF_A
 ```

@@ -1,0 +1,13 @@
+hostname: Edge14
+ip_routing: true
+ethernet_interfaces:
+- name: Ethernet4
+  peer: P10
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.16.10.14/24
+static_routes:
+  - vrf: default
+    destination_address_prefix: 0.0.0.0/0
+    gateway: 172.16.10.1

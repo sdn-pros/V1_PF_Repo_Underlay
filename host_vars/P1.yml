@@ -1,0 +1,18 @@
+# router_traffic_engineering
+
+router_traffic_engineering:
+  #enabled: true
+  router_id:
+    ipv4: 192.168.101.21
+ 
+
+ router_isis:
+  segment_routing_mpls:
+    enabled: true
+    router_id: 192.168.0.101
+    prefix_segments:
+      - prefix: 301
+        index: 301
+
+
+  

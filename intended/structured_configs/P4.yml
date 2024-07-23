@@ -24,9 +24,6 @@ loopback_interfaces:
   description: LSR_Router_ID
   shutdown: false
   ip_address: 192.168.101.4/32
-  mpls:
-    ldp:
-      interface: true
   isis_enable: CORE
   isis_passive: true
   node_segment:
@@ -40,7 +37,6 @@ router_isis:
   address_family_ipv4:
     enabled: true
     maximum_paths: 4
-  mpls_ldp_sync_default: true
   advertise:
     passive_only: false
   segment_routing_mpls:
@@ -48,11 +44,6 @@ router_isis:
     enabled: true
 mpls:
   ip: true
-  ldp:
-    interface_disabled_default: true
-    router_id: 192.168.101.4
-    shutdown: false
-    transport_address_interface: Loopback0
 ethernet_interfaces:
 - name: e4
   peer: P5
@@ -61,7 +52,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P5_e5
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.33/31
   isis_enable: CORE
   isis_metric: 50
@@ -70,9 +61,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: e1
   peer: P6
   peer_interface: e3
@@ -80,7 +68,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P6_e3
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.35/31
   isis_enable: CORE
   isis_metric: 50
@@ -89,9 +77,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: e2
   peer: PE3
   peer_interface: e3
@@ -99,7 +84,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_PE3_e3
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.40/31
   isis_enable: CORE
   isis_metric: 50
@@ -108,9 +93,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: e3
   peer: PE4
   peer_interface: e3
@@ -118,7 +100,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_PE4_e3
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.42/31
   isis_enable: CORE
   isis_metric: 50
@@ -127,6 +109,3 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true

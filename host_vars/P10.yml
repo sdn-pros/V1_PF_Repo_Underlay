@@ -1,0 +1,47 @@
+hostname: P10
+ip_routing: true
+
+spanning_tree:
+  mode: mstp
+vrfs:
+- name: TENANT_A
+  ip_routing: true
+loopback_interfaces:
+- name: Loopback0
+  description: SITE1_lo0
+  shutdown: false
+  ip_address: 1.1.1.1/32
+ethernet_interfaces:
+- name: Ethernet4
+  peer: PE1
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 10.1.5.0/31
+- name: Ethernet5
+  peer: PE2
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 10.1.5.2/31
+- name: Ethernet7
+  peer: Host14
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.16.10.1/24
+router_bgp:
+  as: 65101
+  router_id: 1.1.1.1
+  peer_groups:
+    - name: CORE
+      remote_as: 65001
+  neighbors:
+    - ip_address: 10.1.5.1
+      peer_group: CORE
+    - ip_address: 10.1.5.3
+      peer_group: CORE
+  address_family_ipv4:
+    networks:
+      - prefix: 172.16.10.0/24
+      - prefix: 1.1.1.1/32

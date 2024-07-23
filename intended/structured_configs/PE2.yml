@@ -35,6 +35,28 @@ router_bgp:
   - ip_address: 192.168.101.36
     peer_group: MPLS-OVERLAY-PEERS
     description: RR6
+  vrfs:
+  - name: VRF_A
+    router_id: 192.168.101.22
+    rd: 192.168.101.22:19
+    route_targets:
+      import:
+      - address_family: vpn-ipv4
+        route_targets:
+        - '65000:19'
+      export:
+      - address_family: vpn-ipv4
+        route_targets:
+        - '65000:19'
+    redistribute_routes:
+    - source_protocol: connected
+    address_family_ipv4:
+      neighbors:
+      - ip_address: 10.1.5.2
+        activate: true
+    neighbors:
+    - ip_address: 10.1.5.2
+      remote_as: '65101'
 static_routes:
 - vrf: MGMT
   destination_address_prefix: 0.0.0.0/0
@@ -54,6 +76,9 @@ spanning_tree:
 vrfs:
 - name: MGMT
   ip_routing: true
+- name: VRF_A
+  tenant: TENANT_A
+  ip_routing: true
 management_api_http:
   enable_vrfs:
   - name: MGMT
@@ -63,9 +88,6 @@ loopback_interfaces:
   description: MPLS_Overlay_peering
   shutdown: false
   ip_address: 192.168.101.22/32
-  mpls:
-    ldp:
-      interface: true
   isis_enable: CORE
   isis_passive: true
   node_segment:
@@ -79,7 +101,6 @@ router_isis:
   address_family_ipv4:
     enabled: true
     maximum_paths: 4
-  mpls_ldp_sync_default: true
   advertise:
     passive_only: false
   segment_routing_mpls:
@@ -87,11 +108,6 @@ router_isis:
     enabled: true
 mpls:
   ip: true
-  ldp:
-    interface_disabled_default: true
-    router_id: 192.168.101.22
-    shutdown: false
-    transport_address_interface: Loopback0
 router_bfd:
   multihop:
     interval: 300
@@ -105,7 +121,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P1_e3
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.4/31
   isis_enable: CORE
   isis_metric: 50
@@ -114,9 +130,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: e3
   peer: P2
   peer_interface: e3
@@ -124,7 +137,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P2_e3
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.6/31
   isis_enable: CORE
   isis_metric: 50
@@ -133,9 +146,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: e1
   peer: PE1
   peer_interface: e1
@@ -143,7 +153,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_PE1_e1
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.9/31
   isis_enable: CORE
   isis_metric: 50
@@ -152,9 +162,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: e6
   peer: RR5
   peer_interface: e7
@@ -162,7 +169,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_RR5_e7
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.14/31
   isis_enable: CORE
   isis_metric: 50
@@ -171,9 +178,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: e8
   peer: RR6
   peer_interface: e13
@@ -181,7 +185,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_RR6_e13
   type: routed
   shutdown: false
-  mtu: 1550
+  mtu: 1497
   ip_address: 192.168.102.16/31
   isis_enable: CORE
   isis_metric: 50
@@ -190,9 +194,13 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
+- name: Ethernet4
+  peer_type: l3_interface
+  ip_address: 10.1.5.3/31
+  shutdown: false
+  description: SITE1
+  type: routed
+  vrf: VRF_A
 ip_igmp_snooping:
   globally_enabled: true
 ip_virtual_router_mac_address: 02:1c:73:00:dc:00

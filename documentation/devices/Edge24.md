@@ -1,0 +1,71 @@
+# Edge24
+
+## Table of Contents
+
+- [Interfaces](#interfaces)
+  - [Ethernet Interfaces](#ethernet-interfaces)
+- [Routing](#routing)
+  - [IP Routing](#ip-routing)
+  - [Static Routes](#static-routes)
+
+## Interfaces
+
+### Ethernet Interfaces
+
+#### Ethernet Interfaces Summary
+
+##### L2
+
+| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
+| --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
+
+*Inherited from Port-Channel Interface
+
+##### IPv4
+
+| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet4 | - | routed | - | 172.16.20.24/24 | default | 1500 | False | - | - |
+
+#### Ethernet Interfaces Device Configuration
+
+```eos
+!
+interface Ethernet4
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 172.16.20.24/24
+```
+
+## Routing
+
+### IP Routing
+
+#### IP Routing Summary
+
+| VRF | Routing Enabled |
+| --- | --------------- |
+| default | True |
+
+#### IP Routing Device Configuration
+
+```eos
+!
+ip routing
+```
+
+### Static Routes
+
+#### Static Routes Summary
+
+| VRF | Destination Prefix | Next Hop IP             | Exit interface      | Administrative Distance       | Tag               | Route Name                    | Metric         |
+| --- | ------------------ | ----------------------- | ------------------- | ----------------------------- | ----------------- | ----------------------------- | -------------- |
+| default | 0.0.0.0/0 | 172.16.20.1 | - | 1 | - | - | - |
+
+#### Static Routes Device Configuration
+
+```eos
+!
+ip route 0.0.0.0/0 172.16.20.1
+```
