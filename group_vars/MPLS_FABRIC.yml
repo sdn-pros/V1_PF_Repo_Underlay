@@ -14,7 +14,7 @@ bgp_mesh_pes: false
 isis_area_id: 49.0001
 isis_default_is_type: level-1
 isis_default_circuit_type: level-1
-isis_default_metric: 50
+isis_default_metric: 5
 isis_advertise_passive_only: false
 
 # RD/RT Format

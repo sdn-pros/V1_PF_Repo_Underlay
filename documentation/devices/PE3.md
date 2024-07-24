@@ -29,6 +29,9 @@
   - [MPLS Interfaces](#mpls-interfaces)
 - [Multicast](#multicast)
   - [IP IGMP Snooping](#ip-igmp-snooping)
+- [Filters](#filters)
+  - [Community-lists](#community-lists)
+  - [Route-maps](#route-maps)
 - [VRF Instances](#vrf-instances)
   - [VRF Instances Summary](#vrf-instances-summary)
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
@@ -532,6 +535,42 @@ mpls ip
 #### IP IGMP Snooping Device Configuration
 
 ```eos
+```
+
+## Filters
+
+### Community-lists
+
+#### Community-lists Summary
+
+| Name | Action |
+| -------- | ------ |
+| CL1 | permit rt 65000:19 |
+
+#### Community-lists Device Configuration
+
+```eos
+!
+ip community-list CL1 permit rt 65000:19
+```
+
+### Route-maps
+
+#### Route-maps Summary
+
+##### RM-VRF-A
+
+| Sequence | Type | Match | Set | Sub-Route-Map | Continue |
+| -------- | ---- | ----- | --- | ------------- | -------- |
+| 10 | permit | extcommunity CL1 | extcommunity color 500 additive | - | - |
+
+#### Route-maps Device Configuration
+
+```eos
+!
+route-map RM-VRF-A permit 10
+   match extcommunity CL1
+   set extcommunity color 500 additive
 ```
 
 ## VRF Instances
