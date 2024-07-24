@@ -1,7 +1,10 @@
 hostname: RR5
+is_deployed: true
 router_bgp:
   as: '65001'
   router_id: 192.168.101.35
+  bgp_defaults:
+  - neighbor MPLS-OVERLAY-PEERS next-hop-unchanged
   bgp:
     default:
       ipv4_unicast: false
@@ -25,16 +28,16 @@ router_bgp:
     send_community: all
     maximum_routes: 0
     remote_as: '65001'
+  address_family_evpn:
+    peer_groups:
+    - name: RR-OVERLAY-PEERS
+      activate: true
   address_family_ipv4:
     peer_groups:
     - name: MPLS-OVERLAY-PEERS
       activate: false
     - name: RR-OVERLAY-PEERS
       activate: false
-  address_family_evpn:
-    peer_groups:
-    - name: RR-OVERLAY-PEERS
-      activate: true
   address_family_vpn_ipv4:
     peer_groups:
     - name: MPLS-OVERLAY-PEERS
@@ -44,15 +47,19 @@ router_bgp:
   neighbors:
   - ip_address: 192.168.101.21
     peer_group: MPLS-OVERLAY-PEERS
+    peer: PE1
     description: PE1
   - ip_address: 192.168.101.22
     peer_group: MPLS-OVERLAY-PEERS
+    peer: PE2
     description: PE2
   - ip_address: 192.168.101.23
     peer_group: MPLS-OVERLAY-PEERS
+    peer: PE3
     description: PE3
   - ip_address: 192.168.101.24
     peer_group: MPLS-OVERLAY-PEERS
+    peer: PE4
     description: PE4
 static_routes:
 - vrf: MGMT
@@ -105,11 +112,11 @@ router_bfd:
     min_rx: 300
     multiplier: 3
 ethernet_interfaces:
-- name: e6
+- name: Ethernet6
   peer: PE1
-  peer_interface: e6
+  peer_interface: Ethernet6
   peer_type: pe
-  description: P2P_LINK_TO_PE1_e6
+  description: P2P_LINK_TO_PE1_Ethernet6
   type: routed
   shutdown: false
   mtu: 1497
@@ -121,11 +128,11 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-- name: e7
+- name: Ethernet7
   peer: PE2
-  peer_interface: e6
+  peer_interface: Ethernet6
   peer_type: pe
-  description: P2P_LINK_TO_PE2_e6
+  description: P2P_LINK_TO_PE2_Ethernet6
   type: routed
   shutdown: false
   mtu: 1497
@@ -137,11 +144,11 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-- name: e10
+- name: Ethernet10
   peer: PE3
-  peer_interface: e8
+  peer_interface: Ethernet8
   peer_type: pe
-  description: P2P_LINK_TO_PE3_e8
+  description: P2P_LINK_TO_PE3_Ethernet8
   type: routed
   shutdown: false
   mtu: 1497
@@ -153,11 +160,11 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-- name: e13
+- name: Ethernet13
   peer: PE4
-  peer_interface: e8
+  peer_interface: Ethernet8
   peer_type: pe
-  description: P2P_LINK_TO_PE4_e8
+  description: P2P_LINK_TO_PE4_Ethernet8
   type: routed
   shutdown: false
   mtu: 1497
@@ -169,3 +176,5 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
+metadata:
+  platform: vEOS-lab

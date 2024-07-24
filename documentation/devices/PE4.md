@@ -10,7 +10,7 @@
   - [Spanning Tree Device Configuration](#spanning-tree-device-configuration)
 - [Internal VLAN Allocation Policy](#internal-vlan-allocation-policy)
   - [Internal VLAN Allocation Policy Summary](#internal-vlan-allocation-policy-summary)
-  - [Internal VLAN Allocation Policy Configuration](#internal-vlan-allocation-policy-configuration)
+  - [Internal VLAN Allocation Policy Device Configuration](#internal-vlan-allocation-policy-device-configuration)
 - [Interfaces](#interfaces)
   - [Ethernet Interfaces](#ethernet-interfaces)
   - [Loopback Interfaces](#loopback-interfaces)
@@ -20,6 +20,7 @@
   - [IP Routing](#ip-routing)
   - [IPv6 Routing](#ipv6-routing)
   - [Static Routes](#static-routes)
+  - [Router Traffic-Engineering](#router-traffic-engineering)
   - [Router ISIS](#router-isis)
   - [Router BGP](#router-bgp)
 - [BFD](#bfd)
@@ -37,7 +38,7 @@
 
 ### DNS Domain
 
-#### DNS domain: atd.lab
+DNS domain: atd.lab
 
 #### DNS Domain Device Configuration
 
@@ -60,7 +61,7 @@ dns domain atd.lab
 | -------- | -------- | -------- |
 | MGMT | - | - |
 
-#### Management API HTTP Configuration
+#### Management API HTTP Device Configuration
 
 ```eos
 !
@@ -100,7 +101,7 @@ spanning-tree mst 0 priority 32768
 | ------------------| --------------- | ------------ |
 | ascending | 1006 | 1199 |
 
-### Internal VLAN Allocation Policy Configuration
+### Internal VLAN Allocation Policy Device Configuration
 
 ```eos
 !
@@ -124,29 +125,29 @@ vlan internal order ascending range 1006 1199
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| e1 | P2P_LINK_TO_PE3_e1 | routed | - | 192.168.102.45/31 | default | 1497 | False | - | - |
-| e2 | P2P_LINK_TO_P3_e3 | routed | - | 192.168.102.39/31 | default | 1497 | False | - | - |
-| e3 | P2P_LINK_TO_P4_e3 | routed | - | 192.168.102.43/31 | default | 1497 | False | - | - |
-| e6 | P2P_LINK_TO_RR6_e7 | routed | - | 192.168.102.52/31 | default | 1497 | False | - | - |
-| e8 | P2P_LINK_TO_RR5_e13 | routed | - | 192.168.102.50/31 | default | 1497 | False | - | - |
+| Ethernet1 | P2P_LINK_TO_PE3_Ethernet1 | routed | - | 192.168.102.45/31 | default | 1497 | False | - | - |
+| Ethernet2 | P2P_LINK_TO_P3_Ethernet3 | routed | - | 192.168.102.39/31 | default | 1497 | False | - | - |
+| Ethernet3 | P2P_LINK_TO_P4_Ethernet3 | routed | - | 192.168.102.43/31 | default | 1497 | False | - | - |
 | Ethernet4 | SITE2 | routed | - | 10.1.5.7/31 | VRF_A | - | False | - | - |
+| Ethernet6 | P2P_LINK_TO_RR6_Ethernet7 | routed | - | 192.168.102.52/31 | default | 1497 | False | - | - |
+| Ethernet8 | P2P_LINK_TO_RR5_Ethernet13 | routed | - | 192.168.102.50/31 | default | 1497 | False | - | - |
 
 ##### ISIS
 
-| Interface | Channel Group | ISIS Instance | ISIS Metric | Mode | ISIS Circuit Type | Hello Padding | Authentication Mode |
-| --------- | ------------- | ------------- | ----------- | ---- | ----------------- | ------------- | ------------------- |
-| e1 | - | CORE | 50 | point-to-point | level-1 | True | - |
-| e2 | - | CORE | 50 | point-to-point | level-1 | True | - |
-| e3 | - | CORE | 50 | point-to-point | level-1 | True | - |
-| e6 | - | CORE | 50 | point-to-point | level-1 | True | - |
-| e8 | - | CORE | 50 | point-to-point | level-1 | True | - |
+| Interface | Channel Group | ISIS Instance | ISIS BFD | ISIS Metric | Mode | ISIS Circuit Type | Hello Padding | Authentication Mode |
+| --------- | ------------- | ------------- | -------- | ----------- | ---- | ----------------- | ------------- | ------------------- |
+| Ethernet1 | - | CORE | - | 50 | point-to-point | level-1 | True | - |
+| Ethernet2 | - | CORE | - | 50 | point-to-point | level-1 | True | - |
+| Ethernet3 | - | CORE | - | 50 | point-to-point | level-1 | True | - |
+| Ethernet6 | - | CORE | - | 50 | point-to-point | level-1 | True | - |
+| Ethernet8 | - | CORE | - | 50 | point-to-point | level-1 | True | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
-interface e1
-   description P2P_LINK_TO_PE3_e1
+interface Ethernet1
+   description P2P_LINK_TO_PE3_Ethernet1
    no shutdown
    mtu 1497
    no switchport
@@ -157,9 +158,10 @@ interface e1
    isis metric 50
    isis hello padding
    isis network point-to-point
+   traffic-engineering
 !
-interface e2
-   description P2P_LINK_TO_P3_e3
+interface Ethernet2
+   description P2P_LINK_TO_P3_Ethernet3
    no shutdown
    mtu 1497
    no switchport
@@ -170,9 +172,10 @@ interface e2
    isis metric 50
    isis hello padding
    isis network point-to-point
+   traffic-engineering
 !
-interface e3
-   description P2P_LINK_TO_P4_e3
+interface Ethernet3
+   description P2P_LINK_TO_P4_Ethernet3
    no shutdown
    mtu 1497
    no switchport
@@ -183,9 +186,17 @@ interface e3
    isis metric 50
    isis hello padding
    isis network point-to-point
+   traffic-engineering
 !
-interface e6
-   description P2P_LINK_TO_RR6_e7
+interface Ethernet4
+   description SITE2
+   no shutdown
+   no switchport
+   vrf VRF_A
+   ip address 10.1.5.7/31
+!
+interface Ethernet6
+   description P2P_LINK_TO_RR6_Ethernet7
    no shutdown
    mtu 1497
    no switchport
@@ -197,8 +208,8 @@ interface e6
    isis hello padding
    isis network point-to-point
 !
-interface e8
-   description P2P_LINK_TO_RR5_e13
+interface Ethernet8
+   description P2P_LINK_TO_RR5_Ethernet13
    no shutdown
    mtu 1497
    no switchport
@@ -209,13 +220,6 @@ interface e8
    isis metric 50
    isis hello padding
    isis network point-to-point
-!
-interface Ethernet4
-   description SITE2
-   no shutdown
-   no switchport
-   vrf VRF_A
-   ip address 10.1.5.7/31
 ```
 
 ### Loopback Interfaces
@@ -268,9 +272,9 @@ service routing protocols model multi-agent
 
 #### Virtual Router MAC Address Summary
 
-##### Virtual Router MAC Address: 02:1c:73:00:dc:00
+Virtual Router MAC Address: 02:1c:73:00:dc:00
 
-#### Virtual Router MAC Address Configuration
+#### Virtual Router MAC Address Device Configuration
 
 ```eos
 !
@@ -310,8 +314,8 @@ ip routing vrf VRF_A
 
 #### Static Routes Summary
 
-| VRF | Destination Prefix | Next Hop IP             | Exit interface      | Administrative Distance       | Tag               | Route Name                    | Metric         |
-| --- | ------------------ | ----------------------- | ------------------- | ----------------------------- | ----------------- | ----------------------------- | -------------- |
+| VRF | Destination Prefix | Next Hop IP | Exit interface | Administrative Distance | Tag | Route Name | Metric |
+| --- | ------------------ | ----------- | -------------- | ----------------------- | --- | ---------- | ------ |
 | MGMT | 0.0.0.0/0 | 192.168.0.1 | - | 1 | - | - | - |
 
 #### Static Routes Device Configuration
@@ -319,6 +323,16 @@ ip routing vrf VRF_A
 ```eos
 !
 ip route vrf MGMT 0.0.0.0/0 192.168.0.1
+```
+
+### Router Traffic-Engineering
+
+#### Router Traffic Engineering Device Configuration
+
+```eos
+!
+router traffic-engineering
+   router-id ipv4 192.168.101.24
 ```
 
 ### Router ISIS
@@ -338,11 +352,11 @@ ip route vrf MGMT 0.0.0.0/0 192.168.0.1
 
 | Interface | ISIS Instance | ISIS Metric | Interface Mode |
 | --------- | ------------- | ----------- | -------------- |
-| e1 | CORE | 50 | point-to-point |
-| e2 | CORE | 50 | point-to-point |
-| e3 | CORE | 50 | point-to-point |
-| e6 | CORE | 50 | point-to-point |
-| e8 | CORE | 50 | point-to-point |
+| Ethernet1 | CORE | 50 | point-to-point |
+| Ethernet2 | CORE | 50 | point-to-point |
+| Ethernet3 | CORE | 50 | point-to-point |
+| Ethernet6 | CORE | 50 | point-to-point |
+| Ethernet8 | CORE | 50 | point-to-point |
 | Loopback0 | CORE | - | passive |
 
 #### ISIS Segment-routing Node-SID
@@ -373,15 +387,20 @@ router isis CORE
    !
    segment-routing mpls
       no shutdown
+   traffic-engineering
+     no shutdown
+     is-type level-1
 ```
 
 ### Router BGP
+
+ASN Notation: asplain
 
 #### Router BGP Summary
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65001|  192.168.101.24 |
+| 65001 | 192.168.101.24 |
 
 | BGP Tuning |
 | ---------- |
@@ -403,11 +422,11 @@ router isis CORE
 
 #### BGP Neighbors
 
-| Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive |
-| -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- |
-| 192.168.101.35 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - |
-| 192.168.101.36 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - |
-| 10.1.5.6 | 65201 | VRF_A | - | - | - | - | - | - | - | - |
+| Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
+| -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
+| 192.168.101.35 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
+| 192.168.101.36 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
+| 10.1.5.6 | 65201 | VRF_A | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -420,9 +439,9 @@ router isis CORE
 
 ##### VPN-IPv4 Peer Groups
 
-| Peer Group | Activate | Route-map In | Route-map Out |
-| ---------- | -------- | ------------ | ------------- |
-| MPLS-OVERLAY-PEERS | True | - | - |
+| Peer Group | Activate | Route-map In | Route-map Out | RCF In | RCF Out |
+| ---------- | -------- | ------------ | ------------- | ------ | ------- |
+| MPLS-OVERLAY-PEERS | True | - | - | - | - |
 
 #### Router BGP VRFs
 
@@ -502,7 +521,7 @@ router bfd
 | LDP Interface Disabled Default | - |
 | LDP Transport-Address Interface | - |
 
-#### MPLS and LDP Configuration
+#### MPLS and LDP Device Configuration
 
 ```eos
 !
@@ -513,11 +532,11 @@ mpls ip
 
 | Interface | MPLS IP Enabled | LDP Enabled | IGP Sync |
 | --------- | --------------- | ----------- | -------- |
-| e1 | True | - | - |
-| e2 | True | - | - |
-| e3 | True | - | - |
-| e6 | True | - | - |
-| e8 | True | - | - |
+| Ethernet1 | True | - | - |
+| Ethernet2 | True | - | - |
+| Ethernet3 | True | - | - |
+| Ethernet6 | True | - | - |
+| Ethernet8 | True | - | - |
 
 ## Multicast
 

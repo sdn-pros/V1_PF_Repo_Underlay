@@ -1,74 +1,15 @@
-hostname: PE3
-router_isis:
+custom_hostname: PE3
+custom_router_isis:
   instance: CORE
   segment_routing_mpls:
     enabled: true
     router_id: 192.168.0.101.23
   eos_cli: |-
-    address-family ipv4 unicast
-      multi-topology
     traffic-engineering
       no shutdown
       is-type level-1
-community_lists:
-
-    # Community-list Name.
-  - name: CL1
-
-    # Action as string.
-    # Example: "permit GSHUT 65123:123"
-    action: "permit rt 65000:19"
-
-route_maps:
-
-    # Route-map Name.
-  - name: RM-VRF-A
-    sequence_numbers: # required
-
-        # Sequence ID.
-      - sequence: 10
-        type: "permit"
-
-        # List of "match" statements.
-        match:
-
-            # Match as string.
-            # Example: "ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY"
-          - "extcommunity CL1"
-
-        # List of "set" statements.
-        set:
-            # Set as string.
-            # Example: "origin incomplete"
-          -  "extcommunity color 500 additive"
-
-
-router_bgp:
-
- vrfs:
-
-      # VRF name.
-    - name: VRF_A
-      bgp:
-
-      # Route distinguisher.
-      rd: 192.168.101.24:19
-
-
-      route_targets:
-        import:
-          - address_family: vpn-ipv4
-            route_targets:
-              - 65000:19
-
-            # Only applicable if `address_family` is one of `evpn`, `vpn-ipv4` or `vpn-ipv6`.
-            route_map: RM-VRF-A
-
-
-        export:
-          - address_family: vpn-ipv4
-            route_targets:
-              - 65000:19
-
-            # Only applicable if `address_family` is one of `evpn`, `vpn-ipv4` or `vpn-ipv6`.
-            route_map: RM-VRF-A
+custom_router_traffic_engineering:
+  #enabled: true
+  segment_routing:
+  router_id:
+    ipv4: 192.168.101.23

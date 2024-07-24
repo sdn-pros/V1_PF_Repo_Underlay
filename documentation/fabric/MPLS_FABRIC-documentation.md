@@ -42,33 +42,33 @@
 
 | Type | Node | Node Interface | Peer Type | Peer Node | Peer Interface |
 | ---- | ---- | -------------- | --------- | ----------| -------------- |
-| p | P1 | e1 | p | P5 | e2 |
-| p | P1 | e2 | pe | PE1 | e2 |
-| p | P1 | e3 | pe | PE2 | e2 |
-| p | P1 | e4 | p | P6 | e4 |
-| p | P2 | e1 | p | P6 | e2 |
-| p | P2 | e2 | pe | PE1 | e3 |
-| p | P2 | e3 | pe | PE2 | e3 |
-| p | P2 | e4 | p | P5 | e4 |
-| p | P3 | e1 | p | P5 | e3 |
-| p | P3 | e2 | pe | PE3 | e2 |
-| p | P3 | e3 | pe | PE4 | e2 |
-| p | P3 | e4 | p | P6 | e5 |
-| p | P4 | e1 | p | P6 | e3 |
-| p | P4 | e2 | pe | PE3 | e3 |
-| p | P4 | e3 | pe | PE4 | e3 |
-| p | P4 | e4 | p | P5 | e5 |
-| p | P5 | e1 | p | P6 | e1 |
-| pe | PE1 | e1 | pe | PE2 | e1 |
-| pe | PE1 | e6 | rr | RR5 | e6 |
-| pe | PE1 | e8 | rr | RR6 | e10 |
-| pe | PE2 | e6 | rr | RR5 | e7 |
-| pe | PE2 | e8 | rr | RR6 | e13 |
-| pe | PE3 | e1 | pe | PE4 | e1 |
-| pe | PE3 | e6 | rr | RR6 | e6 |
-| pe | PE3 | e8 | rr | RR5 | e10 |
-| pe | PE4 | e6 | rr | RR6 | e7 |
-| pe | PE4 | e8 | rr | RR5 | e13 |
+| p | P1 | Ethernet1 | p | P5 | Ethernet2 |
+| p | P1 | Ethernet2 | pe | PE1 | Ethernet2 |
+| p | P1 | Ethernet3 | pe | PE2 | Ethernet2 |
+| p | P1 | Ethernet4 | p | P6 | Ethernet4 |
+| p | P2 | Ethernet1 | p | P6 | Ethernet2 |
+| p | P2 | Ethernet2 | pe | PE1 | Ethernet3 |
+| p | P2 | Ethernet3 | pe | PE2 | Ethernet3 |
+| p | P2 | Ethernet4 | p | P5 | Ethernet4 |
+| p | P3 | Ethernet1 | p | P5 | Ethernet3 |
+| p | P3 | Ethernet2 | pe | PE3 | Ethernet2 |
+| p | P3 | Ethernet3 | pe | PE4 | Ethernet2 |
+| p | P3 | Ethernet4 | p | P6 | Ethernet5 |
+| p | P4 | Ethernet1 | p | P6 | Ethernet3 |
+| p | P4 | Ethernet2 | pe | PE3 | Ethernet3 |
+| p | P4 | Ethernet3 | pe | PE4 | Ethernet3 |
+| p | P4 | Ethernet4 | p | P5 | Ethernet5 |
+| p | P5 | Ethernet1 | p | P6 | Ethernet1 |
+| pe | PE1 | Ethernet1 | pe | PE2 | Ethernet1 |
+| pe | PE1 | Ethernet6 | rr | RR5 | Ethernet6 |
+| pe | PE1 | Ethernet8 | rr | RR6 | Ethernet10 |
+| pe | PE2 | Ethernet6 | rr | RR5 | Ethernet7 |
+| pe | PE2 | Ethernet8 | rr | RR6 | Ethernet13 |
+| pe | PE3 | Ethernet1 | pe | PE4 | Ethernet1 |
+| pe | PE3 | Ethernet6 | rr | RR6 | Ethernet6 |
+| pe | PE3 | Ethernet8 | rr | RR5 | Ethernet10 |
+| pe | PE4 | Ethernet6 | rr | RR6 | Ethernet7 |
+| pe | PE4 | Ethernet8 | rr | RR5 | Ethernet13 |
 
 ## Fabric IP Allocation
 
@@ -81,33 +81,33 @@
 
 | Node | Node Interface | Node IP Address | Peer Node | Peer Interface | Peer IP Address |
 | ---- | -------------- | --------------- | --------- | -------------- | --------------- |
-| P1 | e1 | 192.168.102.18/31 | P5 | e2 | 192.168.102.19/31 |
-| P1 | e2 | 192.168.102.1/31 | PE1 | e2 | 192.168.102.0/31 |
-| P1 | e3 | 192.168.102.5/31 | PE2 | e2 | 192.168.102.4/31 |
-| P1 | e4 | 192.168.102.20/31 | P6 | e4 | 192.168.102.21/31 |
-| P2 | e1 | 192.168.102.26/31 | P6 | e2 | 192.168.102.27/31 |
-| P2 | e2 | 192.168.102.3/31 | PE1 | e3 | 192.168.102.2/31 |
-| P2 | e3 | 192.168.102.7/31 | PE2 | e3 | 192.168.102.6/31 |
-| P2 | e4 | 192.168.102.24/31 | P5 | e4 | 192.168.102.25/31 |
-| P3 | e1 | 192.168.102.31/31 | P5 | e3 | 192.168.102.30/31 |
-| P3 | e2 | 192.168.102.36/31 | PE3 | e2 | 192.168.102.37/31 |
-| P3 | e3 | 192.168.102.38/31 | PE4 | e2 | 192.168.102.39/31 |
-| P3 | e4 | 192.168.102.33/31 | P6 | e5 | 192.168.102.32/31 |
-| P4 | e1 | 192.168.102.35/31 | P6 | e3 | 192.168.102.34/31 |
-| P4 | e2 | 192.168.102.40/31 | PE3 | e3 | 192.168.102.41/31 |
-| P4 | e3 | 192.168.102.42/31 | PE4 | e3 | 192.168.102.43/31 |
-| P4 | e4 | 192.168.102.33/31 | P5 | e5 | 192.168.102.32/31 |
-| P5 | e1 | 192.168.102.28/31 | P6 | e1 | 192.168.102.29/31 |
-| PE1 | e1 | 192.168.102.8/31 | PE2 | e1 | 192.168.102.9/31 |
-| PE1 | e6 | 192.168.102.10/31 | RR5 | e6 | 192.168.102.11/31 |
-| PE1 | e8 | 192.168.102.12/31 | RR6 | e10 | 192.168.102.13/31 |
-| PE2 | e6 | 192.168.102.14/31 | RR5 | e7 | 192.168.102.15/31 |
-| PE2 | e8 | 192.168.102.16/31 | RR6 | e13 | 192.168.102.17/31 |
-| PE3 | e1 | 192.168.102.44/31 | PE4 | e1 | 192.168.102.45/31 |
-| PE3 | e6 | 192.168.102.48/31 | RR6 | e6 | 192.168.102.49/31 |
-| PE3 | e8 | 192.168.102.46/31 | RR5 | e10 | 192.168.102.47/31 |
-| PE4 | e6 | 192.168.102.52/31 | RR6 | e7 | 192.168.102.53/31 |
-| PE4 | e8 | 192.168.102.50/31 | RR5 | e13 | 192.168.102.51/31 |
+| P1 | Ethernet1 | 192.168.102.18/31 | P5 | Ethernet2 | 192.168.102.19/31 |
+| P1 | Ethernet2 | 192.168.102.1/31 | PE1 | Ethernet2 | 192.168.102.0/31 |
+| P1 | Ethernet3 | 192.168.102.5/31 | PE2 | Ethernet2 | 192.168.102.4/31 |
+| P1 | Ethernet4 | 192.168.102.20/31 | P6 | Ethernet4 | 192.168.102.21/31 |
+| P2 | Ethernet1 | 192.168.102.26/31 | P6 | Ethernet2 | 192.168.102.27/31 |
+| P2 | Ethernet2 | 192.168.102.3/31 | PE1 | Ethernet3 | 192.168.102.2/31 |
+| P2 | Ethernet3 | 192.168.102.7/31 | PE2 | Ethernet3 | 192.168.102.6/31 |
+| P2 | Ethernet4 | 192.168.102.24/31 | P5 | Ethernet4 | 192.168.102.25/31 |
+| P3 | Ethernet1 | 192.168.102.31/31 | P5 | Ethernet3 | 192.168.102.30/31 |
+| P3 | Ethernet2 | 192.168.102.36/31 | PE3 | Ethernet2 | 192.168.102.37/31 |
+| P3 | Ethernet3 | 192.168.102.38/31 | PE4 | Ethernet2 | 192.168.102.39/31 |
+| P3 | Ethernet4 | 192.168.102.33/31 | P6 | Ethernet5 | 192.168.102.32/31 |
+| P4 | Ethernet1 | 192.168.102.35/31 | P6 | Ethernet3 | 192.168.102.34/31 |
+| P4 | Ethernet2 | 192.168.102.40/31 | PE3 | Ethernet3 | 192.168.102.41/31 |
+| P4 | Ethernet3 | 192.168.102.42/31 | PE4 | Ethernet3 | 192.168.102.43/31 |
+| P4 | Ethernet4 | 192.168.102.33/31 | P5 | Ethernet5 | 192.168.102.32/31 |
+| P5 | Ethernet1 | 192.168.102.28/31 | P6 | Ethernet1 | 192.168.102.29/31 |
+| PE1 | Ethernet1 | 192.168.102.8/31 | PE2 | Ethernet1 | 192.168.102.9/31 |
+| PE1 | Ethernet6 | 192.168.102.10/31 | RR5 | Ethernet6 | 192.168.102.11/31 |
+| PE1 | Ethernet8 | 192.168.102.12/31 | RR6 | Ethernet10 | 192.168.102.13/31 |
+| PE2 | Ethernet6 | 192.168.102.14/31 | RR5 | Ethernet7 | 192.168.102.15/31 |
+| PE2 | Ethernet8 | 192.168.102.16/31 | RR6 | Ethernet13 | 192.168.102.17/31 |
+| PE3 | Ethernet1 | 192.168.102.44/31 | PE4 | Ethernet1 | 192.168.102.45/31 |
+| PE3 | Ethernet6 | 192.168.102.48/31 | RR6 | Ethernet6 | 192.168.102.49/31 |
+| PE3 | Ethernet8 | 192.168.102.46/31 | RR5 | Ethernet10 | 192.168.102.47/31 |
+| PE4 | Ethernet6 | 192.168.102.52/31 | RR6 | Ethernet7 | 192.168.102.53/31 |
+| PE4 | Ethernet8 | 192.168.102.50/31 | RR5 | Ethernet13 | 192.168.102.51/31 |
 
 ### Loopback Interfaces (BGP EVPN Peering)
 
