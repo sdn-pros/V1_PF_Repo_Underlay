@@ -125,12 +125,12 @@ vlan internal order ascending range 1006 1199
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | P2P_LINK_TO_PE1_Ethernet1 | routed | - | 192.168.102.9/31 | default | 1497 | False | - | - |
-| Ethernet2 | P2P_LINK_TO_P1_Ethernet3 | routed | - | 192.168.102.4/31 | default | 1497 | False | - | - |
-| Ethernet3 | P2P_LINK_TO_P2_Ethernet3 | routed | - | 192.168.102.6/31 | default | 1497 | False | - | - |
+| Ethernet1 | P2P_LINK_TO_PE1_Ethernet1 | routed | - | 192.168.102.9/31 | default | 1500 | False | - | - |
+| Ethernet2 | P2P_LINK_TO_P1_Ethernet3 | routed | - | 192.168.102.4/31 | default | 1500 | False | - | - |
+| Ethernet3 | P2P_LINK_TO_P2_Ethernet3 | routed | - | 192.168.102.6/31 | default | 1500 | False | - | - |
 | Ethernet4 | SITE1 | routed | - | 10.1.5.3/31 | VRF_A | - | False | - | - |
-| Ethernet6 | P2P_LINK_TO_RR5_Ethernet7 | routed | - | 192.168.102.14/31 | default | 1497 | False | - | - |
-| Ethernet8 | P2P_LINK_TO_RR6_Ethernet13 | routed | - | 192.168.102.16/31 | default | 1497 | False | - | - |
+| Ethernet6 | P2P_LINK_TO_RR5_Ethernet7 | routed | - | 192.168.102.14/31 | default | 1500 | False | - | - |
+| Ethernet8 | P2P_LINK_TO_RR6_Ethernet13 | routed | - | 192.168.102.16/31 | default | 1500 | False | - | - |
 
 ##### ISIS
 
@@ -149,7 +149,7 @@ vlan internal order ascending range 1006 1199
 interface Ethernet1
    description P2P_LINK_TO_PE1_Ethernet1
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.9/31
    mpls ip
@@ -163,7 +163,7 @@ interface Ethernet1
 interface Ethernet2
    description P2P_LINK_TO_P1_Ethernet3
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.4/31
    mpls ip
@@ -177,7 +177,7 @@ interface Ethernet2
 interface Ethernet3
    description P2P_LINK_TO_P2_Ethernet3
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.6/31
    mpls ip
@@ -198,7 +198,7 @@ interface Ethernet4
 interface Ethernet6
    description P2P_LINK_TO_RR5_Ethernet7
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.14/31
    mpls ip
@@ -211,7 +211,7 @@ interface Ethernet6
 interface Ethernet8
    description P2P_LINK_TO_RR6_Ethernet13
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.16/31
    mpls ip
@@ -479,8 +479,8 @@ router bgp 65001
    !
    vrf VRF_A
       rd 192.168.101.22:19
-      route-target import vpn-ipv4 65000:19
-      route-target export vpn-ipv4 65000:19
+      route-target import vpn-ipv4 65001:19
+      route-target export vpn-ipv4 65001:19
       router-id 192.168.101.22
       neighbor 10.1.5.2 remote-as 65101
       redistribute connected

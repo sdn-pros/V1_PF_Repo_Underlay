@@ -1,8 +1,6 @@
 ---
 tenants:
   - name: TENANT_A
-    mac_vrf_id_base: 10000
-    pseudowire_rt_base: 1000
     vrfs: 
       - name: VRF_A
         vrf_id: 19

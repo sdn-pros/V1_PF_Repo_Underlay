@@ -1,6 +1,9 @@
 custom_hostname: P1
 custom_router_isis:
   instance: CORE
+  segment_routing_mpls:
+    enabled: true
+    router_id: 192.168.0.101.1
   eos_cli: |-
     traffic-engineering
       no shutdown

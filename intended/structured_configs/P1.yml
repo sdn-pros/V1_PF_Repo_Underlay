@@ -41,7 +41,7 @@ router_isis:
   advertise:
     passive_only: false
   segment_routing_mpls:
-    router_id: 192.168.101.1
+    router_id: 192.168.0.101.1
     enabled: true
   eos_cli: "traffic-engineering\n  no shutdown\n  is-type level-1"
 mpls:
@@ -54,7 +54,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_PE1_Ethernet2
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.1/31
   isis_enable: CORE
   isis_metric: 50
@@ -71,7 +71,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_PE2_Ethernet2
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.5/31
   isis_enable: CORE
   isis_metric: 50
@@ -88,7 +88,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P5_Ethernet2
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.18/31
   isis_enable: CORE
   isis_metric: 50
@@ -105,7 +105,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P6_Ethernet4
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.20/31
   isis_enable: CORE
   isis_metric: 50

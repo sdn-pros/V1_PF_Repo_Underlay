@@ -8,6 +8,16 @@ custom_router_isis:
     traffic-engineering
       no shutdown
       is-type level-1
+custom_ethernet_interfaces:
+  - name: Ethernet1
+    eos_cli: |-
+      traffic-engineering
+  - name: Ethernet2
+    eos_cli: |-
+      traffic-engineering
+  - name: Ethernet3
+    eos_cli: |-
+      traffic-engineering
 custom_router_traffic_engineering:
   #enabled: true
   segment_routing:

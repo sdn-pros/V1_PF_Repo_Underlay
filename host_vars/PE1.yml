@@ -46,8 +46,6 @@ custom_ethernet_interfaces:
   - name: Ethernet3
     eos_cli: |-
       traffic-engineering
-
-  
 #router traffic-engineering
 #   segment-routing
 #      rib system-colored-tunnel-rib

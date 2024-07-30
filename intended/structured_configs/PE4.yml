@@ -46,11 +46,11 @@ router_bgp:
       import:
       - address_family: vpn-ipv4
         route_targets:
-        - '65000:19'
+        - '65001:19'
       export:
       - address_family: vpn-ipv4
         route_targets:
-        - '65000:19'
+        - '65001:19'
     redistribute_routes:
     - source_protocol: connected
     address_family_ipv4:
@@ -125,7 +125,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P3_Ethernet3
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.39/31
   isis_enable: CORE
   isis_metric: 50
@@ -142,7 +142,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P4_Ethernet3
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.43/31
   isis_enable: CORE
   isis_metric: 50
@@ -159,7 +159,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_PE3_Ethernet1
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.45/31
   isis_enable: CORE
   isis_metric: 50
@@ -176,7 +176,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_RR5_Ethernet13
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.50/31
   isis_enable: CORE
   isis_metric: 50
@@ -192,7 +192,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_RR6_Ethernet7
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.52/31
   isis_enable: CORE
   isis_metric: 50

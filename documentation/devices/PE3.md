@@ -125,12 +125,12 @@ vlan internal order ascending range 1006 1199
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | P2P_LINK_TO_PE4_Ethernet1 | routed | - | 192.168.102.44/31 | default | 1497 | False | - | - |
-| Ethernet2 | P2P_LINK_TO_P3_Ethernet2 | routed | - | 192.168.102.37/31 | default | 1497 | False | - | - |
-| Ethernet3 | P2P_LINK_TO_P4_Ethernet2 | routed | - | 192.168.102.41/31 | default | 1497 | False | - | - |
+| Ethernet1 | P2P_LINK_TO_PE4_Ethernet1 | routed | - | 192.168.102.44/31 | default | 1500 | False | - | - |
+| Ethernet2 | P2P_LINK_TO_P3_Ethernet2 | routed | - | 192.168.102.37/31 | default | 1500 | False | - | - |
+| Ethernet3 | P2P_LINK_TO_P4_Ethernet2 | routed | - | 192.168.102.41/31 | default | 1500 | False | - | - |
 | Ethernet4 | SITE2 | routed | - | 10.1.5.5/31 | VRF_A | - | False | - | - |
-| Ethernet6 | P2P_LINK_TO_RR6_Ethernet6 | routed | - | 192.168.102.48/31 | default | 1497 | False | - | - |
-| Ethernet8 | P2P_LINK_TO_RR5_Ethernet10 | routed | - | 192.168.102.46/31 | default | 1497 | False | - | - |
+| Ethernet6 | P2P_LINK_TO_RR6_Ethernet6 | routed | - | 192.168.102.48/31 | default | 1500 | False | - | - |
+| Ethernet8 | P2P_LINK_TO_RR5_Ethernet10 | routed | - | 192.168.102.46/31 | default | 1500 | False | - | - |
 
 ##### ISIS
 
@@ -149,7 +149,7 @@ vlan internal order ascending range 1006 1199
 interface Ethernet1
    description P2P_LINK_TO_PE4_Ethernet1
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.44/31
    mpls ip
@@ -158,11 +158,12 @@ interface Ethernet1
    isis metric 50
    isis hello padding
    isis network point-to-point
+   traffic-engineering
 !
 interface Ethernet2
    description P2P_LINK_TO_P3_Ethernet2
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.37/31
    mpls ip
@@ -171,11 +172,12 @@ interface Ethernet2
    isis metric 50
    isis hello padding
    isis network point-to-point
+   traffic-engineering
 !
 interface Ethernet3
    description P2P_LINK_TO_P4_Ethernet2
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.41/31
    mpls ip
@@ -184,6 +186,7 @@ interface Ethernet3
    isis metric 50
    isis hello padding
    isis network point-to-point
+   traffic-engineering
 !
 interface Ethernet4
    description SITE2
@@ -195,7 +198,7 @@ interface Ethernet4
 interface Ethernet6
    description P2P_LINK_TO_RR6_Ethernet6
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.48/31
    mpls ip
@@ -208,7 +211,7 @@ interface Ethernet6
 interface Ethernet8
    description P2P_LINK_TO_RR5_Ethernet10
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.46/31
    mpls ip
@@ -476,8 +479,8 @@ router bgp 65001
    !
    vrf VRF_A
       rd 192.168.101.23:19
-      route-target import vpn-ipv4 65000:19
-      route-target export vpn-ipv4 65000:19
+      route-target import vpn-ipv4 65001:19
+      route-target export vpn-ipv4 65001:19
       router-id 192.168.101.23
       neighbor 10.1.5.4 remote-as 65201
       redistribute connected

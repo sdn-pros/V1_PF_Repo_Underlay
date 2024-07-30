@@ -54,7 +54,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P5_Ethernet5
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.33/31
   isis_enable: CORE
   isis_metric: 50
@@ -71,7 +71,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_P6_Ethernet3
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.35/31
   isis_enable: CORE
   isis_metric: 50
@@ -88,7 +88,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_PE3_Ethernet3
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.40/31
   isis_enable: CORE
   isis_metric: 50
@@ -105,7 +105,7 @@ ethernet_interfaces:
   description: P2P_LINK_TO_PE4_Ethernet3
   type: routed
   shutdown: false
-  mtu: 1497
+  mtu: 1500
   ip_address: 192.168.102.42/31
   isis_enable: CORE
   isis_metric: 50

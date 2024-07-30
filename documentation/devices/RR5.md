@@ -114,10 +114,10 @@ vlan internal order ascending range 1006 1199
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet6 | P2P_LINK_TO_PE1_Ethernet6 | routed | - | 192.168.102.11/31 | default | 1497 | False | - | - |
-| Ethernet7 | P2P_LINK_TO_PE2_Ethernet6 | routed | - | 192.168.102.15/31 | default | 1497 | False | - | - |
-| Ethernet10 | P2P_LINK_TO_PE3_Ethernet8 | routed | - | 192.168.102.47/31 | default | 1497 | False | - | - |
-| Ethernet13 | P2P_LINK_TO_PE4_Ethernet8 | routed | - | 192.168.102.51/31 | default | 1497 | False | - | - |
+| Ethernet6 | P2P_LINK_TO_PE1_Ethernet6 | routed | - | 192.168.102.11/31 | default | 1500 | False | - | - |
+| Ethernet7 | P2P_LINK_TO_PE2_Ethernet6 | routed | - | 192.168.102.15/31 | default | 1500 | False | - | - |
+| Ethernet10 | P2P_LINK_TO_PE3_Ethernet8 | routed | - | 192.168.102.47/31 | default | 1500 | False | - | - |
+| Ethernet13 | P2P_LINK_TO_PE4_Ethernet8 | routed | - | 192.168.102.51/31 | default | 1500 | False | - | - |
 
 ##### ISIS
 
@@ -135,7 +135,7 @@ vlan internal order ascending range 1006 1199
 interface Ethernet6
    description P2P_LINK_TO_PE1_Ethernet6
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.11/31
    mpls ip
@@ -148,7 +148,7 @@ interface Ethernet6
 interface Ethernet7
    description P2P_LINK_TO_PE2_Ethernet6
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.15/31
    mpls ip
@@ -161,7 +161,7 @@ interface Ethernet7
 interface Ethernet10
    description P2P_LINK_TO_PE3_Ethernet8
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.47/31
    mpls ip
@@ -174,7 +174,7 @@ interface Ethernet10
 interface Ethernet13
    description P2P_LINK_TO_PE4_Ethernet8
    no shutdown
-   mtu 1497
+   mtu 1500
    no switchport
    ip address 192.168.102.51/31
    mpls ip

@@ -6,33 +6,29 @@ overlay_routing_protocol: ibgp
 fabric_evpn_encapsulation: mpls
 custom_structured_configuration_prefix: "custom_"
 
-
+bgp_as: 65001
 bgp_mesh_pes: false
 
-# isis_ti_lfa:
-#   enabled: true
-#   protection: link
-#   local_convergence_delay: 15000
+# RD/RT Format
+overlay_rd_type:
+  admin_subfield: overlay_loopback
+overlay_rt_type:
+  admin_subfield: 65001
+
+# Must use for cEOS/vEOS
+bgp_update_wait_install: false
+bgp_update_wait_for_convergence: false
+
 isis_area_id: 49.0001
 isis_default_is_type: level-1
 isis_default_circuit_type: level-1
 isis_default_metric: 5
 isis_advertise_passive_only: false
 
-# RD/RT Format
-overlay_rd_type:
-  admin_subfield: overlay_loopback
-overlay_rt_type:
-  admin_subfield: 65000
-
-# Must use for cEOS/vEOS
-bgp_update_wait_install: false
-bgp_update_wait_for_convergence: false
 
 design:
   type: mpls
 
-bgp_as: 65001
 
 # There's an issue with vEOS with larger MTUs
 p2p_uplinks_mtu: 1500
@@ -90,7 +86,6 @@ rr:
       id: 35
     - name: RR6
       id: 36
-
 core_interfaces:
   p2p_links_ip_pools:
     - name: core_pool
@@ -98,6 +93,7 @@ core_interfaces:
   p2p_links_profiles:
     - name: core_profile
       mtu: 1500
+      ptp_enable: true 
       isis_metric: 50
       ip_pool: core_pool
       isis_circuit_type: level-1
