@@ -107,9 +107,8 @@ router_isis:
   advertise:
     passive_only: false
   segment_routing_mpls:
-    router_id: 192.168.0.101.22
+    router_id: 192.168.101.22
     enabled: true
-  eos_cli: "traffic-engineering\n  no shutdown\n  is-type level-1"
 mpls:
   ip: true
 router_bfd:
@@ -134,7 +133,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-  eos_cli: traffic-engineering
 - name: Ethernet3
   peer: P2
   peer_interface: Ethernet3
@@ -151,7 +149,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-  eos_cli: traffic-engineering
 - name: Ethernet1
   peer: PE1
   peer_interface: Ethernet1
@@ -168,7 +165,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-  eos_cli: traffic-engineering
 - name: Ethernet6
   peer: RR5
   peer_interface: Ethernet7
@@ -213,7 +209,3 @@ ip_igmp_snooping:
 ip_virtual_router_mac_address: 02:1c:73:00:dc:00
 metadata:
   platform: vEOS-lab
-router_traffic_engineering:
-  segment_routing: null
-  router_id:
-    ipv4: 192.168.101.22

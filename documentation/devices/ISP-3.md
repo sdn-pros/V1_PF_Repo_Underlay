@@ -1,4 +1,4 @@
-# P20
+# ISP-3
 
 ## Table of Contents
 
@@ -10,7 +10,11 @@
   - [Loopback Interfaces](#loopback-interfaces)
 - [Routing](#routing)
   - [IP Routing](#ip-routing)
+  - [IPv6 Routing](#ipv6-routing)
   - [Router BGP](#router-bgp)
+- [VRF Instances](#vrf-instances)
+  - [VRF Instances Summary](#vrf-instances-summary)
+  - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
 
 ## Spanning Tree
 
@@ -42,38 +46,26 @@ spanning-tree mode mstp
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet4 | - | routed | - | 10.1.5.4/31 | default | 1500 | False | - | - |
-| Ethernet5 | - | routed | - | 10.1.5.6/31 | default | 1500 | False | - | - |
-| Ethernet6 | - | routed | - | 10.1.5.10/31 | default | 1500 | False | - | - |
-| Ethernet7 | - | routed | - | 172.16.20.1/24 | default | 1500 | False | - | - |
+| Ethernet1 | - | routed | - | 10.1.5.9/31 | VRF_A | 1500 | False | - | - |
+| Ethernet4 | - | routed | - | 10.1.5.11/31 | VRF_A | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
+interface Ethernet1
+   no shutdown
+   mtu 1500
+   no switchport
+   vrf VRF_A
+   ip address 10.1.5.9/31
+!
 interface Ethernet4
    no shutdown
    mtu 1500
    no switchport
-   ip address 10.1.5.4/31
-!
-interface Ethernet5
-   no shutdown
-   mtu 1500
-   no switchport
-   ip address 10.1.5.6/31
-!
-interface Ethernet6
-   no shutdown
-   mtu 1500
-   no switchport
-   ip address 10.1.5.10/31
-!
-interface Ethernet7
-   no shutdown
-   mtu 1500
-   no switchport
-   ip address 172.16.20.1/24
+   vrf VRF_A
+   ip address 10.1.5.11/31
 ```
 
 ### Loopback Interfaces
@@ -84,22 +76,22 @@ interface Ethernet7
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | SITE1_lo0 | default | 2.2.2.2/32 |
+| Loopback0 | ISP-3_lo0 | default | 9.9.9.9/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | SITE1_lo0 | default | - |
+| Loopback0 | ISP-3_lo0 | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
 interface Loopback0
-   description SITE1_lo0
+   description ISP-3_lo0
    no shutdown
-   ip address 2.2.2.2/32
+   ip address 9.9.9.9/32
 ```
 
 ## Routing
@@ -111,13 +103,24 @@ interface Loopback0
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | True |
+| VRF_A | True |
 
 #### IP Routing Device Configuration
 
 ```eos
 !
 ip routing
+ip routing vrf VRF_A
 ```
+
+### IPv6 Routing
+
+#### IPv6 Routing Summary
+
+| VRF | Routing Enabled |
+| --- | --------------- |
+| default | False |
+| VRF_A | false |
 
 ### Router BGP
 
@@ -127,45 +130,65 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65201 | 2.2.2.2 |
+| 65002 | 9.9.9.9 |
 
 #### Router BGP Peer Groups
 
-##### CORE
+##### SITE1
 
 | Settings | Value |
 | -------- | ----- |
-| Remote AS | 65001 |
+| Remote AS | 65101 |
 
-##### ISP-3
+##### SITE2
 
 | Settings | Value |
 | -------- | ----- |
-| Remote AS | 65002 |
+| Remote AS | 65201 |
 
 #### BGP Neighbors
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 10.1.5.5 | Inherited from peer group CORE | default | - | - | - | - | - | - | - | - | - |
-| 10.1.5.7 | Inherited from peer group CORE | default | - | - | - | - | - | - | - | - | - |
-| 10.1.5.11 | Inherited from peer group ISP-3 | default | - | - | - | - | - | - | - | - | - |
+| 10.1.5.8 | Inherited from peer group SITE1 | VRF_A | - | - | - | - | - | - | - | - | - |
+| 10.1.5.10 | Inherited from peer group SITE2 | VRF_A | - | - | - | - | - | - | - | - | - |
+
+#### Router BGP VRFs
+
+| VRF | Route-Distinguisher | Redistribute |
+| --- | ------------------- | ------------ |
+| VRF_A | - | - |
 
 #### Router BGP Device Configuration
 
 ```eos
 !
-router bgp 65201
-   router-id 2.2.2.2
-   neighbor CORE peer group
-   neighbor CORE remote-as 65001
-   neighbor ISP-3 peer group
-   neighbor ISP-3 remote-as 65002
-   neighbor 10.1.5.5 peer group CORE
-   neighbor 10.1.5.7 peer group CORE
-   neighbor 10.1.5.11 peer group ISP-3
+router bgp 65002
+   router-id 9.9.9.9
+   neighbor SITE1 peer group
+   neighbor SITE1 remote-as 65101
+   neighbor SITE2 peer group
+   neighbor SITE2 remote-as 65201
    !
    address-family ipv4
-      network 2.2.2.2/32
-      network 172.16.20.0/24
+      network 9.9.9.9/32
+   !
+   vrf VRF_A
+      neighbor 10.1.5.8 peer group SITE1
+      neighbor 10.1.5.10 peer group SITE2
+```
+
+## VRF Instances
+
+### VRF Instances Summary
+
+| VRF Name | IP Routing |
+| -------- | ---------- |
+| VRF_A | enabled |
+
+### VRF Instances Device Configuration
+
+```eos
+!
+vrf instance VRF_A
 ```

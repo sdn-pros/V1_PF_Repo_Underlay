@@ -3,9 +3,6 @@ ip_routing: true
 
 spanning_tree:
   mode: mstp
-vrfs:
-- name: TENANT_A
-  ip_routing: true
 loopback_interfaces:
 - name: Loopback0
   description: SITE1_lo0
@@ -24,6 +21,12 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1500
   ip_address: 10.1.5.6/31
+- name: Ethernet6
+  peer: ISP-3
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 10.1.5.10/31
 - name: Ethernet7
   peer: Host14
   type: routed
@@ -36,11 +39,15 @@ router_bgp:
   peer_groups:
     - name: CORE
       remote_as: 65001
+    - name: ISP-3
+      remote_as: 65002
   neighbors:
     - ip_address: 10.1.5.5
       peer_group: CORE
     - ip_address: 10.1.5.7
       peer_group: CORE
+    - ip_address: 10.1.5.11
+      peer_group: ISP-3
   address_family_ipv4:
     networks:
       - prefix: 172.16.20.0/24

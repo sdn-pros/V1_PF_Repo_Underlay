@@ -20,7 +20,6 @@
   - [IP Routing](#ip-routing)
   - [IPv6 Routing](#ipv6-routing)
   - [Static Routes](#static-routes)
-  - [Router Traffic-Engineering](#router-traffic-engineering)
   - [Router ISIS](#router-isis)
   - [Router BGP](#router-bgp)
 - [BFD](#bfd)
@@ -158,7 +157,6 @@ interface Ethernet1
    isis metric 50
    isis hello padding
    isis network point-to-point
-   traffic-engineering
 !
 interface Ethernet2
    description P2P_LINK_TO_P1_Ethernet3
@@ -172,7 +170,6 @@ interface Ethernet2
    isis metric 50
    isis hello padding
    isis network point-to-point
-   traffic-engineering
 !
 interface Ethernet3
    description P2P_LINK_TO_P2_Ethernet3
@@ -186,7 +183,6 @@ interface Ethernet3
    isis metric 50
    isis hello padding
    isis network point-to-point
-   traffic-engineering
 !
 interface Ethernet4
    description SITE1
@@ -325,16 +321,6 @@ ip routing vrf VRF_A
 ip route vrf MGMT 0.0.0.0/0 192.168.0.1
 ```
 
-### Router Traffic-Engineering
-
-#### Router Traffic Engineering Device Configuration
-
-```eos
-!
-router traffic-engineering
-   router-id ipv4 192.168.101.22
-```
-
 ### Router ISIS
 
 #### Router ISIS Summary
@@ -387,9 +373,6 @@ router isis CORE
    !
    segment-routing mpls
       no shutdown
-   traffic-engineering
-     no shutdown
-     is-type level-1
 ```
 
 ### Router BGP

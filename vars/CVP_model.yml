@@ -1,3 +1,11 @@
+cvp_configlets:
+  AVD_P10: "{{ lookup('file', '../intended/configs/P10.cfg') }}"
+  AVD_P20: "{{ lookup('file', '../intended/configs/P20.cfg') }}"
+  AVD_ISP-3: "{{ lookup('file', '../intended/configs/ISP-3.cfg') }}"
+  AVD_Edge14: "{{ lookup('file', '../intended/configs/Edge14.cfg') }}"
+  AVD_Edge24: "{{ lookup('file', '../intended/configs/Edge24.cfg') }}"
+
+
 cvp_devices:
   - fqdn: P10
     parentContainerName: Region1
@@ -15,3 +23,7 @@ cvp_devices:
     parentContainerName: Region2
     configlets:
         - 'AVD_Edge24'
+  - fqdn: ISP-3
+    parentContainerName: WAN
+    configlets:
+        - 'AVD_ISP-3'

@@ -20,7 +20,6 @@
   - [IP Routing](#ip-routing)
   - [IPv6 Routing](#ipv6-routing)
   - [Static Routes](#static-routes)
-  - [Router Traffic-Engineering](#router-traffic-engineering)
   - [Router ISIS](#router-isis)
   - [Router BGP](#router-bgp)
 - [BFD](#bfd)
@@ -158,7 +157,6 @@ interface Ethernet1
    isis metric 50
    isis hello padding
    isis network point-to-point
-   traffic-engineering
 !
 interface Ethernet2
    description P2P_LINK_TO_P1_Ethernet2
@@ -172,7 +170,6 @@ interface Ethernet2
    isis metric 50
    isis hello padding
    isis network point-to-point
-   traffic-engineering
 !
 interface Ethernet3
    description P2P_LINK_TO_P2_Ethernet2
@@ -186,7 +183,6 @@ interface Ethernet3
    isis metric 50
    isis hello padding
    isis network point-to-point
-   traffic-engineering
 !
 interface Ethernet4
    description SITE1
@@ -325,50 +321,6 @@ ip routing vrf VRF_A
 ip route vrf MGMT 0.0.0.0/0 192.168.0.1
 ```
 
-### Router Traffic-Engineering
-
-#### Segment Routing Summary
-
-- SRTE is enabled.
-
-- system-colored-tunnel-rib is enabled
-
-##### SRTE Policies
-
-| Endpoint | Color | Preference | Name | Description | SBFD Remote Discriminator | Label Stack | Index  | Weight | Explicit Null |
-| -------- | ----- | ---------- | ---- | ----------- | ------------------------- | ----------- | ------ | ------ | ------------- |
-| 192.168.101.23 | 200 | 1 | SR-TE-COLOR-200-PATH-LOWEST-HOPS | SR-TE-COLOR-200-PATH-FOR-TRAFFIC-TO-PE3 | - | 221 305 303 224 | - | - | none |
-| 192.168.101.23 | 500 | 1 | SR-TE-COLOR-500-HIGHEST-BW | SR-TE-COLOR-500-PATH-FOR-TRAFFIC-TO-PE3 | 192.168.101.23 | 221 305 306 303 224 | - | - | none |
-
-#### Router Traffic Engineering Device Configuration
-
-```eos
-!
-router traffic-engineering
-   segment-routing
-      rib system-colored-tunnel-rib
-      !
-      policy endpoint 192.168.101.23 color 200
-         binding-sid 900200
-         name SR-TE-COLOR-200-PATH-LOWEST-HOPS
-         description SR-TE-COLOR-200-PATH-FOR-TRAFFIC-TO-PE3
-         !
-         path-group preference 1
-            explicit-null none
-            segment-list label-stack 221 305 303 224
-      !
-      policy endpoint 192.168.101.23 color 500
-         binding-sid 900500
-         name SR-TE-COLOR-500-HIGHEST-BW
-         description SR-TE-COLOR-500-PATH-FOR-TRAFFIC-TO-PE3
-         sbfd remote-discriminator 192.168.101.23
-         !
-         path-group preference 1
-            explicit-null none
-            segment-list label-stack 221 305 306 303 224
-   router-id ipv4 192.168.101.21
-```
-
 ### Router ISIS
 
 #### Router ISIS Summary
@@ -421,9 +373,6 @@ router isis CORE
    !
    segment-routing mpls
       no shutdown
-   traffic-engineering
-     no shutdown
-     is-type level-1
 ```
 
 ### Router BGP

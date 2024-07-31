@@ -11,6 +11,9 @@ all:
       ansible_network_os: eos
       ansible_httpapi_port: 443
   children:
+    Internet:
+      hosts:
+        ISP-3:
     SITE1_CE:
       hosts:
         P10:

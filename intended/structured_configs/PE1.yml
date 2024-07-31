@@ -107,9 +107,8 @@ router_isis:
   advertise:
     passive_only: false
   segment_routing_mpls:
-    router_id: 192.168.0.101.21
+    router_id: 192.168.101.21
     enabled: true
-  eos_cli: "traffic-engineering\n  no shutdown\n  is-type level-1"
 mpls:
   ip: true
 router_bfd:
@@ -134,7 +133,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-  eos_cli: traffic-engineering
 - name: Ethernet3
   peer: P2
   peer_interface: Ethernet2
@@ -151,7 +149,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-  eos_cli: traffic-engineering
 - name: Ethernet1
   peer: PE2
   peer_interface: Ethernet1
@@ -168,7 +165,6 @@ ethernet_interfaces:
   isis_circuit_type: level-1
   mpls:
     ip: true
-  eos_cli: traffic-engineering
 - name: Ethernet6
   peer: RR5
   peer_interface: Ethernet6
@@ -213,30 +209,3 @@ ip_igmp_snooping:
 ip_virtual_router_mac_address: 02:1c:73:00:dc:00
 metadata:
   platform: vEOS-lab
-router_traffic_engineering:
-  router_id:
-    ipv4: 192.168.101.21
-  segment_routing:
-    colored_tunnel_rib: true
-    policy_endpoints:
-    - address: 192.168.101.23
-      colors:
-      - value: 500
-        binding_sid: 900500
-        description: SR-TE-COLOR-500-PATH-FOR-TRAFFIC-TO-PE3
-        name: SR-TE-COLOR-500-HIGHEST-BW
-        sbfd_remote_discriminator: 192.168.101.23
-        path_group:
-        - preference: 1
-          explicit_null: none
-          segment_list:
-          - label_stack: 221 305 306 303 224
-      - value: 200
-        binding_sid: 900200
-        description: SR-TE-COLOR-200-PATH-FOR-TRAFFIC-TO-PE3
-        name: SR-TE-COLOR-200-PATH-LOWEST-HOPS
-        path_group:
-        - preference: 1
-          explicit_null: none
-          segment_list:
-          - label_stack: 221 305 303 224
