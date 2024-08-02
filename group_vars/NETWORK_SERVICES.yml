@@ -61,5 +61,5 @@ tenants:
             nodes: [PE4]
             remote_as: 65201
           - ip_address: 192.54.84.1
-            nodes: [PE3]
+            nodes: [PE4]
             remote_as: 65201
