@@ -1,54 +1,76 @@
 hostname: P20
 ip_routing: true
-
 spanning_tree:
   mode: mstp
 loopback_interfaces:
 - name: Loopback0
-  description: SITE1_lo0
+  description: Region2_P20_lo0
   shutdown: false
-  ip_address: 2.2.2.2/32
+  ip_address: 192.168.0.53/32
 ethernet_interfaces:
+- name: Ethernet1
+  peer: P21
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.53.54.1/24
+- name: Ethernet2
+  peer: R2-PE2
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.25.53.2/24
+- name: Ethernet3
+  peer: ISP-2
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.26.53.2/24
 - name: Ethernet4
   peer: PE3
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 10.1.5.4/31
+  ip_address: 192.53.83.1/24
 - name: Ethernet5
   peer: PE4
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 10.1.5.6/31
+  ip_address: 192.53.84.1/24
 - name: Ethernet6
   peer: ISP-3
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 10.1.5.10/31
+  ip_address: 192.53.75.1/24
 - name: Ethernet7
-  peer: Host14
+  peer: H14
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 172.16.20.1/24
+  ip_address: 172.24.53.2/24
 router_bgp:
   as: 65201
-  router_id: 2.2.2.2
+  router_id: 192.168.0.53
   peer_groups:
     - name: CORE
       remote_as: 65001
     - name: ISP-3
       remote_as: 65002
   neighbors:
-    - ip_address: 10.1.5.5
+    - ip_address: 192.53.83.2
       peer_group: CORE
-    - ip_address: 10.1.5.7
+    - ip_address: 192.53.84.2
       peer_group: CORE
-    - ip_address: 10.1.5.11
+    - ip_address: 192.53.75.2
       peer_group: ISP-3
+    - ip_address: 192.24.53.1
+      remote_as:  65224
+    - ip_address: 192.26.53.1
+      remote_as:  65202
+    - ip_address: 192.25.53.1
+      remote_as:  65203
   address_family_ipv4:
     networks:
-      - prefix: 172.16.20.0/24
-      - prefix: 2.2.2.2/32
+      - prefix: 192.168.0.53/32

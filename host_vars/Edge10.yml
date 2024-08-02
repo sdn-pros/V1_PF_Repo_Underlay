@@ -1,0 +1,51 @@
+hostname: Edge10
+ip_routing: true
+spanning_tree:
+  mode: mstp
+loopback_interfaces:
+- name: Loopback0
+  description: Edge-10_lo0
+  shutdown: false
+  ip_address: 192.168.0.10/32
+ethernet_interfaces:
+- name: Ethernet1
+  peer: Edge11
+  type: routed
+  shutdown: true
+  mtu: 1500
+- name: Ethernet2
+  peer: Edge11
+  type: routed
+  shutdown: true
+  mtu: 1500
+- name: Ethernet3
+  peer: Leaf11
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.10.31.1/24
+- name: Ethernet4
+  peer: R1-PE1
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.10.15.1/24
+- name: Ethernet5
+  peer: ISP-1
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.10.16.1/24
+router_bgp:
+  as: 65110
+  router_id: 192.168.0.10
+  neighbors:
+    - ip_address: 192.10.15.2
+      remote_as:  65102
+    - ip_address: 192.10.16.2
+      remote_as:  65103
+    - ip_address: 192.10.31.2
+      remote_as:  65110
+  address_family_ipv4:
+    networks: 
+      - prefix: 192.168.0.10/32

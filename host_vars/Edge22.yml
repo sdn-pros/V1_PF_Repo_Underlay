@@ -1,0 +1,48 @@
+hostname: Edge22
+ip_routing: true
+spanning_tree:
+  mode: mstp
+loopback_interfaces:
+- name: Loopback0
+  description: Edge-22_lo0
+  shutdown: false
+  ip_address: 192.168.0.22/32
+ethernet_interfaces:
+- name: Ethernet1
+  peer: Leaf22
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.22.34.1/24
+- name: Ethernet2
+  peer: R2-PE2
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.22.25.1/24
+- name: Ethernet3
+  peer: ISP-2
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.22.26.1/24
+- name: Ethernet4
+  peer: Leaf21
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.22.33.1/24
+
+router_bgp:
+  as: 65222
+  router_id: 192.168.0.22
+  neighbors:
+    - ip_address: 192.22.25.2
+      remote_as:  65202
+    - ip_address: 192.22.26.2
+      remote_as:  65203
+    - ip_address: 192.22.34.2
+      remote_as:  65222
+  address_family_ipv4:
+    networks: 
+      - prefix: 192.168.0.22/32

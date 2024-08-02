@@ -1,0 +1,83 @@
+hostname: ISP-1
+ip_routing: true
+spanning_tree:
+  mode: mstp
+loopback_interfaces:
+- name: Loopback0
+  description: ISP_lo0
+  shutdown: false
+  ip_address: 192.168.0.16/32
+ethernet_interfaces:
+- name: Ethernet1
+  peer: P10
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.16.51.1/24
+- name: Ethernet2
+  peer: P11
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.16.52.1/24
+- name: Ethernet3
+  peer: RR1
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.16.71.1/24
+- name: Ethernet4
+  peer: RR2
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.16.72.1/24
+- name: Ethernet5
+  peer: Edge10
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.10.16.2/24
+- name: Ethernet6
+  peer: Edge11
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.11.16.2/24
+- name: Ethernet7
+  peer: Edge12
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.12.16.2/24
+- name: Ethernet8
+  peer: Edge13
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.13.16.2/24
+- name: Ethernet9
+  peer: Edge14
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.14.16.2/24
+router_bgp:
+  as: 65202
+  router_id: 192.168.0.16
+  neighbors:
+    - ip_address: 192.10.16.1
+      remote_as:  65110
+    - ip_address: 192.11.16.1
+      remote_as:  65110
+    - ip_address: 192.12.16.1
+      remote_as:  65112
+    - ip_address: 192.13.16.1
+      remote_as:  65113
+    - ip_address: 192.16.51.1
+      remote_as:  65102
+    - ip_address: 192.16.52.1
+      remote_as:  65103
+  address_family_ipv4:
+    networks: 
+      - prefix: 192.168.0.16/32

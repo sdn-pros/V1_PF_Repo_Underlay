@@ -1,0 +1,44 @@
+hostname: Leaf12
+ip_routing: true
+spanning_tree:
+  mode: mstp
+vrfs:
+- name: VRF_A
+  ip_routing: true
+loopback_interfaces:
+- name: Loopback0
+  description: Leaf12_lo0
+  shutdown: false
+  ip_address: 192.168.0.32/32
+ethernet_interfaces:
+- name: Ethernet1
+  peer: H12
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.16.12.254/24
+  vrf: VRF_A
+- name: Ethernet2
+  peer: Edge12
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.12.32.2/24
+- name: Ethernet3
+  peer: Edge12
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.11.32.2/24
+
+router_bgp:
+  as: 65112
+  router_id: 192.168.0.32
+  neighbors:
+    - ip_address: 192.12.32.1
+      remote_as:  65220
+    - ip_address: 192.11.32.1
+      remote_as:  65220
+  address_family_ipv4:
+    networks: 
+      - prefix: 192.168.0.32/32

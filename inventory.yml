@@ -4,7 +4,7 @@ all:
     cvaas: 
       ansible_host: www.arista.io
       ansible_user: cvaas
-      ansible_password: "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjcwODkzNDMxODEzNjM3MDYzMDEsImRzbiI6Im5ld3Rva2VuIGZvciAwNCIsImRzdCI6ImFjY291bnQiLCJleHAiOjE4NTU1ODEzNDUsImlhdCI6MTcyMjM1MjU0OCwib2dpIjo3MDg5MzQzMTgxMzYzNzAxODcwLCJvZ24iOiJhcmlzdGEtdG5nLTA0Iiwic2lkIjoiOGFmMTc2ODkyZWEzN2IxMWNjYmQ4NTMyOWRiM2I0ZDRlOTY2M2Y4NjA0MzE5YjQ1YzVkM2E2ODUxN2RiMGU5ZS1La2VLRENrNTc1ZFh4ZklCX3hWTHZaNW8xaUJCVHhqWFVaVDdPdEVNIn0.0aOA7Hlo42QToKbiN6QrLMP1Yvtw8rATry0Jwo3OkDySQ6IMQTlu7ApnkyNutskKs_6QTcSOwRvIDLRswGOMdw"
+      ansible_password: "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjcwODkzNDMxODEzNjM3MDgzNjYsImRzbiI6ImFyaXN0YS10bmctMDUiLCJkc3QiOiJhY2NvdW50IiwiZXhwIjoxODE4ODMyNzE5LCJpYXQiOjE3MjI1ODMxMjEsIm9naSI6NzA4OTM0MzE4MTM2MzcwMjAzMSwib2duIjoiYXJpc3RhLXRuZy0wNSIsInNpZCI6IjQ0ZDY4ZDM3YzMyOWQ5ZDQ2Mjc5NWVjZDcyNjU5MTI1M2Q2ZGM4ZjdmNjA1ZjM4Nzg5MGI3YWFlMzljNTA0M2MtTHhfQWFHSDE5M2pfR2NjZzZJTW02Rm9kT0xpQXVNQTNQLVVjaVNtYiJ9.b6sEZ8lYbSX_PoqtYa5bV9mPgHFr55uc-vBN6EdfL3KVjsEy2cWtucl7JoCBEb_dRIDZ2PY4ppNfyClYeq1QAQ"
       ansible_connection: httpapi
       ansible_httpapi_use_ssl: True
       ansible_httpapi_validate_certs: False
@@ -22,6 +22,7 @@ all:
       hosts:
         P20:
         Edge24:
+        Edge20:
     MPLS_FABRIC:
       vars:
         ansible_user: arista

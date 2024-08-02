@@ -1,0 +1,51 @@
+hostname: Leaf21
+ip_routing: true
+spanning_tree:
+  mode: mstp
+vrfs:
+- name: VRF_A
+  ip_routing: true
+loopback_interfaces:
+- name: Loopback0
+  description: Leaf21_lo0
+  shutdown: false
+  ip_address: 192.168.0.33/32
+ethernet_interfaces:
+- name: Ethernet1
+  peer: H21
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.16.21.254/24
+  vrf: VRF_A
+- name: Ethernet2
+  peer: Edge20
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.20.33.2/24
+- name: Ethernet3
+  peer: Edge21
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.21.33.2/24
+- name: Ethernet4
+  peer: Edge22
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.22.33.2/24
+router_bgp:
+  as: 65220
+  router_id: 192.168.0.33
+  neighbors:
+    - ip_address: 192.20.33.1
+      remote_as:  65220
+    - ip_address: 192.20.26.2
+      remote_as:  65220
+    - ip_address: 192.21.33.1
+      remote_as:  65220
+  address_family_ipv4:
+    networks: 
+      - prefix: 192.168.0.33/32

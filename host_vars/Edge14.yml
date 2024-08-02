@@ -1,13 +1,55 @@
 hostname: Edge14
 ip_routing: true
+spanning_tree:
+  mode: mstp
+vrfs:
+- name: VRF_A
+  ip_routing: true
+loopback_interfaces:
+- name: Loopback0
+  description: Edge-14_lo0
+  shutdown: false
+  ip_address: 192.168.0.14/32
 ethernet_interfaces:
+- name: Ethernet1
+  peer: H14
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 172.16.14.254/24
+  vrf: VRF_A
+- name: Ethernet2
+  peer: R1-PE1
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.14.15.1/24
+- name: Ethernet3
+  peer: ISP-1
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.14.16.1/24
 - name: Ethernet4
   peer: P10
   type: routed
-  shutdown: false
+  shutdown: true
   mtu: 1500
-  ip_address: 172.16.10.14/24
-static_routes:
-  - vrf: default
-    destination_address_prefix: 0.0.0.0/0
-    gateway: 172.16.10.1
+  ip_address: 192.14.51.1/24
+- name: Ethernet5
+  peer: P11
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.14.52.1/24
+router_bgp:
+  as: 65114
+  router_id: 192.168.0.14
+  neighbors:
+    - ip_address: 192.14.51.2
+      remote_as:  65101
+    - ip_address: 192.14.52.2
+      remote_as:  65101
+  address_family_ipv4:
+    networks: 
+      - prefix: 192.168.0.14/32

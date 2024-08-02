@@ -1,0 +1,39 @@
+hostname: RR4
+ip_routing: true
+spanning_tree:
+  mode: mstp
+loopback_interfaces:
+- name: Loopback0
+  description: RR4_lo0
+  shutdown: false
+  ip_address: 192.168.0.77/32
+ethernet_interfaces:
+- name: Ethernet1
+  peer: RR1
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.76.77.2/24
+- name: Ethernet2
+  peer: R2-PE2
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.25.77.2/24
+- name: Ethernet3
+  peer: ISP-1
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.26.77.2/24
+router_bgp:
+  as: 65201
+  router_id: 192.168.0.77
+  neighbors:
+    - ip_address: 192.25.77.1
+      remote_as:  65202
+    - ip_address: 192.26.77.1
+      remote_as:  65203
+  address_family_ipv4:
+    networks: 
+      - prefix: 192.168.0.77/32

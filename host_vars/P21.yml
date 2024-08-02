@@ -1,76 +1,77 @@
-hostname: P10
+hostname: P2
 ip_routing: true
 spanning_tree:
   mode: mstp
 loopback_interfaces:
 - name: Loopback0
-  description: Region1_P10_lo0
+  description: Region2_P21_lo0
   shutdown: false
-  ip_address: 192.168.0.51/32
+  ip_address: 192.168.0.54/32
 ethernet_interfaces:
 - name: Ethernet1
-  peer: P11
+  peer: P21
   type: routed
   shutdown: true
   mtu: 1500
-  ip_address: 192.51.52.1/24
+  ip_address: 192.53.54.2/24
 - name: Ethernet2
-  peer: R1-PE1
+  peer: R2-PE2
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 192.15.51.2/24
+  ip_address: 192.26.54.2/24
 - name: Ethernet3
-  peer: ISP-1
+  peer: ISP-2
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 192.16.51.2/24
+  ip_address: 192.26.54.2/24
 - name: Ethernet4
-  peer: PE1
+  peer: PE3
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 192.51.81.1/24
+  ip_address: 192.54.83.1/24
 - name: Ethernet5
-  peer: PE2
+  peer: PE4
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 192.51.82.1/24
+  ip_address: 192.54.84.1/24
 - name: Ethernet6
   peer: ISP-3
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 192.51.75.1/24
+  ip_address: 192.54.75.1/24
 - name: Ethernet7
-  peer: Edge14
+  peer: H14
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 172.14.51.2/24
+  ip_address: 172.24.54.2/24
 router_bgp:
-  as: 65101
-  router_id: 192.168.0.51
+  as: 65201
+  router_id: 192.168.0.54
   peer_groups:
     - name: CORE
-      remote_as: 65101
+      remote_as: 65001
     - name: ISP-3
       remote_as: 65002
   neighbors:
-    - ip_address: 192.51.81.2
+    - ip_address: 192.54.83.2
       peer_group: CORE
-    - ip_address: 192.51.82.2
+    - ip_address: 192.54.84.2
       peer_group: CORE
-    - ip_address: 192.51.75.2
+    - ip_address: 192.54.75.2
       peer_group: ISP-3
-    - ip_address: 192.14.51.1
-      remote_as:  65114
-    - ip_address: 192.15.51.1
-      remote_as:  65102
-    - ip_address: 192.16.51.1
-      remote_as:  65103
+    - ip_address: 192.25.54.1
+      remote_as:  65202
+    - ip_address: 192.26.54.1
+      remote_as:  65203
+    - ip_address: 192.24.54.1
+      remote_as:  65224
+
   address_family_ipv4:
     networks:
-      - prefix: 192.168.0.51/32
+      - prefix: 192.168.0.54/32

@@ -1,0 +1,25 @@
+hostname: H24
+ip_routing: true
+spanning_tree:
+  mode: mstp
+
+ethernet_interfaces:
+- name: Ethernet1
+  peer: Edge24
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.16.24.24/24
+static_routes:
+  - vrf: default
+    destination_address_prefix: 0.0.0.0/0
+    gateway: 172.16.24.254
+
+
+
+
+#interface Ethernet1
+#   no switchport
+#   ip address 172.16.24.24/24
+#
+# ip route 0.0.0.0/0 172.16.24.254

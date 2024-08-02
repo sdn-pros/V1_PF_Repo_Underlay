@@ -1,0 +1,43 @@
+hostname: Edge13
+ip_routing: true
+spanning_tree:
+  mode: mstp
+vrfs:
+- name: VRF_A
+  ip_routing: true
+loopback_interfaces:
+- name: Loopback0
+  description: Edge-13_lo0
+  shutdown: false
+  ip_address: 192.168.0.13/32
+ethernet_interfaces:
+- name: Ethernet1
+  peer: H13
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 172.16.13.254/24
+  vrf: VRF_A
+- name: Ethernet2
+  peer: R1-PE1
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.13.15.1/24
+- name: Ethernet3
+  peer: ISP-1
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.13.16.1/24
+router_bgp:
+  as: 65113
+  router_id: 192.168.0.13
+  neighbors:
+    - ip_address: 192.13.15.2
+      remote_as:  65102
+    - ip_address: 192.13.16.2
+      remote_as:  65103
+  address_family_ipv4:
+    networks: 
+      - prefix: 192.168.0.13/32
