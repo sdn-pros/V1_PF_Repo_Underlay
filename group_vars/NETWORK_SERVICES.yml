@@ -46,9 +46,12 @@ tenants:
             nodes: [PE1]
             remote_as: 65101
           - ip_address: 192.52.81.1
-            nodes: [PE2]
+            nodes: [PE1]
             remote_as: 65101
           - ip_address: 192.51.82.1
+            nodes: [PE2]
+            remote_as: 65101
+          - ip_address: 192.52.82.1
             nodes: [PE2]
             remote_as: 65101
           - ip_address: 192.53.83.1
