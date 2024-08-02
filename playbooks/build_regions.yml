@@ -1,6 +1,6 @@
 ---
 - name: Build fabric configuration
-  hosts: SITE1_CE, SITE2_CE, Internet
+  hosts: REGION1, REGION2, Internet
   tasks:
     - name: Generate Device Configurations and Documentation
       ansible.builtin.import_role:

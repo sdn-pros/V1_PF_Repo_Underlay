@@ -7,27 +7,35 @@ tenants:
         address_families:
           - vpn-ipv4
         l3_interfaces:
-          - description: SITE1
+          - description: REGION1
             enabled: true
             interfaces:
               - Ethernet4
+              - Ethernet5
               - Ethernet4
+              - Ethernet5
             ip_addresses: 
               - 10.1.5.1/31
               - 10.1.5.3/31
             nodes: 
               - PE1
+              - PE1
               - PE2
-          - description: SITE2
+              - PE2
+          - description: REGION2
             enabled: true
             interfaces:
               - Ethernet4
+              - Ethernet5
               - Ethernet4
+              - Ethernet5
             ip_addresses: 
               - 10.1.5.5/31
               - 10.1.5.7/31
             nodes: 
               - PE3
+              - PE3
+              - PE4
               - PE4
         bgp_peers:
           - ip_address: 10.1.5.0

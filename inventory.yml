@@ -14,15 +14,46 @@ all:
     Internet:
       hosts:
         ISP-3:
-    SITE1_CE:
+    REGION1:
       hosts:
-        P10:
+        H14:
         Edge14:
-    SITE2_CE:
+        P10:
+        P11:
+        RR1:
+        RR2:
+        R1-PE1:
+        ISP-1:
+        Edge10:
+        Edge11:
+        Edge12:
+        Edge13:
+        Leaf11:
+        Leaf12:
+        H11:
+        H12:
+        H13:
+    REGION2:
       hosts:
-        P20:
+        H24:
         Edge24:
+        P20:
+        P21:
+        RR3:
+        RR4:
+        R2-PE2:
+        ISP-2:
         Edge20:
+        Edge21:
+        Edge22:
+        Edge23:
+        Leaf21:
+        Leaf22:
+        H21:
+        H22:
+        H23:
+
+
     MPLS_FABRIC:
       vars:
         ansible_user: arista
