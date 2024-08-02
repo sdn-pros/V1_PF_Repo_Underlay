@@ -44,7 +44,7 @@ ethernet_interfaces:
   ip_address: 192.24.26.1/24
 router_bgp:
   as: 65224
-  router_id: 192.168.0.24/32
+  router_id: 192.168.0.24
   neighbors:
     - ip_address: 192.24.53.2
       remote_as:  65201
