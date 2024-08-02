@@ -55,10 +55,14 @@ router_bgp:
     - source_protocol: connected
     address_family_ipv4:
       neighbors:
-      - ip_address: 10.1.5.4
+      - ip_address: 192.53.83.1
+        activate: true
+      - ip_address: 192.54.83.1
         activate: true
     neighbors:
-    - ip_address: 10.1.5.4
+    - ip_address: 192.53.83.1
+      remote_as: '65201'
+    - ip_address: 192.54.83.1
       remote_as: '65201'
 static_routes:
 - vrf: MGMT
@@ -199,9 +203,16 @@ ethernet_interfaces:
     ip: true
 - name: Ethernet4
   peer_type: l3_interface
-  ip_address: 10.1.5.5/31
+  ip_address: 192.53.83.2/24
   shutdown: false
-  description: SITE2
+  description: REGION2
+  type: routed
+  vrf: VRF_A
+- name: Ethernet5
+  peer_type: l3_interface
+  ip_address: 192.54.83.2/24
+  shutdown: false
+  description: REGION2
   type: routed
   vrf: VRF_A
 ip_igmp_snooping:

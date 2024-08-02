@@ -93,7 +93,6 @@ core_interfaces:
   p2p_links_profiles:
     - name: core_profile
       mtu: 1500
-      ptp_enable: true 
       isis_metric: 50
       ip_pool: core_pool
       isis_circuit_type: level-1

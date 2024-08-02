@@ -1,35 +1,217 @@
 cvp_configlets:
-  AVD_P10: "{{ lookup('file', '../intended/configs/P10.cfg') }}"
-  AVD_P20: "{{ lookup('file', '../intended/configs/P20.cfg') }}"
-  AVD_ISP-3: "{{ lookup('file', '../intended/configs/ISP-3.cfg') }}"
-  AVD_Edge14: "{{ lookup('file', '../intended/configs/Edge14.cfg') }}"
-  AVD_Edge24: "{{ lookup('file', '../intended/configs/Edge24.cfg') }}"
+  
+  # Underlay_P10: "{{ lookup('file', '../intended/configs/P10.cfg') }}"
+  # Underlay_P20: "{{ lookup('file', '../intended/configs/P20.cfg') }}"
+  # Underlay_ISP-3: "{{ lookup('file', '../intended/configs/ISP-3.cfg') }}"
+  # Underlay_Edge14: "{{ lookup('file', '../intended/configs/Edge14.cfg') }}"
+  # Underlay_Edge24: "{{ lookup('file', '../intended/configs/Edge24.cfg') }}"
+  # Underlay_RR4: "{{ lookup('file', '../intended/configs/RR4.cfg') }}"
+
+  Underlay_Edge10: "{{ lookup('file', '../intended/configs/Edge10.cfg') }}"
+  Underlay_Edge11: "{{ lookup('file', '../intended/configs/Edge11.cfg') }}"
+  Underlay_Edge12: "{{ lookup('file', '../intended/configs/Edge12.cfg') }}"
+  Underlay_Edge13: "{{ lookup('file', '../intended/configs/Edge13.cfg') }}"
+  Underlay_Edge14: "{{ lookup('file', '../intended/configs/Edge14.cfg') }}"
   Underlay_Edge20: "{{ lookup('file', '../intended/configs/Edge20.cfg') }}"
+  Underlay_Edge21: "{{ lookup('file', '../intended/configs/Edge21.cfg') }}"
+  Underlay_Edge22: "{{ lookup('file', '../intended/configs/Edge22.cfg') }}"
+  Underlay_Edge23: "{{ lookup('file', '../intended/configs/Edge23.cfg') }}"
+  Underlay_Edge24: "{{ lookup('file', '../intended/configs/Edge24.cfg') }}"
+  Underlay_H11: "{{ lookup('file', '../intended/configs/H11.cfg') }}"
+  Underlay_H12: "{{ lookup('file', '../intended/configs/H12.cfg') }}"
+  Underlay_H13: "{{ lookup('file', '../intended/configs/H13.cfg') }}"
+  Underlay_H14: "{{ lookup('file', '../intended/configs/H14.cfg') }}"
+  Underlay_H21: "{{ lookup('file', '../intended/configs/H21.cfg') }}"
+  Underlay_H22: "{{ lookup('file', '../intended/configs/H22.cfg') }}"
+  Underlay_H23: "{{ lookup('file', '../intended/configs/H23.cfg') }}"
+  Underlay_H24: "{{ lookup('file', '../intended/configs/H24.cfg') }}"
+  Underlay_ISP-1: "{{ lookup('file', '../intended/configs/ISP-1.cfg') }}"
+  Underlay_ISP-2: "{{ lookup('file', '../intended/configs/ISP-2.cfg') }}"
+  Underlay_ISP-3: "{{ lookup('file', '../intended/configs/ISP-3.cfg') }}"
+  Underlay_Leaf11: "{{ lookup('file', '../intended/configs/Leaf11.cfg') }}"
+  Underlay_Leaf12: "{{ lookup('file', '../intended/configs/Leaf12.cfg') }}"
+  Underlay_Leaf21: "{{ lookup('file', '../intended/configs/Leaf21.cfg') }}"
+  Underlay_Leaf22: "{{ lookup('file', '../intended/configs/Leaf22.cfg') }}"
+  Underlay_P10: "{{ lookup('file', '../intended/configs/P10.cfg') }}"
+  Underlay_P11: "{{ lookup('file', '../intended/configs/P11.cfg') }}"
+  Underlay_P20: "{{ lookup('file', '../intended/configs/P20.cfg') }}"
+  Underlay_P21: "{{ lookup('file', '../intended/configs/P21.cfg') }}"
+  Underlay_R1-PE1: "{{ lookup('file', '../intended/configs/R1-PE1.cfg') }}"
+  Underlay_R2-PE2: "{{ lookup('file', '../intended/configs/R2-PE2.cfg') }}"
+  Underlay_RR1: "{{ lookup('file', '../intended/configs/RR1.cfg') }}"
+  Underlay_RR2: "{{ lookup('file', '../intended/configs/RR2.cfg') }}"
+  Underlay_RR3: "{{ lookup('file', '../intended/configs/RR3.cfg') }}"
+  Underlay_RR4: "{{ lookup('file', '../intended/configs/RR4.cfg') }}"
 
 
 cvp_devices:
-  - fqdn: P10
+  - fqdn: Edge10
     parentContainerName: Region1
     configlets:
-        - 'AVD_P10'
-  - fqdn: P20
-    parentContainerName: Region2
+      - 'Underlay_Edge10'
+  - fqdn: Edge11
+    parentContainerName: Region1
     configlets:
-        - 'AVD_P20'
+      - 'Underlay_Edge11'
+  - fqdn: Edge12
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_Edge12'
+  - fqdn: Edge13
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_Edge13'
   - fqdn: Edge14
     parentContainerName: Region1
     configlets:
-        - 'AVD_Edge14'
-  - fqdn: Edge24
-    parentContainerName: Region2
+      - 'Underlay_Edge14'
+  - fqdn: H11
+    parentContainerName: Region1
     configlets:
-        - 'AVD_Edge24'
+      - 'Underlay_H11'
+  - fqdn: H12
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_H12'
+  - fqdn: H13
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_H13'
+  - fqdn: H14
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_H14'
+  - fqdn: ISP-1
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_ISP-1'
   - fqdn: ISP-3
     parentContainerName: WAN
     configlets:
-        - 'AVD_ISP-3'
-   - fqdn: Edge20
+      - 'Underlay_ISP-3'
+  - fqdn: Leaf11
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_Leaf11'
+  - fqdn: Leaf12
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_Leaf12'
+  - fqdn: P10
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_P10'
+  - fqdn: P11
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_P11'
+  - fqdn: R1-PE1
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_R1-PE1'
+  - fqdn: RR1 
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_RR1'
+  - fqdn: RR2
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_RR2'
+
+  - fqdn: Edge20
     parentContainerName: Region2
     configlets:
-        - 'Underlay_Edge20'
+      - 'Underlay_Edge20'
+  - fqdn: Edge21
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Edge21'
+  - fqdn: Edge22
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Edge22'
+  - fqdn: Edge23
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Edge23'
+  - fqdn: Edge24
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Edge24'
+  - fqdn: H21
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_H21'
+  - fqdn: H22
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_H22'
+  - fqdn: H23
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_H23'
+  - fqdn: H24
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_H24'
+  - fqdn: ISP-2
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_ISP-2'
+  - fqdn: Leaf21
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Leaf21'
+  - fqdn: Leaf22
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Leaf22'
+  - fqdn: P20
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_P20'
+  - fqdn: P21
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_P21'
+  - fqdn: R2-PE2
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_R2-PE2'
+  - fqdn: RR3
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_RR3'
+  - fqdn: RR4
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_RR4'
+
+
+
+
+  # - fqdn: P10
+  #   parentContainerName: Region1
+  #   configlets:
+  #       - 'AVD_P10'
+  # - fqdn: P20
+  #   parentContainerName: Region2
+  #   configlets:
+  #       - 'AVD_P20'
+  # - fqdn: Edge14
+  #   parentContainerName: Region1
+  #   configlets:
+  #       - 'AVD_Edge14'
+  # - fqdn: Edge24
+  #   parentContainerName: Region2
+  #   configlets:
+  #       - 'AVD_Edge24'
+  # - fqdn: ISP-3
+  #   parentContainerName: WAN
+  #   configlets:
+  #       - 'AVD_ISP-3'
+  # - fqdn: Edge20
+  #   parentContainerName: Region2
+  #   configlets:
+  #       - 'Underlay_Edge20'
     

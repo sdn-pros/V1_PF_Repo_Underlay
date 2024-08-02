@@ -127,7 +127,8 @@ vlan internal order ascending range 1006 1199
 | Ethernet1 | P2P_LINK_TO_PE3_Ethernet1 | routed | - | 192.168.102.45/31 | default | 1500 | False | - | - |
 | Ethernet2 | P2P_LINK_TO_P3_Ethernet3 | routed | - | 192.168.102.39/31 | default | 1500 | False | - | - |
 | Ethernet3 | P2P_LINK_TO_P4_Ethernet3 | routed | - | 192.168.102.43/31 | default | 1500 | False | - | - |
-| Ethernet4 | SITE2 | routed | - | 10.1.5.7/31 | VRF_A | - | False | - | - |
+| Ethernet4 | REGION2 | routed | - | 192.53.84.2/24 | VRF_A | - | False | - | - |
+| Ethernet5 | REGION2 | routed | - | 192.54.84.2/24 | VRF_A | - | False | - | - |
 | Ethernet6 | P2P_LINK_TO_RR6_Ethernet7 | routed | - | 192.168.102.52/31 | default | 1500 | False | - | - |
 | Ethernet8 | P2P_LINK_TO_RR5_Ethernet13 | routed | - | 192.168.102.50/31 | default | 1500 | False | - | - |
 
@@ -185,11 +186,18 @@ interface Ethernet3
    isis network point-to-point
 !
 interface Ethernet4
-   description SITE2
+   description REGION2
    no shutdown
    no switchport
    vrf VRF_A
-   ip address 10.1.5.7/31
+   ip address 192.53.84.2/24
+!
+interface Ethernet5
+   description REGION2
+   no shutdown
+   no switchport
+   vrf VRF_A
+   ip address 192.54.84.2/24
 !
 interface Ethernet6
    description P2P_LINK_TO_RR6_Ethernet7
@@ -409,7 +417,8 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 192.168.101.35 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
 | 192.168.101.36 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
-| 10.1.5.6 | 65201 | VRF_A | - | - | - | - | - | - | - | - | - |
+| 192.53.84.1 | 65201 | VRF_A | - | - | - | - | - | - | - | - | - |
+| 192.54.84.1 | 65201 | VRF_A | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -465,11 +474,13 @@ router bgp 65001
       route-target import vpn-ipv4 65001:19
       route-target export vpn-ipv4 65001:19
       router-id 192.168.101.24
-      neighbor 10.1.5.6 remote-as 65201
+      neighbor 192.53.84.1 remote-as 65201
+      neighbor 192.54.84.1 remote-as 65201
       redistribute connected
       !
       address-family ipv4
-         neighbor 10.1.5.6 activate
+         neighbor 192.53.84.1 activate
+         neighbor 192.54.84.1 activate
 ```
 
 ## BFD
