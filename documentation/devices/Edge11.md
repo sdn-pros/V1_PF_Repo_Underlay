@@ -145,7 +145,6 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 192.11.15.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.11.16.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.11.31.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -155,7 +154,6 @@ router bgp 65000
    router-id 192.168.0.11
    neighbor 192.11.15.2 remote-as 65000
    neighbor 192.11.16.2 remote-as 65000
-   neighbor 192.11.31.2 remote-as 65000
    redistribute connected
    !
    address-family ipv4

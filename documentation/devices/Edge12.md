@@ -42,7 +42,7 @@ spanning-tree mode mstp
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | - | routed | - | 192.12.32.1/24 | default | 1500 | True | - | - |
+| Ethernet1 | - | routed | - | 192.12.32.1/24 | default | 1500 | False | - | - |
 | Ethernet2 | - | routed | - | 192.12.15.1/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.12.16.1/24 | default | 1500 | False | - | - |
 | Ethernet4 | - | routed | - | 192.12.31.1/24 | default | 1500 | True | - | - |
@@ -52,7 +52,7 @@ spanning-tree mode mstp
 ```eos
 !
 interface Ethernet1
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.12.32.1/24
@@ -135,7 +135,6 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 192.12.15.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.12.16.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.12.32.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -145,7 +144,6 @@ router bgp 65000
    router-id 192.168.0.12
    neighbor 192.12.15.2 remote-as 65000
    neighbor 192.12.16.2 remote-as 65000
-   neighbor 192.12.32.2 remote-as 65000
    redistribute connected
    !
    address-family ipv4
