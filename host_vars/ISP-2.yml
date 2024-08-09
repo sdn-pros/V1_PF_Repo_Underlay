@@ -17,19 +17,19 @@ ethernet_interfaces:
 - name: Ethernet2
   peer: P21
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.26.54.1/24
 - name: Ethernet3
   peer: RR3
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.26.76.1/24
 - name: Ethernet4
   peer: RR4
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.26.77.1/24
 - name: Ethernet5
@@ -43,7 +43,7 @@ ethernet_interfaces:
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 192.21.25.2/24
+  ip_address: 192.21.26.2/24
 - name: Ethernet7
   peer: Edge22
   type: routed

@@ -49,9 +49,9 @@ ethernet_interfaces:
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 172.24.53.2/24
+  ip_address: 192.24.53.2/24
 router_bgp:
-  as: 65201
+  as: 65000
   router_id: 192.168.0.53
   peer_groups:
     - name: CORE
@@ -66,11 +66,11 @@ router_bgp:
     - ip_address: 192.53.75.2
       peer_group: ISP-3
     - ip_address: 192.24.53.1
-      remote_as:  65224
+      remote_as:  65000
     - ip_address: 192.26.53.1
-      remote_as:  65202
+      remote_as:  65000
     - ip_address: 192.25.53.1
-      remote_as:  65203
+      remote_as:  65000
   address_family_ipv4:
     networks:
       - prefix: 192.168.0.53/32

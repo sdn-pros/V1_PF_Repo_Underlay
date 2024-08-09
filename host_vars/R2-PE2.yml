@@ -17,19 +17,19 @@ ethernet_interfaces:
 - name: Ethernet2
   peer: P21
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.25.54.1/24
 - name: Ethernet3
   peer: RR3
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.25.76.1/24
 - name: Ethernet4
   peer: RR4
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.25.77.1/24
 - name: Ethernet5
@@ -77,8 +77,6 @@ router_bgp:
     - ip_address: 192.25.53.2
       remote_as:  65000
     - ip_address: 192.25.54.2
-      remote_as:  65000
-    - ip_address: 192.24.25.1
       remote_as:  65000
   address_family_ipv4:
     networks: 

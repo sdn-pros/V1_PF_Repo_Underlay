@@ -39,7 +39,7 @@ ethernet_interfaces:
 - name: Ethernet6
   peer: Leaf22
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.21.34.1/24
 router_bgp:
