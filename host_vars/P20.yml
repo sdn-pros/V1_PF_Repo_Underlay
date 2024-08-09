@@ -45,7 +45,7 @@ ethernet_interfaces:
   mtu: 1500
   ip_address: 192.53.75.1/24
 - name: Ethernet7
-  peer: H14
+  peer: Edge24
   type: routed
   shutdown: false
   mtu: 1500

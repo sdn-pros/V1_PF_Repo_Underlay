@@ -172,8 +172,8 @@ ASN Notation: asplain
 | 192.21.26.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.22.26.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.23.26.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.26.53.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.26.54.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.26.53.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.26.54.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -185,8 +185,8 @@ router bgp 65000
    neighbor 192.21.26.1 remote-as 65000
    neighbor 192.22.26.1 remote-as 65000
    neighbor 192.23.26.1 remote-as 65000
-   neighbor 192.26.53.1 remote-as 65000
-   neighbor 192.26.54.1 remote-as 65000
+   neighbor 192.26.53.2 remote-as 65000
+   neighbor 192.26.54.2 remote-as 65000
    !
    address-family ipv4
       network 192.168.0.26/32
