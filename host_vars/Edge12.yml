@@ -11,7 +11,7 @@ ethernet_interfaces:
 - name: Ethernet1
   peer: Edge12
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.12.32.1/24
 - name: Ethernet2
