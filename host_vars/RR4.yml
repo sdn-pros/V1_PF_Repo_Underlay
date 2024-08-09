@@ -27,13 +27,13 @@ ethernet_interfaces:
   mtu: 1500
   ip_address: 192.26.77.2/24
 router_bgp:
-  as: 65201
+  as: 65000
   router_id: 192.168.0.77
   neighbors:
     - ip_address: 192.25.77.1
-      remote_as:  65202
+      remote_as:  65000
     - ip_address: 192.26.77.1
-      remote_as:  65203
+      remote_as:  65000
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.77/32

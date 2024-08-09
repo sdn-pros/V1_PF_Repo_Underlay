@@ -162,31 +162,31 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65202 | 192.168.0.26 |
+| 65000 | 192.168.0.26 |
 
 #### BGP Neighbors
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.20.26.1 | 65201 | default | - | - | - | - | - | - | - | - | - |
-| 192.21.26.1 | 65220 | default | - | - | - | - | - | - | - | - | - |
-| 192.22.26.1 | 65222 | default | - | - | - | - | - | - | - | - | - |
-| 192.23.26.1 | 65223 | default | - | - | - | - | - | - | - | - | - |
-| 192.26.53.1 | 65201 | default | - | - | - | - | - | - | - | - | - |
-| 192.26.54.1 | 65201 | default | - | - | - | - | - | - | - | - | - |
+| 192.20.26.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.21.26.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.22.26.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.23.26.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.26.53.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.26.54.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
 ```eos
 !
-router bgp 65202
+router bgp 65000
    router-id 192.168.0.26
-   neighbor 192.20.26.1 remote-as 65201
-   neighbor 192.21.26.1 remote-as 65220
-   neighbor 192.22.26.1 remote-as 65222
-   neighbor 192.23.26.1 remote-as 65223
-   neighbor 192.26.53.1 remote-as 65201
-   neighbor 192.26.54.1 remote-as 65201
+   neighbor 192.20.26.1 remote-as 65000
+   neighbor 192.21.26.1 remote-as 65000
+   neighbor 192.22.26.1 remote-as 65000
+   neighbor 192.23.26.1 remote-as 65000
+   neighbor 192.26.53.1 remote-as 65000
+   neighbor 192.26.54.1 remote-as 65000
    !
    address-family ipv4
       network 192.168.0.26/32

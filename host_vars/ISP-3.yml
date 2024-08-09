@@ -49,9 +49,9 @@ router_bgp:
   router_id: 192.168.0.75
   peer_groups:
     - name: REGION1
-      remote_as: 65101
+      remote_as: 65000
     - name: REGION2
-      remote_as: 65201
+      remote_as: 65000
   vrfs:
     - name: default
       neighbors:

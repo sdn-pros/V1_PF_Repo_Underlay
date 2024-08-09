@@ -120,23 +120,23 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65101 | 192.168.0.71 |
+| 65000 | 192.168.0.71 |
 
 #### BGP Neighbors
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.15.72.1 | 65102 | default | - | - | - | - | - | - | - | - | - |
-| 192.16.72.1 | 65103 | default | - | - | - | - | - | - | - | - | - |
+| 192.15.72.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.16.72.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
 ```eos
 !
-router bgp 65101
+router bgp 65000
    router-id 192.168.0.71
-   neighbor 192.15.72.1 remote-as 65102
-   neighbor 192.16.72.1 remote-as 65103
+   neighbor 192.15.72.1 remote-as 65000
+   neighbor 192.16.72.1 remote-as 65000
    !
    address-family ipv4
       network 192.168.0.72/32

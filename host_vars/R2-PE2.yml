@@ -63,23 +63,23 @@ ethernet_interfaces:
   mtu: 1500
   ip_address: 192.24.25.2/24
 router_bgp:
-  as: 65202
+  as: 65000
   router_id: 192.168.0.25
   neighbors:
     - ip_address: 192.20.25.1
-      remote_as:  65220
+      remote_as:  65000
     - ip_address: 192.21.25.1
-      remote_as:  65220
+      remote_as:  65000
     - ip_address: 192.22.25.1
-      remote_as:  65222
+      remote_as:  65000
     - ip_address: 192.23.25.1
-      remote_as:  65223
+      remote_as:  65000
     - ip_address: 192.25.53.2
-      remote_as:  65201
+      remote_as:  65000
     - ip_address: 192.25.54.2
-      remote_as:  65201
+      remote_as:  65000
     - ip_address: 192.24.25.1
-      remote_as:  65224
+      remote_as:  65000
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.25/32

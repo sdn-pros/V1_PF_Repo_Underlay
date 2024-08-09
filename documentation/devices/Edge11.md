@@ -137,25 +137,26 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65110 | 192.168.0.11 |
+| 65000 | 192.168.0.11 |
 
 #### BGP Neighbors
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.11.15.2 | 65102 | default | - | - | - | - | - | - | - | - | - |
-| 192.11.16.2 | 65103 | default | - | - | - | - | - | - | - | - | - |
-| 192.11.31.2 | 65110 | default | - | - | - | - | - | - | - | - | - |
+| 192.11.15.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.11.16.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.11.31.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
 ```eos
 !
-router bgp 65110
+router bgp 65000
    router-id 192.168.0.11
-   neighbor 192.11.15.2 remote-as 65102
-   neighbor 192.11.16.2 remote-as 65103
-   neighbor 192.11.31.2 remote-as 65110
+   neighbor 192.11.15.2 remote-as 65000
+   neighbor 192.11.16.2 remote-as 65000
+   neighbor 192.11.31.2 remote-as 65000
+   redistribute connected
    !
    address-family ipv4
       network 192.168.0.11/32

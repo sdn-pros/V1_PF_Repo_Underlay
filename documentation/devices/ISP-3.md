@@ -145,13 +145,13 @@ ASN Notation: asplain
 
 | Settings | Value |
 | -------- | ----- |
-| Remote AS | 65101 |
+| Remote AS | 65000 |
 
 ##### REGION2
 
 | Settings | Value |
 | -------- | ----- |
-| Remote AS | 65201 |
+| Remote AS | 65000 |
 
 #### BGP Neighbors
 
@@ -175,9 +175,9 @@ ASN Notation: asplain
 router bgp 65002
    router-id 192.168.0.75
    neighbor REGION1 peer group
-   neighbor REGION1 remote-as 65101
+   neighbor REGION1 remote-as 65000
    neighbor REGION2 peer group
-   neighbor REGION2 remote-as 65201
+   neighbor REGION2 remote-as 65000
    !
    address-family ipv4
       network 192.168.0.75/32

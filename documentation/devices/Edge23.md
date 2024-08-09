@@ -136,23 +136,24 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65223 | 192.168.0.23/32 |
+| 65000 | 192.168.0.23 |
 
 #### BGP Neighbors
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.23.25.2 | 65202 | default | - | - | - | - | - | - | - | - | - |
-| 192.23.26.2 | 65203 | default | - | - | - | - | - | - | - | - | - |
+| 192.23.25.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.23.26.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
 ```eos
 !
-router bgp 65223
-   router-id 192.168.0.23/32
-   neighbor 192.23.25.2 remote-as 65202
-   neighbor 192.23.26.2 remote-as 65203
+router bgp 65000
+   router-id 192.168.0.23
+   neighbor 192.23.25.2 remote-as 65000
+   neighbor 192.23.26.2 remote-as 65000
+   redistribute connected
    !
    address-family ipv4
       network 172.16.23.0/24

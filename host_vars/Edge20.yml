@@ -37,15 +37,17 @@ ethernet_interfaces:
   mtu: 1500
   ip_address: 192.20.26.1/24
 router_bgp:
-  as: 65220
+  as: 65000
   router_id: 192.168.0.20
   neighbors:
     - ip_address: 192.20.25.2
-      remote_as:  65202
+      remote_as:  65000
     - ip_address: 192.20.26.2
-      remote_as:  65203
+      remote_as:  65000
     - ip_address: 192.20.33.2
-      remote_as:  65220
+      remote_as:  65000
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.20/32
+  redistribute_routes:
+    - source_protocol: connected

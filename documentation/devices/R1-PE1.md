@@ -162,33 +162,33 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65102 | 192.168.0.15 |
+| 65000 | 192.168.0.15 |
 
 #### BGP Neighbors
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.10.15.1 | 65110 | default | - | - | - | - | - | - | - | - | - |
-| 192.11.15.1 | 65110 | default | - | - | - | - | - | - | - | - | - |
-| 192.12.15.1 | 65112 | default | - | - | - | - | - | - | - | - | - |
-| 192.13.15.1 | 65113 | default | - | - | - | - | - | - | - | - | - |
-| 192.14.15.1 | 65114 | default | - | - | - | - | - | - | - | - | - |
-| 192.15.51.2 | 65101 | default | - | - | - | - | - | - | - | - | - |
-| 192.15.52.2 | 65101 | default | - | - | - | - | - | - | - | - | - |
+| 192.10.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.11.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.12.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.13.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.14.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.15.51.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.15.52.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
 ```eos
 !
-router bgp 65102
+router bgp 65000
    router-id 192.168.0.15
-   neighbor 192.10.15.1 remote-as 65110
-   neighbor 192.11.15.1 remote-as 65110
-   neighbor 192.12.15.1 remote-as 65112
-   neighbor 192.13.15.1 remote-as 65113
-   neighbor 192.14.15.1 remote-as 65114
-   neighbor 192.15.51.2 remote-as 65101
-   neighbor 192.15.52.2 remote-as 65101
+   neighbor 192.10.15.1 remote-as 65000
+   neighbor 192.11.15.1 remote-as 65000
+   neighbor 192.12.15.1 remote-as 65000
+   neighbor 192.13.15.1 remote-as 65000
+   neighbor 192.14.15.1 remote-as 65000
+   neighbor 192.15.51.2 remote-as 65000
+   neighbor 192.15.52.2 remote-as 65000
    !
    address-family ipv4
       network 192.168.0.15/32

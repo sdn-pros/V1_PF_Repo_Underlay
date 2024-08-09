@@ -45,7 +45,7 @@ spanning-tree mode mstp
 | Ethernet3 | - | routed | - | 192.21.33.1/24 | default | 1500 | False | - | - |
 | Ethernet4 | - | routed | - | 192.21.25.1/24 | default | 1500 | False | - | - |
 | Ethernet5 | - | routed | - | 192.21.26.1/24 | default | 1500 | False | - | - |
-| Ethernet6 | - | routed | - | 192.21.33.1/24 | default | 1500 | True | - | - |
+| Ethernet6 | - | routed | - | 192.21.34.1/24 | default | 1500 | True | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -83,7 +83,7 @@ interface Ethernet6
    shutdown
    mtu 1500
    no switchport
-   ip address 192.21.33.1/24
+   ip address 192.21.34.1/24
 ```
 
 ### Loopback Interfaces
@@ -137,25 +137,26 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65220 | 192.168.0.21 |
+| 65000 | 192.168.0.21 |
 
 #### BGP Neighbors
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.21.25.2 | 65202 | default | - | - | - | - | - | - | - | - | - |
-| 192.21.26.2 | 65203 | default | - | - | - | - | - | - | - | - | - |
-| 192.21.33.2 | 65220 | default | - | - | - | - | - | - | - | - | - |
+| 192.21.25.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.21.26.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.21.33.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
 ```eos
 !
-router bgp 65220
+router bgp 65000
    router-id 192.168.0.21
-   neighbor 192.21.25.2 remote-as 65202
-   neighbor 192.21.26.2 remote-as 65203
-   neighbor 192.21.33.2 remote-as 65220
+   neighbor 192.21.25.2 remote-as 65000
+   neighbor 192.21.26.2 remote-as 65000
+   neighbor 192.21.33.2 remote-as 65000
+   redistribute connected
    !
    address-family ipv4
       network 192.168.0.21/32
