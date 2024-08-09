@@ -37,7 +37,7 @@ ethernet_interfaces:
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 192.21.26.2/24
+  ip_address: 192.20.26.2/24
 - name: Ethernet6
   peer: Edge21
   type: routed

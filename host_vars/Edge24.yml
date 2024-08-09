@@ -39,7 +39,7 @@ ethernet_interfaces:
 - name: Ethernet3
   peer: ISP-2
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.24.26.1/24
 router_bgp:

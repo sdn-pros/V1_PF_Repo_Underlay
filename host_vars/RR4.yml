@@ -17,13 +17,13 @@ ethernet_interfaces:
 - name: Ethernet2
   peer: R2-PE2
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.25.77.2/24
 - name: Ethernet3
   peer: ISP-1
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.26.77.2/24
 router_bgp:

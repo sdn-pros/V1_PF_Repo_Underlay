@@ -48,7 +48,7 @@ spanning-tree mode mstp
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | - | routed | - | 172.16.24.254/24 | VRF_A | 1500 | False | - | - |
 | Ethernet2 | - | routed | - | 192.24.25.1/24 | default | 1500 | True | - | - |
-| Ethernet3 | - | routed | - | 192.24.26.1/24 | default | 1500 | True | - | - |
+| Ethernet3 | - | routed | - | 192.24.26.1/24 | default | 1500 | False | - | - |
 | Ethernet4 | - | routed | - | 192.24.53.1/24 | default | 1500 | False | - | - |
 | Ethernet5 | - | routed | - | 192.24.54.1/24 | default | 1500 | False | - | - |
 
@@ -70,7 +70,7 @@ interface Ethernet2
    ip address 192.24.25.1/24
 !
 interface Ethernet3
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.24.26.1/24

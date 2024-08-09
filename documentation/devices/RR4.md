@@ -43,8 +43,8 @@ spanning-tree mode mstp
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | - | routed | - | 192.76.77.2/24 | default | 1500 | False | - | - |
-| Ethernet2 | - | routed | - | 192.25.77.2/24 | default | 1500 | True | - | - |
-| Ethernet3 | - | routed | - | 192.26.77.2/24 | default | 1500 | True | - | - |
+| Ethernet2 | - | routed | - | 192.25.77.2/24 | default | 1500 | False | - | - |
+| Ethernet3 | - | routed | - | 192.26.77.2/24 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -57,13 +57,13 @@ interface Ethernet1
    ip address 192.76.77.2/24
 !
 interface Ethernet2
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.25.77.2/24
 !
 interface Ethernet3
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.26.77.2/24

@@ -46,7 +46,7 @@ spanning-tree mode mstp
 | Ethernet2 | - | routed | - | 192.26.54.1/24 | default | 1500 | True | - | - |
 | Ethernet3 | - | routed | - | 192.26.76.1/24 | default | 1500 | True | - | - |
 | Ethernet4 | - | routed | - | 192.26.77.1/24 | default | 1500 | True | - | - |
-| Ethernet5 | - | routed | - | 192.21.26.2/24 | default | 1500 | False | - | - |
+| Ethernet5 | - | routed | - | 192.20.26.2/24 | default | 1500 | False | - | - |
 | Ethernet6 | - | routed | - | 192.21.25.2/24 | default | 1500 | False | - | - |
 | Ethernet7 | - | routed | - | 192.22.26.2/24 | default | 1500 | False | - | - |
 | Ethernet8 | - | routed | - | 192.23.26.2/24 | default | 1500 | False | - | - |
@@ -84,7 +84,7 @@ interface Ethernet5
    no shutdown
    mtu 1500
    no switchport
-   ip address 192.21.26.2/24
+   ip address 192.20.26.2/24
 !
 interface Ethernet6
    no shutdown
