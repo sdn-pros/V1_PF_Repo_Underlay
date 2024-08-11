@@ -43,9 +43,9 @@ spanning-tree mode mstp
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | - | routed | - | 192.15.51.1/24 | default | 1500 | False | - | - |
-| Ethernet2 | - | routed | - | 192.15.52.1/24 | default | 1500 | True | - | - |
-| Ethernet3 | - | routed | - | 192.15.71.1/24 | default | 1500 | True | - | - |
-| Ethernet4 | - | routed | - | 192.15.72.1/24 | default | 1500 | True | - | - |
+| Ethernet2 | - | routed | - | 192.15.52.1/24 | default | 1500 | False | - | - |
+| Ethernet3 | - | routed | - | 192.15.71.1/24 | default | 1500 | False | - | - |
+| Ethernet4 | - | routed | - | 192.15.72.1/24 | default | 1500 | False | - | - |
 | Ethernet5 | - | routed | - | 192.10.15.2/24 | default | 1500 | False | - | - |
 | Ethernet6 | - | routed | - | 192.11.15.2/24 | default | 1500 | False | - | - |
 | Ethernet7 | - | routed | - | 192.12.15.2/24 | default | 1500 | False | - | - |
@@ -63,19 +63,19 @@ interface Ethernet1
    ip address 192.15.51.1/24
 !
 interface Ethernet2
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.15.52.1/24
 !
 interface Ethernet3
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.15.71.1/24
 !
 interface Ethernet4
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.15.72.1/24
@@ -172,7 +172,6 @@ ASN Notation: asplain
 | 192.11.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.12.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.13.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.14.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.15.51.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.15.52.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
@@ -186,7 +185,6 @@ router bgp 65000
    neighbor 192.11.15.1 remote-as 65000
    neighbor 192.12.15.1 remote-as 65000
    neighbor 192.13.15.1 remote-as 65000
-   neighbor 192.14.15.1 remote-as 65000
    neighbor 192.15.51.2 remote-as 65000
    neighbor 192.15.52.2 remote-as 65000
    !
