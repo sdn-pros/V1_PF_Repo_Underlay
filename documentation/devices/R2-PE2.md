@@ -173,6 +173,7 @@ ASN Notation: asplain
 | 192.22.25.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.23.25.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.25.53.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.25.54.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.25.76.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.25.77.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
@@ -187,6 +188,7 @@ router bgp 65000
    neighbor 192.22.25.1 remote-as 65000
    neighbor 192.23.25.1 remote-as 65000
    neighbor 192.25.53.2 remote-as 65000
+   neighbor 192.25.54.2 remote-as 65000
    neighbor 192.25.76.2 remote-as 65000
    neighbor 192.25.77.2 remote-as 65000
    !

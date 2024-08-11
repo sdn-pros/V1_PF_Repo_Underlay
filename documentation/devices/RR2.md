@@ -120,7 +120,7 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65000 | 192.168.0.71 |
+| 65000 | 192.168.0.72 |
 
 #### BGP Neighbors
 
@@ -135,7 +135,7 @@ ASN Notation: asplain
 ```eos
 !
 router bgp 65000
-   router-id 192.168.0.71
+   router-id 192.168.0.72
    neighbor 192.15.72.1 remote-as 65000
    neighbor 192.16.72.1 remote-as 65000
    neighbor 192.71.72.1 remote-as 65000

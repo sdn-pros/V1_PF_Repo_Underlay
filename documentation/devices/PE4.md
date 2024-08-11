@@ -32,6 +32,7 @@
 - [VRF Instances](#vrf-instances)
   - [VRF Instances Summary](#vrf-instances-summary)
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
+- [EOS CLI Device Configuration](#eos-cli-device-configuration)
 
 ## Management
 
@@ -415,10 +416,12 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
+| 192.53.84.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.54.84.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.168.101.35 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
 | 192.168.101.36 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
-| 192.53.84.1 | 65201 | VRF_A | - | - | - | - | - | - | - | - | - |
-| 192.54.84.1 | 65201 | VRF_A | - | - | - | - | - | - | - | - | - |
+| 192.53.84.1 | 65000 | VRF_A | - | - | - | - | - | - | - | - | - |
+| 192.54.84.1 | 65000 | VRF_A | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -455,6 +458,8 @@ router bgp 65001
    neighbor MPLS-OVERLAY-PEERS bfd
    neighbor MPLS-OVERLAY-PEERS send-community
    neighbor MPLS-OVERLAY-PEERS maximum-routes 0
+   neighbor 192.53.84.1 remote-as 65000
+   neighbor 192.54.84.1 remote-as 65000
    neighbor 192.168.101.35 peer group MPLS-OVERLAY-PEERS
    neighbor 192.168.101.35 description RR5
    neighbor 192.168.101.36 peer group MPLS-OVERLAY-PEERS
@@ -464,6 +469,9 @@ router bgp 65001
    !
    address-family ipv4
       no neighbor MPLS-OVERLAY-PEERS activate
+      network 192.168.0.83/32
+      network 192.168.101.24/32
+      redistribute connected
    !
    address-family vpn-ipv4
       neighbor MPLS-OVERLAY-PEERS activate
@@ -474,8 +482,8 @@ router bgp 65001
       route-target import vpn-ipv4 65001:19
       route-target export vpn-ipv4 65001:19
       router-id 192.168.101.24
-      neighbor 192.53.84.1 remote-as 65201
-      neighbor 192.54.84.1 remote-as 65201
+      neighbor 192.53.84.1 remote-as 65000
+      neighbor 192.54.84.1 remote-as 65000
       redistribute connected
       !
       address-family ipv4
@@ -563,4 +571,19 @@ mpls ip
 vrf instance MGMT
 !
 vrf instance VRF_A
+```
+
+## EOS CLI Device Configuration
+
+```eos
+!
+interface Ethernet4
+  description REGION2
+  no switchport
+  ip address 192.53.84.2/24
+!
+interface Ethernet5
+  description REGION2
+  no switchport
+  ip address 192.54.84.2/24
 ```

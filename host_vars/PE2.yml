@@ -1,0 +1,27 @@
+custom_hostname: PE2
+custom_router_bgp:
+  as: 65001
+  neighbors:
+    - ip_address: 192.51.82.1
+      remote_as:  65000
+    - ip_address: 192.52.82.1
+      remote_as:  65000
+  address_family_ipv4:
+    networks:
+      - prefix: 192.168.0.82/32
+      - prefix: 192.168.101.22/32
+    redistribute_routes:
+      - source_protocol: connected
+custom_eos_cli: |-
+  interface Ethernet4
+    interface Ethernet4
+    description REGION1
+    no switchport
+    ip address 192.51.82.2/24
+  !
+  interface Ethernet5
+    description REGION1
+    no switchport
+    ip address 192.52.82.2/24
+  !
+  
