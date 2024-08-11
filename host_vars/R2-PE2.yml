@@ -62,6 +62,7 @@ ethernet_interfaces:
   shutdown: true
   mtu: 1500
   ip_address: 192.24.25.2/24
+
 router_bgp:
   as: 65000
   router_id: 192.168.0.25
@@ -75,6 +76,10 @@ router_bgp:
     - ip_address: 192.23.25.1
       remote_as:  65000
     - ip_address: 192.25.53.2
+      remote_as:  65000
+    - ip_address: 192.25.76.2
+      remote_as:  65000
+    - ip_address: 192.25.77.2
       remote_as:  65000
   address_family_ipv4:
     networks: 

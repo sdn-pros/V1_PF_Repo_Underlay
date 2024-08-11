@@ -57,7 +57,7 @@ ethernet_interfaces:
   mtu: 1500
   ip_address: 192.13.15.2/24
 - name: Ethernet9
-  peer: Edge134
+  peer: Edge14
   type: routed
   shutdown: true
   mtu: 1500
@@ -77,6 +77,10 @@ router_bgp:
     - ip_address: 192.15.51.2
       remote_as:  65000
     - ip_address: 192.15.52.2
+      remote_as:  65000
+    - ip_address: 192.15.71.2
+      remote_as:  65000
+    - ip_address: 192.15.72.2
       remote_as:  65000
   address_family_ipv4:
     networks: 
