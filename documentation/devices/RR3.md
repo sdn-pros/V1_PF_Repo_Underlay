@@ -42,7 +42,7 @@ spanning-tree mode mstp
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | - | routed | - | 192.76.77.2/24 | default | 1500 | False | - | - |
+| Ethernet1 | - | routed | - | 192.76.77.1/24 | default | 1500 | False | - | - |
 | Ethernet2 | - | routed | - | 192.25.76.2/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.26.76.2/24 | default | 1500 | False | - | - |
 
@@ -54,7 +54,7 @@ interface Ethernet1
    no shutdown
    mtu 1500
    no switchport
-   ip address 192.76.77.2/24
+   ip address 192.76.77.1/24
 !
 interface Ethernet2
    no shutdown
@@ -142,4 +142,5 @@ router bgp 65000
    !
    address-family ipv4
       network 192.168.0.76/32
+      redistribute connected
 ```

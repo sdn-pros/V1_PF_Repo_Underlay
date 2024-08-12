@@ -52,7 +52,7 @@ ethernet_interfaces:
   ip_address: 192.14.52.2/24
 router_bgp:
   as: 65000
-  router_id: 192.168.0.52
+  router_id: 52.52.52.52
   peer_groups:
     - name: CORE
       remote_as: 65001
@@ -74,5 +74,6 @@ router_bgp:
   address_family_ipv4:
     networks:
       - prefix: 192.168.0.52/32
+      - prefix: 52.52.52.52/32
     redistribute_routes:
      - source_protocol: connected

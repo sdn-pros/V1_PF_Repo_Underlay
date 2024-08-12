@@ -13,7 +13,7 @@ ethernet_interfaces:
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 192.76.77.2/24
+  ip_address: 192.76.77.1/24
 - name: Ethernet2
   peer: R2-PE2
   type: routed
@@ -39,3 +39,5 @@ router_bgp:
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.76/32
+    redistribute_routes:
+    - source_protocol: connected

@@ -7,13 +7,16 @@ loopback_interfaces:
   description: RR1_lo0
   shutdown: false
   ip_address: 192.168.0.71/32
+- name: Dps1
+  shutdown: false
+  ip_address: 71.71.71.71/32
 ethernet_interfaces:
   - name: Ethernet1
     peer: RR2
     type: routed
     shutdown: false
     mtu: 1500
-    ip_address: 192.71.72.2/24
+    ip_address: 192.71.72.1/24
   - name: Ethernet2
     peer: R1-PE1
     type: routed
@@ -39,3 +42,5 @@ router_bgp:
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.71/32
+    redistribute_routes:
+    - source_protocol: connected

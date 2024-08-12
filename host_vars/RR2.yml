@@ -7,6 +7,9 @@ loopback_interfaces:
   description: RR2_lo0
   shutdown: false
   ip_address: 192.168.0.72/32
+- name: Dps1
+  shutdown: false
+  ip_address: 72.72.72.72/32
 ethernet_interfaces:
 - name: Ethernet1
   peer: RR1
@@ -39,3 +42,5 @@ router_bgp:
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.72/32
+    redistribute_routes:
+    - source_protocol: connected

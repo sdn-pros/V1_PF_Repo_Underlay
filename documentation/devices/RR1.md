@@ -42,7 +42,7 @@ spanning-tree mode mstp
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | - | routed | - | 192.71.72.2/24 | default | 1500 | False | - | - |
+| Ethernet1 | - | routed | - | 192.71.72.1/24 | default | 1500 | False | - | - |
 | Ethernet2 | - | routed | - | 192.15.71.2/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.16.71.2/24 | default | 1500 | False | - | - |
 
@@ -54,7 +54,7 @@ interface Ethernet1
    no shutdown
    mtu 1500
    no switchport
-   ip address 192.71.72.2/24
+   ip address 192.71.72.1/24
 !
 interface Ethernet2
    no shutdown
@@ -77,17 +77,23 @@ interface Ethernet3
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
+| Dps1 | - | default | 71.71.71.71/32 |
 | Loopback0 | RR1_lo0 | default | 192.168.0.71/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
+| Dps1 | - | default | - |
 | Loopback0 | RR1_lo0 | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
+!
+interface Dps1
+   no shutdown
+   ip address 71.71.71.71/32
 !
 interface Loopback0
    description RR1_lo0
@@ -142,4 +148,5 @@ router bgp 65000
    !
    address-family ipv4
       network 192.168.0.71/32
+      redistribute connected
 ```

@@ -94,17 +94,23 @@ interface Ethernet6
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
+| Dps1 | - | default | 11.11.11.11/32 |
 | Loopback0 | Edge-11_lo0 | default | 192.168.0.11/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
+| Dps1 | - | default | - |
 | Loopback0 | Edge-11_lo0 | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
+!
+interface Dps1
+   no shutdown
+   ip address 11.11.11.11/32
 !
 interface Loopback0
    description Edge-11_lo0
@@ -145,6 +151,7 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 192.11.15.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.11.16.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.11.31.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -154,6 +161,7 @@ router bgp 65000
    router-id 192.168.0.11
    neighbor 192.11.15.2 remote-as 65000
    neighbor 192.11.16.2 remote-as 65000
+   neighbor 192.11.31.2 remote-as 65000
    redistribute connected
    !
    address-family ipv4

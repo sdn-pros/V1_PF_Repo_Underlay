@@ -7,6 +7,9 @@ loopback_interfaces:
   description: Edge-11_lo0
   shutdown: false
   ip_address: 192.168.0.11/32
+- name: Dps1
+  shutdown: false
+  ip_address: 11.11.11.11/32
 ethernet_interfaces:
 - name: Ethernet1
   peer: Edge11
@@ -49,6 +52,8 @@ router_bgp:
     - ip_address: 192.11.15.2
       remote_as:  65000
     - ip_address: 192.11.16.2
+      remote_as:  65000
+    - ip_address: 192.11.31.2
       remote_as:  65000
   address_family_ipv4:
     networks: 
