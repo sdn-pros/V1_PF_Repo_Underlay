@@ -30,29 +30,17 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1500
   ip_address: 192.23.26.1/24
- 
 router_bgp:
   as: 65000
   router_id: 192.168.0.23
   neighbors:
     - ip_address: 192.23.25.2
-      remote_as:  65000
+      remote_as:  65202
     - ip_address: 192.23.26.2
-      remote_as:  65000
+      remote_as:  65203
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.23/32
       - prefix: 172.16.23.0/24
   redistribute_routes:
     - source_protocol: connected
-vxlan_interface:
-  Vxlan1:
-    description: VTEP_Interface
-    vxlan:
-      source_interface: Dps1
-      udp_port: 4789
-      vrfs:
-        - name: VRF_A
-          vni: 19
-        - name: default
-          vni: 101

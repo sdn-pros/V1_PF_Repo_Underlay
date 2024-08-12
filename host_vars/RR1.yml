@@ -34,9 +34,9 @@ router_bgp:
   router_id: 192.168.0.71
   neighbors:
     - ip_address: 192.15.71.1
-      remote_as:  65000
+      remote_as:  65102
     - ip_address: 192.16.71.1
-      remote_as:  65000
+      remote_as:  65103
     - ip_address: 192.71.72.2
       remote_as:  65000
   address_family_ipv4:

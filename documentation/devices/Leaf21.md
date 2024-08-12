@@ -149,7 +149,6 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.20.26.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.20.33.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.21.33.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
@@ -159,7 +158,6 @@ ASN Notation: asplain
 !
 router bgp 65000
    router-id 192.168.0.33
-   neighbor 192.20.26.2 remote-as 65000
    neighbor 192.20.33.1 remote-as 65000
    neighbor 192.21.33.1 remote-as 65000
    !

@@ -64,7 +64,7 @@ ethernet_interfaces:
   ip_address: 192.24.25.2/24
 
 router_bgp:
-  as: 65000
+  as: 65202
   router_id: 192.168.0.25
   neighbors:
     - ip_address: 192.20.25.1
@@ -74,6 +74,8 @@ router_bgp:
     - ip_address: 192.22.25.1
       remote_as:  65000
     - ip_address: 192.23.25.1
+      remote_as:  65000
+    - ip_address: 192.24.25.1
       remote_as:  65000
     - ip_address: 192.25.53.2
       remote_as:  65000

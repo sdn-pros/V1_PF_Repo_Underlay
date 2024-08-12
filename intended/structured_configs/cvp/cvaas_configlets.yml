@@ -229,8 +229,7 @@ cvp_configlets:
     Loopback0\n   description Leaf11_lo0\n   no shutdown\n   ip address 192.168.0.31/32\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.31\n
     \  neighbor 192.10.31.1 remote-as 65000\n   neighbor 192.11.31.1 remote-as 65000\n
-    \  neighbor 192.12.31.1 remote-as 65000\n   !\n   address-family ipv4\n      network
-    192.168.0.31/32\n!\nend\n"
+    \  !\n   address-family ipv4\n      network 192.168.0.31/32\n!\nend\n"
   AVD_Leaf12: '!RANCID-CONTENT-TYPE: arista
 
     !
@@ -261,9 +260,8 @@ cvp_configlets:
     Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.33.2/24\n!\ninterface
     Loopback0\n   description Leaf21_lo0\n   no shutdown\n   ip address 192.168.0.33/32\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.33\n
-    \  neighbor 192.20.26.2 remote-as 65000\n   neighbor 192.20.33.1 remote-as 65000\n
-    \  neighbor 192.21.33.1 remote-as 65000\n   !\n   address-family ipv4\n      network
-    192.168.0.33/32\n!\nend\n"
+    \  neighbor 192.20.33.1 remote-as 65000\n   neighbor 192.21.33.1 remote-as 65000\n
+    \  !\n   address-family ipv4\n      network 192.168.0.33/32\n!\nend\n"
   AVD_Leaf22: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Leaf22\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
@@ -272,7 +270,7 @@ cvp_configlets:
     \  shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.34.2/24\n!\ninterface
     Loopback0\n   description Leaf22_lo0\n   no shutdown\n   ip address 192.168.0.34/32\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.34\n
-    \  neighbor 192.22.34.2 remote-as 65000\n   !\n   address-family ipv4\n      network
+    \  neighbor 192.22.34.1 remote-as 65000\n   !\n   address-family ipv4\n      network
     192.168.0.34/32\n!\nend\n"
   AVD_P1: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model

@@ -44,8 +44,6 @@ router_bgp:
       remote_as:  65000
     - ip_address: 192.11.31.1
       remote_as:  65000
-    - ip_address: 192.12.31.1
-      remote_as:  65000
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.31/32

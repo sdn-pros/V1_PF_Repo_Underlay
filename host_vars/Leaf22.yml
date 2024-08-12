@@ -34,7 +34,7 @@ router_bgp:
   as: 65000
   router_id: 192.168.0.34
   neighbors:
-    - ip_address: 192.22.34.2
+    - ip_address: 192.22.34.1
       remote_as:  65000
   address_family_ipv4:
     networks: 

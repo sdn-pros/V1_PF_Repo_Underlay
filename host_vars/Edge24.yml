@@ -11,18 +11,6 @@ loopback_interfaces:
   shutdown: false
   ip_address: 192.168.0.24/32
 ethernet_interfaces:
-- name: Ethernet4
-  peer: P20
-  type: routed
-  shutdown: false
-  mtu: 1500
-  ip_address: 192.24.53.1/24
-- name: Ethernet5
-  peer: P21
-  type: routed
-  shutdown: false
-  mtu: 1500
-  ip_address: 192.24.54.1/24
 - name: Ethernet1
   peer: H24
   type: routed
@@ -33,7 +21,7 @@ ethernet_interfaces:
 - name: Ethernet2
   peer: R2-PE2
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.24.25.1/24
 - name: Ethernet3
@@ -42,28 +30,29 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1500
   ip_address: 192.24.26.1/24
+- name: Ethernet4
+  peer: P10
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.24.53.1/24
+- name: Ethernet5
+  peer: P11
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.24.54.1/24
 router_bgp:
   as: 65000
   router_id: 192.168.0.24
   neighbors:
-    - ip_address: 192.24.53.2
-      remote_as:  65000
-    - ip_address: 192.24.54.2
-      remote_as:  65000
+    - ip_address: 192.24.25.2
+      remote_as:  65202
+    - ip_address: 192.24.26.2
+      remote_as:  65203
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.24/32
       - prefix: 172.16.24.0/24
   redistribute_routes:
     - source_protocol: connected
-vxlan_interface:
-  Vxlan1:
-    description: VTEP_Interface
-    vxlan:
-      source_interface: Dps1
-      udp_port: 4789
-      vrfs:
-        - name: VRF_A
-          vni: 19
-        - name: default
-          vni: 101

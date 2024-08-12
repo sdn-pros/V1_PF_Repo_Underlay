@@ -8,7 +8,6 @@
 - [Interfaces](#interfaces)
   - [Ethernet Interfaces](#ethernet-interfaces)
   - [Loopback Interfaces](#loopback-interfaces)
-  - [VXLAN Interface](#vxlan-interface)
 - [Routing](#routing)
   - [IP Routing](#ip-routing)
   - [IPv6 Routing](#ipv6-routing)
@@ -48,10 +47,10 @@ spanning-tree mode mstp
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | - | routed | - | 172.16.24.254/24 | VRF_A | 1500 | False | - | - |
-| Ethernet2 | - | routed | - | 192.24.25.1/24 | default | 1500 | True | - | - |
+| Ethernet2 | - | routed | - | 192.24.25.1/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.24.26.1/24 | default | 1500 | False | - | - |
-| Ethernet4 | - | routed | - | 192.24.53.1/24 | default | 1500 | False | - | - |
-| Ethernet5 | - | routed | - | 192.24.54.1/24 | default | 1500 | False | - | - |
+| Ethernet4 | - | routed | - | 192.24.53.1/24 | default | 1500 | True | - | - |
+| Ethernet5 | - | routed | - | 192.24.54.1/24 | default | 1500 | True | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -65,7 +64,7 @@ interface Ethernet1
    ip address 172.16.24.254/24
 !
 interface Ethernet2
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.24.25.1/24
@@ -77,13 +76,13 @@ interface Ethernet3
    ip address 192.24.26.1/24
 !
 interface Ethernet4
-   no shutdown
+   shutdown
    mtu 1500
    no switchport
    ip address 192.24.53.1/24
 !
 interface Ethernet5
-   no shutdown
+   shutdown
    mtu 1500
    no switchport
    ip address 192.24.54.1/24
@@ -113,34 +112,6 @@ interface Loopback0
    description Edge-24_lo0
    no shutdown
    ip address 192.168.0.24/32
-```
-
-### VXLAN Interface
-
-#### VXLAN Interface Summary
-
-| Setting | Value |
-| ------- | ----- |
-| Source Interface | Dps1 |
-| UDP port | 4789 |
-
-##### VRF to VNI and Multicast Group Mappings
-
-| VRF | VNI | Multicast Group |
-| ---- | --- | --------------- |
-| default | 101 | - |
-| VRF_A | 19 | - |
-
-#### VXLAN Interface Device Configuration
-
-```eos
-!
-interface Vxlan1
-   description VTEP_Interface
-   vxlan source-interface Dps1
-   vxlan udp-port 4789
-   vxlan vrf default vni 101
-   vxlan vrf VRF_A vni 19
 ```
 
 ## Routing
@@ -185,8 +156,8 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.24.53.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.24.54.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.24.25.2 | 65202 | default | - | - | - | - | - | - | - | - | - |
+| 192.24.26.2 | 65203 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -194,8 +165,8 @@ ASN Notation: asplain
 !
 router bgp 65000
    router-id 192.168.0.24
-   neighbor 192.24.53.2 remote-as 65000
-   neighbor 192.24.54.2 remote-as 65000
+   neighbor 192.24.25.2 remote-as 65202
+   neighbor 192.24.26.2 remote-as 65203
    redistribute connected
    !
    address-family ipv4

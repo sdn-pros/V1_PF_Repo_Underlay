@@ -162,7 +162,7 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65000 | 192.168.0.15 |
+| 65102 | 192.168.0.15 |
 
 #### BGP Neighbors
 
@@ -171,7 +171,8 @@ ASN Notation: asplain
 | 192.10.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.11.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.12.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.13.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.13.25.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.14.25.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.15.51.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.15.52.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 | 192.15.71.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
@@ -181,12 +182,13 @@ ASN Notation: asplain
 
 ```eos
 !
-router bgp 65000
+router bgp 65102
    router-id 192.168.0.15
    neighbor 192.10.15.1 remote-as 65000
    neighbor 192.11.15.1 remote-as 65000
    neighbor 192.12.15.1 remote-as 65000
-   neighbor 192.13.15.1 remote-as 65000
+   neighbor 192.13.25.1 remote-as 65000
+   neighbor 192.14.25.1 remote-as 65000
    neighbor 192.15.51.2 remote-as 65000
    neighbor 192.15.52.2 remote-as 65000
    neighbor 192.15.71.2 remote-as 65000

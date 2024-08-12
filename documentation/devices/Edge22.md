@@ -8,7 +8,6 @@
 - [Interfaces](#interfaces)
   - [Ethernet Interfaces](#ethernet-interfaces)
   - [Loopback Interfaces](#loopback-interfaces)
-  - [VXLAN Interface](#vxlan-interface)
 - [Routing](#routing)
   - [IP Routing](#ip-routing)
   - [Router BGP](#router-bgp)
@@ -103,34 +102,6 @@ interface Loopback0
    ip address 192.168.0.22/32
 ```
 
-### VXLAN Interface
-
-#### VXLAN Interface Summary
-
-| Setting | Value |
-| ------- | ----- |
-| Source Interface | Dps1 |
-| UDP port | 4789 |
-
-##### VRF to VNI and Multicast Group Mappings
-
-| VRF | VNI | Multicast Group |
-| ---- | --- | --------------- |
-| default | 101 | - |
-| VRF_A | 19 | - |
-
-#### VXLAN Interface Device Configuration
-
-```eos
-!
-interface Vxlan1
-   description VTEP_Interface
-   vxlan source-interface Dps1
-   vxlan udp-port 4789
-   vxlan vrf default vni 101
-   vxlan vrf VRF_A vni 19
-```
-
 ## Routing
 
 ### IP Routing
@@ -162,8 +133,9 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.22.25.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.22.26.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.22.25.2 | 65202 | default | - | - | - | - | - | - | - | - | - |
+| 192.22.26.2 | 65203 | default | - | - | - | - | - | - | - | - | - |
+| 192.22.34.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -171,8 +143,9 @@ ASN Notation: asplain
 !
 router bgp 65000
    router-id 192.168.0.22
-   neighbor 192.22.25.2 remote-as 65000
-   neighbor 192.22.26.2 remote-as 65000
+   neighbor 192.22.25.2 remote-as 65202
+   neighbor 192.22.26.2 remote-as 65203
+   neighbor 192.22.34.2 remote-as 65000
    redistribute connected
    !
    address-family ipv4

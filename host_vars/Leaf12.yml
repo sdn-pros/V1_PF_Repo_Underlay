@@ -30,14 +30,11 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1500
   ip_address: 192.11.32.2/24
-
 router_bgp:
   as: 65000
   router_id: 192.168.0.32
   neighbors:
     - ip_address: 192.12.32.1
-      remote_as:  65000
-    - ip_address: 192.11.32.1
       remote_as:  65000
   address_family_ipv4:
     networks: 
