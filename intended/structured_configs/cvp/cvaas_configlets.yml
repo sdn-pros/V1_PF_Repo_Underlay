@@ -6,7 +6,9 @@ cvp_configlets:
     \  mtu 1500\n   no switchport\n   ip address 192.10.31.1/24\n!\ninterface Ethernet4\n
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.10.15.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.10.16.1/24\n!\ninterface
-    Loopback0\n   description Edge-10_lo0\n   no shutdown\n   ip address 192.168.0.10/32\n!\nip
+    Loopback0\n   description Edge-10_lo0\n   no shutdown\n   ip address 192.168.0.10/32\n!\ninterface
+    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
+    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.10\n   neighbor 192.10.15.2
     remote-as 65000\n   neighbor 192.10.16.2 remote-as 65000\n   neighbor 192.10.31.2
     remote-as 65000\n   redistribute connected\n   !\n   address-family ipv4\n      network
@@ -20,7 +22,9 @@ cvp_configlets:
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.16.1/24\n!\ninterface
     Ethernet6\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.32.1/24\n!\ninterface
     Dps1\n   no shutdown\n   ip address 11.11.11.11/32\n!\ninterface Loopback0\n   description
-    Edge-11_lo0\n   no shutdown\n   ip address 192.168.0.11/32\n!\nip routing\n!\nrouter
+    Edge-11_lo0\n   no shutdown\n   ip address 192.168.0.11/32\n!\ninterface Vxlan1\n
+    \  description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan udp-port
+    4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip routing\n!\nrouter
     bgp 65000\n   router-id 192.168.0.11\n   neighbor 192.11.15.2 remote-as 65000\n
     \  neighbor 192.11.16.2 remote-as 65000\n   neighbor 192.11.31.2 remote-as 65000\n
     \  redistribute connected\n   !\n   address-family ipv4\n      network 192.168.0.11/32\n!\nend\n"
@@ -31,7 +35,9 @@ cvp_configlets:
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.16.1/24\n!\ninterface
     Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.31.1/24\n!\ninterface
     Dps1\n   no shutdown\n   ip address 12.12.12.12/32\n!\ninterface Loopback0\n   description
-    Edge-12_lo0\n   no shutdown\n   ip address 192.168.0.12/32\n!\nip routing\n!\nrouter
+    Edge-12_lo0\n   no shutdown\n   ip address 192.168.0.12/32\n!\ninterface Vxlan1\n
+    \  description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan udp-port
+    4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip routing\n!\nrouter
     bgp 65000\n   router-id 192.168.0.12\n   neighbor 192.12.15.2 remote-as 65000\n
     \  neighbor 192.12.16.2 remote-as 65000\n   redistribute connected\n   !\n   address-family
     ipv4\n      network 192.168.0.12/32\n!\nend\n"
@@ -42,7 +48,9 @@ cvp_configlets:
     \  mtu 1500\n   no switchport\n   ip address 192.13.15.1/24\n!\ninterface Ethernet3\n
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.13.16.1/24\n!\ninterface
     Dps1\n   no shutdown\n   ip address 13.13.13.13/32\n!\ninterface Loopback0\n   description
-    Edge-13_lo0\n   no shutdown\n   ip address 192.168.0.13/32\n!\nip routing\nip
+    Edge-13_lo0\n   no shutdown\n   ip address 192.168.0.13/32\n!\ninterface Vxlan1\n
+    \  description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan udp-port
+    4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip routing\nip
     routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.13\n   neighbor
     192.13.15.2 remote-as 65000\n   neighbor 192.13.16.2 remote-as 65000\n   redistribute
     connected\n   !\n   address-family ipv4\n      network 192.168.0.13/32\n!\nend\n"
@@ -54,7 +62,9 @@ cvp_configlets:
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.16.1/24\n!\ninterface
     Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.51.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.52.1/24\n!\ninterface
-    Loopback0\n   description Edge-14_lo0\n   no shutdown\n   ip address 192.168.0.14/32\n!\nip
+    Loopback0\n   description Edge-14_lo0\n   no shutdown\n   ip address 192.168.0.14/32\n!\ninterface
+    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
+    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.14\n
     \  neighbor 192.14.51.2 remote-as 65000\n   neighbor 192.14.52.2 remote-as 65000\n
     \  redistribute connected\n   !\n   address-family ipv4\n      network 192.168.0.14/32\n!\nend\n"
@@ -65,7 +75,9 @@ cvp_configlets:
     \  mtu 1500\n   no switchport\n   ip address 192.20.33.1/24\n!\ninterface Ethernet4\n
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.20.25.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.20.26.1/24\n!\ninterface
-    Loopback0\n   description Edge-20_lo0\n   no shutdown\n   ip address 192.168.0.20/32\n!\nip
+    Loopback0\n   description Edge-20_lo0\n   no shutdown\n   ip address 192.168.0.20/32\n!\ninterface
+    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
+    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.20\n   neighbor 192.20.25.2
     remote-as 65000\n   neighbor 192.20.26.2 remote-as 65000\n   neighbor 192.20.33.2
     remote-as 65000\n   redistribute connected\n   !\n   address-family ipv4\n      network
@@ -78,7 +90,9 @@ cvp_configlets:
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.25.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.26.1/24\n!\ninterface
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.34.1/24\n!\ninterface
-    Loopback0\n   description Edge-21_lo0\n   no shutdown\n   ip address 192.168.0.21/32\n!\nip
+    Loopback0\n   description Edge-21_lo0\n   no shutdown\n   ip address 192.168.0.21/32\n!\ninterface
+    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
+    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.21\n   neighbor 192.21.25.2
     remote-as 65000\n   neighbor 192.21.26.2 remote-as 65000\n   redistribute connected\n
     \  !\n   address-family ipv4\n      network 192.168.0.21/32\n!\nend\n"
@@ -88,7 +102,9 @@ cvp_configlets:
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.25.1/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.26.1/24\n!\ninterface
     Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.33.1/24\n!\ninterface
-    Loopback0\n   description Edge-22_lo0\n   no shutdown\n   ip address 192.168.0.22/32\n!\nip
+    Loopback0\n   description Edge-22_lo0\n   no shutdown\n   ip address 192.168.0.22/32\n!\ninterface
+    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
+    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.22\n   neighbor 192.22.25.2
     remote-as 65000\n   neighbor 192.22.26.2 remote-as 65000\n   redistribute connected\n
     \  !\n   address-family ipv4\n      network 192.168.0.22/32\n!\nend\n"
@@ -98,7 +114,9 @@ cvp_configlets:
     \  vrf VRF_A\n   ip address 172.16.24.254/24\n!\ninterface Ethernet2\n   no shutdown\n
     \  mtu 1500\n   no switchport\n   ip address 192.23.25.1/24\n!\ninterface Ethernet3\n
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.23.26.1/24\n!\ninterface
-    Loopback0\n   description Edge-23_lo0\n   no shutdown\n   ip address 192.168.0.23/32\n!\nip
+    Loopback0\n   description Edge-23_lo0\n   no shutdown\n   ip address 192.168.0.23/32\n!\ninterface
+    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
+    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.23\n
     \  neighbor 192.23.25.2 remote-as 65000\n   neighbor 192.23.26.2 remote-as 65000\n
     \  redistribute connected\n   !\n   address-family ipv4\n      network 172.16.23.0/24\n
@@ -111,7 +129,9 @@ cvp_configlets:
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.26.1/24\n!\ninterface
     Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.53.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.54.1/24\n!\ninterface
-    Loopback0\n   description Edge-24_lo0\n   no shutdown\n   ip address 192.168.0.24/32\n!\nip
+    Loopback0\n   description Edge-24_lo0\n   no shutdown\n   ip address 192.168.0.24/32\n!\ninterface
+    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
+    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.24\n
     \  neighbor 192.24.53.2 remote-as 65000\n   neighbor 192.24.54.2 remote-as 65000\n
     \  redistribute connected\n   !\n   address-family ipv4\n      network 172.16.24.0/24\n
@@ -291,7 +311,9 @@ cvp_configlets:
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.51.82.1/24\n!\ninterface
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.51.75.1/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.51.2/24\n!\ninterface
-    Loopback0\n   description Region1_P10_lo0\n   no shutdown\n   ip address 192.168.0.51/32\n!\nip
+    Loopback0\n   description Region1_P10_lo0\n   no shutdown\n   ip address 192.168.0.51/32\n!\ninterface
+    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
+    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 51.51.51.51\n   neighbor CORE peer
     group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
     ISP-3 remote-as 65002\n   neighbor 192.14.51.1 remote-as 65000\n   neighbor 192.15.51.1
@@ -308,7 +330,9 @@ cvp_configlets:
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.52.82.1/24\n!\ninterface
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.52.75.1/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.52.2/24\n!\ninterface
-    Loopback0\n   description Region1_P11_lo0\n   no shutdown\n   ip address 192.168.0.52/32\n!\nip
+    Loopback0\n   description Region1_P11_lo0\n   no shutdown\n   ip address 192.168.0.52/32\n!\ninterface
+    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
+    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 52.52.52.52\n   neighbor CORE peer
     group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
     ISP-3 remote-as 65002\n   neighbor 192.14.52.1 remote-as 65000\n   neighbor 192.15.52.1
@@ -353,7 +377,9 @@ cvp_configlets:
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.53.84.1/24\n!\ninterface
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.53.75.1/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.53.2/24\n!\ninterface
-    Loopback0\n   description Region2_P20_lo0\n   no shutdown\n   ip address 192.168.0.53/32\n!\nip
+    Loopback0\n   description Region2_P20_lo0\n   no shutdown\n   ip address 192.168.0.53/32\n!\ninterface
+    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
+    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.53\n   neighbor CORE peer
     group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
     ISP-3 remote-as 65002\n   neighbor 192.24.53.1 remote-as 65000\n   neighbor 192.25.53.1
@@ -370,7 +396,9 @@ cvp_configlets:
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.54.84.1/24\n!\ninterface
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.54.75.1/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.54.2/24\n!\ninterface
-    Loopback0\n   description Region2_P21_lo0\n   no shutdown\n   ip address 192.168.0.54/32\n!\nip
+    Loopback0\n   description Region2_P21_lo0\n   no shutdown\n   ip address 192.168.0.54/32\n!\ninterface
+    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
+    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.54\n   neighbor CORE peer
     group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
     ISP-3 remote-as 65002\n   neighbor 192.24.54.1 remote-as 65000\n   neighbor 192.25.54.1

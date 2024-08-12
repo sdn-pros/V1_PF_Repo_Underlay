@@ -77,3 +77,14 @@ router_bgp:
       - prefix: 52.52.52.52/32
     redistribute_routes:
      - source_protocol: connected
+vxlan_interface:
+  Vxlan1:
+    description: VTEP_Interface
+    vxlan:
+      source_interface: Dps1
+      udp_port: 4789
+      vrfs:
+        - name: VRF_A
+          vni: 19
+        - name: default
+          vni: 101
