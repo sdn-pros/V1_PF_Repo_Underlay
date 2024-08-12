@@ -59,7 +59,7 @@ ethernet_interfaces:
 - name: Ethernet9
   peer: Edge24
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.24.26.2/24
 router_bgp:
