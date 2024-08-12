@@ -65,8 +65,6 @@ router_bgp:
       peer_group: CORE
     - ip_address: 192.53.75.2
       peer_group: ISP-3
-    - ip_address: 192.24.53.1
-      remote_as:  65000
     - ip_address: 192.26.53.1
       remote_as:  65203
     - ip_address: 192.25.53.1
