@@ -68,23 +68,12 @@ router_bgp:
     - ip_address: 192.14.51.1
       remote_as:  65000
     - ip_address: 192.15.51.1
-      remote_as:  65000
+      remote_as:  65102
     - ip_address: 192.16.51.1
-      remote_as:  65000
+      remote_as:  65103
   address_family_ipv4:
     networks:
       - prefix: 192.168.0.51/32
       - prefix: 51.51.51.51/32
     redistribute_routes:
       - source_protocol: connected
-vxlan_interface:
-  Vxlan1:
-    description: VTEP_Interface
-    vxlan:
-      source_interface: Dps1
-      udp_port: 4789
-      vrfs:
-        - name: VRF_A
-          vni: 19
-        - name: default
-          vni: 101
