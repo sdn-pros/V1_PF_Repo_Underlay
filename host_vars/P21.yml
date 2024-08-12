@@ -11,7 +11,7 @@ ethernet_interfaces:
 - name: Ethernet1
   peer: P21
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.53.54.2/24
 - name: Ethernet2
