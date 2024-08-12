@@ -66,7 +66,7 @@ router_bgp:
     - ip_address: 192.54.75.2
       peer_group: ISP-3
     - ip_address: 192.25.54.1
-      remote_as:  65000
+      remote_as:  65202
     - ip_address: 192.26.54.1
       remote_as:  65203
   address_family_ipv4:
