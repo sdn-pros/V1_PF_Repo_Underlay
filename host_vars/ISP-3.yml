@@ -57,12 +57,28 @@ router_bgp:
       neighbors:
         - ip_address: 192.51.75.1
           peer_group: REGION1
+          allowas_in:
+            enabled: true
+            # Number of local ASNs allowed in a BGP update.
+            times: 6
         - ip_address: 192.52.75.1
           peer_group: REGION1
+          allowas_in:
+            enabled: true
+            # Number of local ASNs allowed in a BGP update.
+            times: 6
         - ip_address: 192.53.75.1
           peer_group: REGION2
+          allowas_in:
+            enabled: true
+            # Number of local ASNs allowed in a BGP update.
+            times: 6 
         - ip_address: 192.54.75.1
           peer_group: REGION2
+          allowas_in:
+            enabled: true
+            # Number of local ASNs allowed in a BGP update.
+            times: 6
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.75/32
