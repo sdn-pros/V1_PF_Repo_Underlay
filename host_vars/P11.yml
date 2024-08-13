@@ -56,27 +56,23 @@ router_bgp:
   peer_groups:
     - name: CORE
       remote_as: 65001
+      allowas_in:
+        enabled: true
+        # Number of local ASNs allowed in a BGP update.
+        times: 6
     - name: ISP-3
       remote_as: 65002
+      allowas_in:
+        enabled: true
+        # Number of local ASNs allowed in a BGP update.
+        times: 6
   neighbors:
     - ip_address: 192.52.81.2
       peer_group: CORE
-      allowas_in:
-        enabled: true
-        # Number of local ASNs allowed in a BGP update.
-        times: 6
     - ip_address: 192.52.82.2
       peer_group: CORE
-      allowas_in:
-        enabled: true
-        # Number of local ASNs allowed in a BGP update.
-        times: 6
     - ip_address: 192.52.75.2
       peer_group: ISP-3
-      allowas_in:
-        enabled: true
-        # Number of local ASNs allowed in a BGP update.
-        times: 6
     - ip_address: 192.15.52.1
       remote_as:  65102
       allowas_in:
@@ -92,7 +88,6 @@ router_bgp:
   address_family_ipv4:
     networks:
       - prefix: 192.168.0.52/32
-      - prefix: 52.52.52.52/32
     redistribute_routes:
      - source_protocol: connected
 

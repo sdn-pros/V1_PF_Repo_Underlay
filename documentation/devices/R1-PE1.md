@@ -168,15 +168,15 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.10.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.11.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.12.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.13.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.14.15.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.15.51.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.15.52.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.15.71.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.15.72.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.10.15.1 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.11.15.1 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.12.15.1 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.13.15.1 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.14.15.1 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.15.51.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.15.52.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.15.71.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.15.72.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -185,14 +185,23 @@ ASN Notation: asplain
 router bgp 65102
    router-id 192.168.0.15
    neighbor 192.10.15.1 remote-as 65000
+   neighbor 192.10.15.1 allowas-in 6
    neighbor 192.11.15.1 remote-as 65000
+   neighbor 192.11.15.1 allowas-in 6
    neighbor 192.12.15.1 remote-as 65000
+   neighbor 192.12.15.1 allowas-in 6
    neighbor 192.13.15.1 remote-as 65000
+   neighbor 192.13.15.1 allowas-in 6
    neighbor 192.14.15.1 remote-as 65000
+   neighbor 192.14.15.1 allowas-in 6
    neighbor 192.15.51.2 remote-as 65000
+   neighbor 192.15.51.2 allowas-in 6
    neighbor 192.15.52.2 remote-as 65000
+   neighbor 192.15.52.2 allowas-in 6
    neighbor 192.15.71.2 remote-as 65000
+   neighbor 192.15.71.2 allowas-in 6
    neighbor 192.15.72.2 remote-as 65000
+   neighbor 192.15.72.2 allowas-in 6
    !
    address-family ipv4
       network 192.168.0.15/32

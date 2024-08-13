@@ -183,7 +183,7 @@ cvp_configlets:
     remote-as 65000\n   neighbor 192.13.16.1 allowas-in 6\n   neighbor 192.14.16.1
     remote-as 65000\n   neighbor 192.14.16.1 allowas-in 6\n   neighbor 192.16.51.2
     remote-as 65000\n   neighbor 192.16.51.2 allowas-in 6\n   neighbor 192.16.52.2
-    remote-as 65000=\n   neighbor 192.16.52.2 allowas-in 6\n   neighbor 192.16.71.2
+    remote-as 65000\n   neighbor 192.16.52.2 allowas-in 6\n   neighbor 192.16.71.2
     remote-as 65000\n   neighbor 192.16.71.2 allowas-in 6\n   neighbor 192.16.72.2
     remote-as 65000\n   neighbor 192.16.72.2 allowas-in 6\n   redistribute connected\n
     \  !\n   address-family ipv4\n      network 192.168.0.16/32\n!\nend\n"
@@ -220,13 +220,11 @@ cvp_configlets:
     \  shutdown\n   mtu 1500\n   no switchport\n!\ninterface Loopback0\n   description
     ISP-3_lo0\n   no shutdown\n   ip address 192.168.0.75/32\n!\nip routing\n!\nrouter
     bgp 65002\n   router-id 192.168.0.75\n   neighbor REGION1 peer group\n   neighbor
-    REGION1 remote-as 65000\n   neighbor REGION2 peer group\n   neighbor REGION2 remote-as
-    65000\n   !\n   address-family ipv4\n      network 192.168.0.75/32\n      redistribute
-    connected\n   !\n   vrf default\n      neighbor 192.51.75.1 peer group REGION1\n
-    \     neighbor 192.51.75.1 allowas-in 6\n      neighbor 192.52.75.1 peer group
-    REGION1\n      neighbor 192.52.75.1 allowas-in 6\n      neighbor 192.53.75.1 peer
-    group REGION2\n      neighbor 192.53.75.1 allowas-in 6\n      neighbor 192.54.75.1
-    peer group REGION2\n      neighbor 192.54.75.1 allowas-in 6\n!\nend\n"
+    REGION1 remote-as 65000\n   neighbor REGION1 allowas-in\n   neighbor REGION2 peer
+    group\n   neighbor REGION2 remote-as 65000\n   neighbor REGION2 allowas-in\n   neighbor
+    192.51.75.1 peer group REGION1\n   neighbor 192.52.75.1 peer group REGION1\n   neighbor
+    192.53.75.1 peer group REGION2\n   neighbor 192.54.75.1 peer group REGION2\n   !\n
+    \  address-family ipv4\n      network 192.168.0.75/32\n      redistribute connected\n!\nend\n"
   AVD_Leaf11: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Leaf11\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
@@ -310,14 +308,14 @@ cvp_configlets:
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.51.2/24\n!\ninterface
     Loopback0\n   description Region1_P10_lo0\n   no shutdown\n   ip address 192.168.0.51/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 51.51.51.51\n   neighbor CORE peer
-    group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
-    ISP-3 remote-as 65002\n   neighbor 192.15.51.1 remote-as 65102\n   neighbor 192.15.51.1
-    allowas-in 6\n   neighbor 192.16.51.1 remote-as 65103\n   neighbor 192.16.51.1
-    allowas-in 6\n   neighbor 192.51.75.2 peer group ISP-3\n   neighbor 192.51.75.2
-    allowas-in 6\n   neighbor 192.51.81.2 peer group CORE\n   neighbor 192.51.81.2
-    allowas-in 6\n   neighbor 192.51.82.2 peer group CORE\n   neighbor 192.51.82.2
-    allowas-in 6\n   !\n   address-family ipv4\n      network 51.51.51.51/32\n      network
-    192.168.0.51/32\n      redistribute connected\n!\nend\n"
+    group\n   neighbor CORE remote-as 65001\n   neighbor CORE allowas-in 6\n   neighbor
+    ISP-3 peer group\n   neighbor ISP-3 remote-as 65002\n   neighbor ISP-3 allowas-in
+    6\n   neighbor 192.15.51.1 remote-as 65102\n   neighbor 192.15.51.1 allowas-in
+    6\n   neighbor 192.16.51.1 remote-as 65103\n   neighbor 192.16.51.1 allowas-in
+    6\n   neighbor 192.51.75.2 peer group ISP-3\n   neighbor 192.51.81.2 peer group
+    CORE\n   neighbor 192.51.82.2 peer group CORE\n   !\n   address-family ipv4\n
+    \     network 51.51.51.51/32\n      network 192.168.0.51/32\n      redistribute
+    connected\n!\nend\n"
   AVD_P11: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     P11\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.51.52.2/24\n!\ninterface
@@ -329,14 +327,14 @@ cvp_configlets:
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.52.2/24\n!\ninterface
     Loopback0\n   description Region1_P11_lo0\n   no shutdown\n   ip address 192.168.0.52/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 52.52.52.52\n   neighbor CORE peer
-    group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
-    ISP-3 remote-as 65002\n   neighbor 192.15.52.1 remote-as 65102\n   neighbor 192.15.52.1
-    allowas-in 6\n   neighbor 192.16.52.1 remote-as 65103\n   neighbor 192.16.52.1
-    allowas-in 6\n   neighbor 192.52.75.2 peer group ISP-3\n   neighbor 192.52.75.2
-    allowas-in 6\n   neighbor 192.52.81.2 peer group CORE\n   neighbor 192.52.81.2
-    allowas-in 6\n   neighbor 192.52.82.2 peer group CORE\n   neighbor 192.52.82.2
-    allowas-in 6\n   !\n   address-family ipv4\n      network 52.52.52.52/32\n      network
-    192.168.0.52/32\n      redistribute connected\n!\nend\n"
+    group\n   neighbor CORE remote-as 65001\n   neighbor CORE allowas-in 6\n   neighbor
+    ISP-3 peer group\n   neighbor ISP-3 remote-as 65002\n   neighbor ISP-3 allowas-in
+    6\n   neighbor 192.15.52.1 remote-as 65102\n   neighbor 192.15.52.1 allowas-in
+    6\n   neighbor 192.16.52.1 remote-as 65103\n   neighbor 192.16.52.1 allowas-in
+    6\n   neighbor 192.52.75.2 peer group ISP-3\n   neighbor 192.52.81.2 peer group
+    CORE\n   neighbor 192.52.82.2 peer group CORE\n   !\n   address-family ipv4\n
+    \     network 52.52.52.52/32\n      network 192.168.0.52/32\n      redistribute
+    connected\n!\nend\n"
   AVD_P2: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P2\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
@@ -376,14 +374,13 @@ cvp_configlets:
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.53.2/24\n!\ninterface
     Loopback0\n   description Region2_P20_lo0\n   no shutdown\n   ip address 192.168.0.53/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.53\n   neighbor CORE peer
-    group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
-    ISP-3 remote-as 65002\n   neighbor 192.25.53.1 remote-as 65202\n   neighbor 192.25.53.1
-    allowas-in 6\n   neighbor 192.26.53.1 remote-as 65203\n   neighbor 192.26.53.1
-    allowas-in 6\n   neighbor 192.53.75.2 peer group ISP-3\n   neighbor 192.53.75.2
-    allowas-in 6\n   neighbor 192.53.83.2 peer group CORE\n   neighbor 192.53.83.2
-    allowas-in 6\n   neighbor 192.53.84.2 peer group CORE\n   neighbor 192.53.84.2
-    allowas-in 6\n   !\n   address-family ipv4\n      network 192.168.0.53/32\n      redistribute
-    connected\n!\nend\n"
+    group\n   neighbor CORE remote-as 65001\n   neighbor CORE allowas-in 6\n   neighbor
+    ISP-3 peer group\n   neighbor ISP-3 remote-as 65002\n   neighbor ISP-3 allowas-in
+    6\n   neighbor 192.25.53.1 remote-as 65202\n   neighbor 192.25.53.1 allowas-in
+    6\n   neighbor 192.26.53.1 remote-as 65203\n   neighbor 192.26.53.1 allowas-in
+    6\n   neighbor 192.53.75.2 peer group ISP-3\n   neighbor 192.53.83.2 peer group
+    CORE\n   neighbor 192.53.84.2 peer group CORE\n   !\n   address-family ipv4\n
+    \     network 192.168.0.53/32\n      redistribute connected\n!\nend\n"
   AVD_P21: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     P21\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.53.54.2/24\n!\ninterface
@@ -395,14 +392,13 @@ cvp_configlets:
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.54.2/24\n!\ninterface
     Loopback0\n   description Region2_P21_lo0\n   no shutdown\n   ip address 192.168.0.54/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.54\n   neighbor CORE peer
-    group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
-    ISP-3 remote-as 65002\n   neighbor 192.25.54.1 remote-as 65202\n   neighbor 192.25.54.1
-    allowas-in 6\n   neighbor 192.26.54.1 remote-as 65203\n   neighbor 192.26.54.1
-    allowas-in 6\n   neighbor 192.54.75.2 peer group ISP-3\n   neighbor 192.54.75.2
-    allowas-in 6\n   neighbor 192.54.83.2 peer group CORE\n   neighbor 192.54.83.2
-    allowas-in 6\n   neighbor 192.54.84.2 peer group CORE\n   neighbor 192.54.84.2
-    allowas-in 6\n   !\n   address-family ipv4\n      network 192.168.0.54/32\n      redistribute
-    connected\n!\nend\n"
+    group\n   neighbor CORE remote-as 65001\n   neighbor CORE allowas-in 6\n   neighbor
+    ISP-3 peer group\n   neighbor ISP-3 remote-as 65002\n   neighbor ISP-3 allowas-in
+    6\n   neighbor 192.25.54.1 remote-as 65202\n   neighbor 192.25.54.1 allowas-in
+    6\n   neighbor 192.26.54.1 remote-as 65203\n   neighbor 192.26.54.1 allowas-in
+    6\n   neighbor 192.54.75.2 peer group ISP-3\n   neighbor 192.54.83.2 peer group
+    CORE\n   neighbor 192.54.84.2 peer group CORE\n   !\n   address-family ipv4\n
+    \     network 192.168.0.54/32\n      redistribute connected\n!\nend\n"
   AVD_P3: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P3\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno

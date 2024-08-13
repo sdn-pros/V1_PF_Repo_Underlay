@@ -174,7 +174,7 @@ ASN Notation: asplain
 | 192.13.16.1 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.14.16.1 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.16.51.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
-| 192.16.52.2 | 65000= | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.16.52.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.16.71.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.16.72.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 
@@ -196,7 +196,7 @@ router bgp 65103
    neighbor 192.14.16.1 allowas-in 6
    neighbor 192.16.51.2 remote-as 65000
    neighbor 192.16.51.2 allowas-in 6
-   neighbor 192.16.52.2 remote-as 65000=
+   neighbor 192.16.52.2 remote-as 65000
    neighbor 192.16.52.2 allowas-in 6
    neighbor 192.16.71.2 remote-as 65000
    neighbor 192.16.71.2 allowas-in 6

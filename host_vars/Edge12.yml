@@ -7,9 +7,6 @@ loopback_interfaces:
   description: Edge-12_lo0
   shutdown: false
   ip_address: 192.168.0.12/32
-- name: Dps1
-  shutdown: false
-  ip_address: 12.12.12.12/32
 ethernet_interfaces:
 - name: Ethernet1
   peer: Edge12

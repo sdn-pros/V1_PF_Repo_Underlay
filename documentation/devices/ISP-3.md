@@ -145,28 +145,24 @@ ASN Notation: asplain
 
 | Settings | Value |
 | -------- | ----- |
+| Allowas-in | Allowed, allowed 3 (default) times |
 | Remote AS | 65000 |
 
 ##### REGION2
 
 | Settings | Value |
 | -------- | ----- |
+| Allowas-in | Allowed, allowed 3 (default) times |
 | Remote AS | 65000 |
 
 #### BGP Neighbors
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.51.75.1 | Inherited from peer group REGION1 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
-| 192.52.75.1 | Inherited from peer group REGION1 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
-| 192.53.75.1 | Inherited from peer group REGION2 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
-| 192.54.75.1 | Inherited from peer group REGION2 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
-
-#### Router BGP VRFs
-
-| VRF | Route-Distinguisher | Redistribute |
-| --- | ------------------- | ------------ |
-| default | - | - |
+| 192.51.75.1 | Inherited from peer group REGION1 | default | - | - | - | Inherited from peer group REGION1 | - | - | - | - | - |
+| 192.52.75.1 | Inherited from peer group REGION1 | default | - | - | - | Inherited from peer group REGION1 | - | - | - | - | - |
+| 192.53.75.1 | Inherited from peer group REGION2 | default | - | - | - | Inherited from peer group REGION2 | - | - | - | - | - |
+| 192.54.75.1 | Inherited from peer group REGION2 | default | - | - | - | Inherited from peer group REGION2 | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -176,20 +172,16 @@ router bgp 65002
    router-id 192.168.0.75
    neighbor REGION1 peer group
    neighbor REGION1 remote-as 65000
+   neighbor REGION1 allowas-in
    neighbor REGION2 peer group
    neighbor REGION2 remote-as 65000
+   neighbor REGION2 allowas-in
+   neighbor 192.51.75.1 peer group REGION1
+   neighbor 192.52.75.1 peer group REGION1
+   neighbor 192.53.75.1 peer group REGION2
+   neighbor 192.54.75.1 peer group REGION2
    !
    address-family ipv4
       network 192.168.0.75/32
       redistribute connected
-   !
-   vrf default
-      neighbor 192.51.75.1 peer group REGION1
-      neighbor 192.51.75.1 allowas-in 6
-      neighbor 192.52.75.1 peer group REGION1
-      neighbor 192.52.75.1 allowas-in 6
-      neighbor 192.53.75.1 peer group REGION2
-      neighbor 192.53.75.1 allowas-in 6
-      neighbor 192.54.75.1 peer group REGION2
-      neighbor 192.54.75.1 allowas-in 6
 ```
