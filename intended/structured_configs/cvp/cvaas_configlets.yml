@@ -6,13 +6,12 @@ cvp_configlets:
     \  mtu 1500\n   no switchport\n   ip address 192.10.31.1/24\n!\ninterface Ethernet4\n
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.10.15.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.10.16.1/24\n!\ninterface
-    Loopback0\n   description Edge-10_lo0\n   no shutdown\n   ip address 192.168.0.10/32\n!\ninterface
-    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
-    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
+    Loopback0\n   description Edge-10_lo0\n   no shutdown\n   ip address 192.168.0.10/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.10\n   neighbor 192.10.15.2
-    remote-as 65000\n   neighbor 192.10.16.2 remote-as 65000\n   neighbor 192.10.31.2
-    remote-as 65000\n   redistribute connected\n   !\n   address-family ipv4\n      network
-    192.168.0.10/32\n!\nend\n"
+    remote-as 65102\n   neighbor 192.10.15.2 allowas-in 6\n   neighbor 192.10.16.2
+    remote-as 65103\n   neighbor 192.10.16.2 allowas-in 6\n   neighbor 192.10.31.2
+    remote-as 65000\n   neighbor 192.10.31.2 allowas-in 6\n   redistribute connected\n
+    \  !\n   address-family ipv4\n      network 192.168.0.10/32\n!\nend\n"
   AVD_Edge11: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge11\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet2\n
@@ -22,12 +21,12 @@ cvp_configlets:
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.16.1/24\n!\ninterface
     Ethernet6\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.32.1/24\n!\ninterface
     Dps1\n   no shutdown\n   ip address 11.11.11.11/32\n!\ninterface Loopback0\n   description
-    Edge-11_lo0\n   no shutdown\n   ip address 192.168.0.11/32\n!\ninterface Vxlan1\n
-    \  description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan udp-port
-    4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip routing\n!\nrouter
-    bgp 65000\n   router-id 192.168.0.11\n   neighbor 192.11.15.2 remote-as 65000\n
-    \  neighbor 192.11.16.2 remote-as 65000\n   neighbor 192.11.31.2 remote-as 65000\n
-    \  redistribute connected\n   !\n   address-family ipv4\n      network 192.168.0.11/32\n!\nend\n"
+    Edge-11_lo0\n   no shutdown\n   ip address 192.168.0.11/32\n!\nip routing\n!\nrouter
+    bgp 65000\n   router-id 192.168.0.11\n   neighbor 192.11.15.2 remote-as 65102\n
+    \  neighbor 192.11.15.2 allowas-in 6\n   neighbor 192.11.16.2 remote-as 65103\n
+    \  neighbor 192.11.16.2 allowas-in 6\n   neighbor 192.11.31.2 remote-as 65000\n
+    \  neighbor 192.11.31.2 allowas-in 6\n   redistribute connected\n   !\n   address-family
+    ipv4\n      network 192.168.0.11/32\n!\nend\n"
   AVD_Edge12: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge12\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.32.1/24\n!\ninterface
@@ -35,11 +34,11 @@ cvp_configlets:
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.16.1/24\n!\ninterface
     Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.31.1/24\n!\ninterface
     Dps1\n   no shutdown\n   ip address 12.12.12.12/32\n!\ninterface Loopback0\n   description
-    Edge-12_lo0\n   no shutdown\n   ip address 192.168.0.12/32\n!\ninterface Vxlan1\n
-    \  description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan udp-port
-    4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip routing\n!\nrouter
-    bgp 65000\n   router-id 192.168.0.12\n   neighbor 192.12.15.2 remote-as 65000\n
-    \  neighbor 192.12.16.2 remote-as 65000\n   redistribute connected\n   !\n   address-family
+    Edge-12_lo0\n   no shutdown\n   ip address 192.168.0.12/32\n!\nip routing\n!\nrouter
+    bgp 65000\n   router-id 192.168.0.12\n   neighbor 192.12.15.2 remote-as 65102\n
+    \  neighbor 192.12.15.2 allowas-in 6\n   neighbor 192.12.16.2 remote-as 65103\n
+    \  neighbor 192.12.16.2 allowas-in 6\n   neighbor 192.12.32.2 remote-as 65000\n
+    \  neighbor 192.12.32.2 allowas-in 6\n   redistribute connected\n   !\n   address-family
     ipv4\n      network 192.168.0.12/32\n!\nend\n"
   AVD_Edge13: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge13\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
@@ -48,12 +47,12 @@ cvp_configlets:
     \  mtu 1500\n   no switchport\n   ip address 192.13.15.1/24\n!\ninterface Ethernet3\n
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.13.16.1/24\n!\ninterface
     Dps1\n   no shutdown\n   ip address 13.13.13.13/32\n!\ninterface Loopback0\n   description
-    Edge-13_lo0\n   no shutdown\n   ip address 192.168.0.13/32\n!\ninterface Vxlan1\n
-    \  description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan udp-port
-    4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip routing\nip
+    Edge-13_lo0\n   no shutdown\n   ip address 192.168.0.13/32\n!\nip routing\nip
     routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.13\n   neighbor
-    192.13.15.2 remote-as 65000\n   neighbor 192.13.16.2 remote-as 65000\n   redistribute
-    connected\n   !\n   address-family ipv4\n      network 192.168.0.13/32\n!\nend\n"
+    192.13.15.2 remote-as 65102\n   neighbor 192.13.15.2 allowas-in 6\n   neighbor
+    192.13.16.2 remote-as 65103\n   neighbor 192.13.16.2 allowas-in 6\n   redistribute
+    connected\n   !\n   address-family ipv4\n      network 172.16.13.0/24\n      network
+    192.168.0.13/32\n!\nend\n"
   AVD_Edge14: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge14\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
@@ -62,12 +61,12 @@ cvp_configlets:
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.16.1/24\n!\ninterface
     Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.51.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.52.1/24\n!\ninterface
-    Loopback0\n   description Edge-14_lo0\n   no shutdown\n   ip address 192.168.0.14/32\n!\ninterface
-    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
-    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
+    Loopback0\n   description Edge-14_lo0\n   no shutdown\n   ip address 192.168.0.14/32\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.14\n
-    \  neighbor 192.14.51.2 remote-as 65000\n   neighbor 192.14.52.2 remote-as 65000\n
-    \  redistribute connected\n   !\n   address-family ipv4\n      network 192.168.0.14/32\n!\nend\n"
+    \  neighbor 192.14.15.2 remote-as 65102\n   neighbor 192.14.15.2 allowas-in 6\n
+    \  neighbor 192.14.16.2 remote-as 65103\n   neighbor 192.14.16.2 allowas-in 6\n
+    \  redistribute connected\n   !\n   address-family ipv4\n      network 172.16.14.0/24\n
+    \     network 192.168.0.14/32\n!\nend\n"
   AVD_Edge20: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge20\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet2\n
@@ -75,13 +74,12 @@ cvp_configlets:
     \  mtu 1500\n   no switchport\n   ip address 192.20.33.1/24\n!\ninterface Ethernet4\n
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.20.25.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.20.26.1/24\n!\ninterface
-    Loopback0\n   description Edge-20_lo0\n   no shutdown\n   ip address 192.168.0.20/32\n!\ninterface
-    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
-    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
+    Loopback0\n   description Edge-20_lo0\n   no shutdown\n   ip address 192.168.0.20/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.20\n   neighbor 192.20.25.2
-    remote-as 65000\n   neighbor 192.20.26.2 remote-as 65000\n   neighbor 192.20.33.2
-    remote-as 65000\n   redistribute connected\n   !\n   address-family ipv4\n      network
-    192.168.0.20/32\n!\nend\n"
+    remote-as 65202\n   neighbor 192.20.25.2 allowas-in 6\n   neighbor 192.20.26.2
+    remote-as 65203\n   neighbor 192.20.26.2 allowas-in 6\n   neighbor 192.20.33.2
+    remote-as 65000\n   neighbor 192.20.33.2 allowas-in 6\n   redistribute connected\n
+    \  !\n   address-family ipv4\n      network 192.168.0.20/32\n!\nend\n"
   AVD_Edge21: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge21\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet2\n
@@ -90,11 +88,11 @@ cvp_configlets:
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.25.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.26.1/24\n!\ninterface
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.34.1/24\n!\ninterface
-    Loopback0\n   description Edge-21_lo0\n   no shutdown\n   ip address 192.168.0.21/32\n!\ninterface
-    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
-    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
+    Loopback0\n   description Edge-21_lo0\n   no shutdown\n   ip address 192.168.0.21/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.21\n   neighbor 192.21.25.2
-    remote-as 65000\n   neighbor 192.21.26.2 remote-as 65000\n   redistribute connected\n
+    remote-as 65202\n   neighbor 192.21.25.2 allowas-in 6\n   neighbor 192.21.26.2
+    remote-as 65203\n   neighbor 192.21.26.2 allowas-in 6\n   neighbor 192.21.33.2
+    remote-as 65000\n   neighbor 192.21.33.2 allowas-in 6\n   redistribute connected\n
     \  !\n   address-family ipv4\n      network 192.168.0.21/32\n!\nend\n"
   AVD_Edge22: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge22\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
@@ -102,11 +100,11 @@ cvp_configlets:
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.25.1/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.26.1/24\n!\ninterface
     Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.33.1/24\n!\ninterface
-    Loopback0\n   description Edge-22_lo0\n   no shutdown\n   ip address 192.168.0.22/32\n!\ninterface
-    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
-    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
+    Loopback0\n   description Edge-22_lo0\n   no shutdown\n   ip address 192.168.0.22/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.22\n   neighbor 192.22.25.2
-    remote-as 65000\n   neighbor 192.22.26.2 remote-as 65000\n   redistribute connected\n
+    remote-as 65202\n   neighbor 192.22.25.2 allowas-in 6\n   neighbor 192.22.26.2
+    remote-as 65203\n   neighbor 192.22.26.2 allowas-in 6\n   neighbor 192.22.34.2
+    remote-as 65000\n   neighbor 192.22.34.2 allowas-in 6\n   redistribute connected\n
     \  !\n   address-family ipv4\n      network 192.168.0.22/32\n!\nend\n"
   AVD_Edge23: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge23\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
@@ -114,26 +112,24 @@ cvp_configlets:
     \  vrf VRF_A\n   ip address 172.16.24.254/24\n!\ninterface Ethernet2\n   no shutdown\n
     \  mtu 1500\n   no switchport\n   ip address 192.23.25.1/24\n!\ninterface Ethernet3\n
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.23.26.1/24\n!\ninterface
-    Loopback0\n   description Edge-23_lo0\n   no shutdown\n   ip address 192.168.0.23/32\n!\ninterface
-    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
-    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
+    Loopback0\n   description Edge-23_lo0\n   no shutdown\n   ip address 192.168.0.23/32\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.23\n
-    \  neighbor 192.23.25.2 remote-as 65000\n   neighbor 192.23.26.2 remote-as 65000\n
+    \  neighbor 192.23.25.2 remote-as 65202\n   neighbor 192.23.25.2 allowas-in 6\n
+    \  neighbor 192.23.26.2 remote-as 65203\n   neighbor 192.23.26.2 allowas-in 6\n
     \  redistribute connected\n   !\n   address-family ipv4\n      network 172.16.23.0/24\n
     \     network 192.168.0.23/32\n!\nend\n"
   AVD_Edge24: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge24\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
-    \  vrf VRF_A\n   ip address 172.16.24.254/24\n!\ninterface Ethernet2\n   shutdown\n
+    \  vrf VRF_A\n   ip address 172.16.24.254/24\n!\ninterface Ethernet2\n   no shutdown\n
     \  mtu 1500\n   no switchport\n   ip address 192.24.25.1/24\n!\ninterface Ethernet3\n
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.26.1/24\n!\ninterface
-    Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.53.1/24\n!\ninterface
-    Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.54.1/24\n!\ninterface
-    Loopback0\n   description Edge-24_lo0\n   no shutdown\n   ip address 192.168.0.24/32\n!\ninterface
-    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
-    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
+    Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.53.1/24\n!\ninterface
+    Ethernet5\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.54.1/24\n!\ninterface
+    Loopback0\n   description Edge-24_lo0\n   no shutdown\n   ip address 192.168.0.24/32\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.24\n
-    \  neighbor 192.24.53.2 remote-as 65000\n   neighbor 192.24.54.2 remote-as 65000\n
+    \  neighbor 192.24.25.2 remote-as 65202\n   neighbor 192.24.25.2 allowas-in 6\n
+    \  neighbor 192.24.26.2 remote-as 65203\n   neighbor 192.24.26.2 allowas-in 6\n
     \  redistribute connected\n   !\n   address-family ipv4\n      network 172.16.24.0/24\n
     \     network 192.168.0.24/32\n!\nend\n"
   AVD_H11: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
@@ -178,14 +174,15 @@ cvp_configlets:
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.16.2/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.16.2/24\n!\ninterface
     Ethernet8\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.13.16.2/24\n!\ninterface
-    Ethernet9\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.16.2/24\n!\ninterface
+    Ethernet9\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.16.2/24\n!\ninterface
     Loopback0\n   description ISP_lo0\n   no shutdown\n   ip address 192.168.0.16/32\n!\nip
-    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.16\n   neighbor 192.10.16.1
+    routing\n!\nrouter bgp 65103\n   router-id 192.168.0.16\n   neighbor 192.10.16.1
     remote-as 65000\n   neighbor 192.11.16.1 remote-as 65000\n   neighbor 192.12.16.1
-    remote-as 65000\n   neighbor 192.13.16.1 remote-as 65000\n   neighbor 192.16.51.2
-    remote-as 65000\n   neighbor 192.16.52.2 remote-as 65000\n   neighbor 192.16.71.2
-    remote-as 65000\n   neighbor 192.16.72.2 remote-as 65000\n   redistribute connected\n
-    \  !\n   address-family ipv4\n      network 192.168.0.16/32\n!\nend\n"
+    remote-as 65000\n   neighbor 192.13.16.1 remote-as 65000\n   neighbor 192.14.16.1
+    remote-as 65000\n   neighbor 192.16.51.2 remote-as 65000\n   neighbor 192.16.52.2
+    remote-as 65000\n   neighbor 192.16.71.2 remote-as 65000\n   neighbor 192.16.72.2
+    remote-as 65000\n   redistribute connected\n   !\n   address-family ipv4\n      network
+    192.168.0.16/32\n!\nend\n"
   AVD_ISP-2: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     ISP-2\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.53.1/24\n!\ninterface
@@ -196,14 +193,15 @@ cvp_configlets:
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.26.2/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.26.2/24\n!\ninterface
     Ethernet8\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.23.26.2/24\n!\ninterface
-    Ethernet9\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.26.2/24\n!\ninterface
+    Ethernet9\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.26.2/24\n!\ninterface
     Loopback0\n   description ISP_lo0\n   no shutdown\n   ip address 192.168.0.26/32\n!\nip
-    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.26\n   neighbor 192.20.26.1
+    routing\n!\nrouter bgp 65203\n   router-id 192.168.0.26\n   neighbor 192.20.26.1
     remote-as 65000\n   neighbor 192.21.26.1 remote-as 65000\n   neighbor 192.22.26.1
-    remote-as 65000\n   neighbor 192.23.26.1 remote-as 65000\n   neighbor 192.26.53.2
-    remote-as 65000\n   neighbor 192.26.54.2 remote-as 65000\n   neighbor 192.26.76.2
-    remote-as 65000\n   neighbor 192.26.77.2 remote-as 65000\n   !\n   address-family
-    ipv4\n      network 192.168.0.26/32\n      redistribute connected\n!\nend\n"
+    remote-as 65000\n   neighbor 192.23.26.1 remote-as 65000\n   neighbor 192.24.26.1
+    remote-as 65000\n   neighbor 192.26.53.2 remote-as 65000\n   neighbor 192.26.54.2
+    remote-as 65000\n   neighbor 192.26.76.2 remote-as 65000\n   neighbor 192.26.77.2
+    remote-as 65000\n   !\n   address-family ipv4\n      network 192.168.0.26/32\n
+    \     redistribute connected\n!\nend\n"
   AVD_ISP-3: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     ISP-3\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.51.75.2/24\n!\ninterface
@@ -228,29 +226,19 @@ cvp_configlets:
     Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.31.2/24\n!\ninterface
     Loopback0\n   description Leaf11_lo0\n   no shutdown\n   ip address 192.168.0.31/32\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.31\n
-    \  neighbor 192.10.31.1 remote-as 65000\n   neighbor 192.11.31.1 remote-as 65000\n
+    \  neighbor 192.10.31.1 remote-as 65000\n   neighbor 192.10.31.1 allowas-in 6\n
+    \  neighbor 192.11.31.1 remote-as 65000\n   neighbor 192.11.31.1 allowas-in 6\n
     \  !\n   address-family ipv4\n      network 192.168.0.31/32\n!\nend\n"
-  AVD_Leaf12: '!RANCID-CONTENT-TYPE: arista
-
-    !
-
-    transceiver qsfp default-mode 4x10G
-
-    !
-
-    hostname Leaf12
-
-    !
-
-    no enable password
-
-    no aaa root
-
-    !
-
-    end
-
-    '
+  AVD_Leaf12: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
+    Leaf12\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
+    instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
+    \  vrf VRF_A\n   ip address 172.16.12.254/24\n!\ninterface Ethernet2\n   no shutdown\n
+    \  mtu 1500\n   no switchport\n   ip address 192.12.32.2/24\n!\ninterface Ethernet3\n
+    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.32.2/24\n!\ninterface
+    Loopback0\n   description Leaf12_lo0\n   no shutdown\n   ip address 192.168.0.32/32\n!\nip
+    routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.32\n
+    \  neighbor 192.12.32.1 remote-as 65000\n   neighbor 192.12.32.1 allowas-in 6\n
+    \  !\n   address-family ipv4\n      network 192.168.0.32/32\n!\nend\n"
   AVD_Leaf21: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Leaf21\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
@@ -260,7 +248,8 @@ cvp_configlets:
     Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.33.2/24\n!\ninterface
     Loopback0\n   description Leaf21_lo0\n   no shutdown\n   ip address 192.168.0.33/32\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.33\n
-    \  neighbor 192.20.33.1 remote-as 65000\n   neighbor 192.21.33.1 remote-as 65000\n
+    \  neighbor 192.20.33.1 remote-as 65000\n   neighbor 192.20.33.1 allowas-in 6\n
+    \  neighbor 192.21.33.1 remote-as 65000\n   neighbor 192.21.33.1 allowas-in 6\n
     \  !\n   address-family ipv4\n      network 192.168.0.33/32\n!\nend\n"
   AVD_Leaf22: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Leaf22\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
@@ -270,8 +259,8 @@ cvp_configlets:
     \  shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.34.2/24\n!\ninterface
     Loopback0\n   description Leaf22_lo0\n   no shutdown\n   ip address 192.168.0.34/32\n!\nip
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.34\n
-    \  neighbor 192.22.34.1 remote-as 65000\n   !\n   address-family ipv4\n      network
-    192.168.0.34/32\n!\nend\n"
+    \  neighbor 192.22.34.1 remote-as 65000\n   neighbor 192.22.34.1 allowas-in 6\n
+    \  !\n   address-family ipv4\n      network 192.168.0.34/32\n!\nend\n"
   AVD_P1: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P1\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
@@ -309,16 +298,16 @@ cvp_configlets:
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.51.82.1/24\n!\ninterface
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.51.75.1/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.51.2/24\n!\ninterface
-    Loopback0\n   description Region1_P10_lo0\n   no shutdown\n   ip address 192.168.0.51/32\n!\ninterface
-    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
-    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
+    Loopback0\n   description Region1_P10_lo0\n   no shutdown\n   ip address 192.168.0.51/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 51.51.51.51\n   neighbor CORE peer
     group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
-    ISP-3 remote-as 65002\n   neighbor 192.14.51.1 remote-as 65000\n   neighbor 192.15.51.1
-    remote-as 65000\n   neighbor 192.16.51.1 remote-as 65000\n   neighbor 192.51.75.2
-    peer group ISP-3\n   neighbor 192.51.81.2 peer group CORE\n   neighbor 192.51.82.2
-    peer group CORE\n   !\n   address-family ipv4\n      network 51.51.51.51/32\n
-    \     network 192.168.0.51/32\n      redistribute connected\n!\nend\n"
+    ISP-3 remote-as 65002\n   neighbor 192.15.51.1 remote-as 65102\n   neighbor 192.15.51.1
+    allowas-in 6\n   neighbor 192.16.51.1 remote-as 65103\n   neighbor 192.16.51.1
+    allowas-in 6\n   neighbor 192.51.75.2 peer group ISP-3\n   neighbor 192.51.75.2
+    allowas-in 6\n   neighbor 192.51.81.2 peer group CORE\n   neighbor 192.51.81.2
+    allowas-in 6\n   neighbor 192.51.82.2 peer group CORE\n   neighbor 192.51.82.2
+    allowas-in 6\n   !\n   address-family ipv4\n      network 51.51.51.51/32\n      network
+    192.168.0.51/32\n      redistribute connected\n!\nend\n"
   AVD_P11: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     P11\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.51.52.2/24\n!\ninterface
@@ -328,16 +317,16 @@ cvp_configlets:
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.52.82.1/24\n!\ninterface
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.52.75.1/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.52.2/24\n!\ninterface
-    Loopback0\n   description Region1_P11_lo0\n   no shutdown\n   ip address 192.168.0.52/32\n!\ninterface
-    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
-    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
+    Loopback0\n   description Region1_P11_lo0\n   no shutdown\n   ip address 192.168.0.52/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 52.52.52.52\n   neighbor CORE peer
     group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
-    ISP-3 remote-as 65002\n   neighbor 192.14.52.1 remote-as 65000\n   neighbor 192.15.52.1
-    remote-as 65000\n   neighbor 192.16.52.1 remote-as 65000\n   neighbor 192.52.75.2
-    peer group ISP-3\n   neighbor 192.52.81.2 peer group CORE\n   neighbor 192.52.82.2
-    peer group CORE\n   !\n   address-family ipv4\n      network 52.52.52.52/32\n
-    \     network 192.168.0.52/32\n      redistribute connected\n!\nend\n"
+    ISP-3 remote-as 65002\n   neighbor 192.15.52.1 remote-as 65102\n   neighbor 192.15.52.1
+    allowas-in 6\n   neighbor 192.16.52.1 remote-as 65103\n   neighbor 192.16.52.1
+    allowas-in 6\n   neighbor 192.52.75.2 peer group ISP-3\n   neighbor 192.52.75.2
+    allowas-in 6\n   neighbor 192.52.81.2 peer group CORE\n   neighbor 192.52.81.2
+    allowas-in 6\n   neighbor 192.52.82.2 peer group CORE\n   neighbor 192.52.82.2
+    allowas-in 6\n   !\n   address-family ipv4\n      network 52.52.52.52/32\n      network
+    192.168.0.52/32\n      redistribute connected\n!\nend\n"
   AVD_P2: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P2\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
@@ -375,35 +364,35 @@ cvp_configlets:
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.53.84.1/24\n!\ninterface
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.53.75.1/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.53.2/24\n!\ninterface
-    Loopback0\n   description Region2_P20_lo0\n   no shutdown\n   ip address 192.168.0.53/32\n!\ninterface
-    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
-    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
+    Loopback0\n   description Region2_P20_lo0\n   no shutdown\n   ip address 192.168.0.53/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.53\n   neighbor CORE peer
     group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
-    ISP-3 remote-as 65002\n   neighbor 192.24.53.1 remote-as 65000\n   neighbor 192.25.53.1
-    remote-as 65000\n   neighbor 192.26.53.1 remote-as 65000\n   neighbor 192.53.75.2
-    peer group ISP-3\n   neighbor 192.53.83.2 peer group CORE\n   neighbor 192.53.84.2
-    peer group CORE\n   !\n   address-family ipv4\n      network 192.168.0.53/32\n
-    \     redistribute connected\n!\nend\n"
+    ISP-3 remote-as 65002\n   neighbor 192.25.53.1 remote-as 65202\n   neighbor 192.25.53.1
+    allowas-in 6\n   neighbor 192.26.53.1 remote-as 65203\n   neighbor 192.26.53.1
+    allowas-in 6\n   neighbor 192.53.75.2 peer group ISP-3\n   neighbor 192.53.75.2
+    allowas-in 6\n   neighbor 192.53.83.2 peer group CORE\n   neighbor 192.53.83.2
+    allowas-in 6\n   neighbor 192.53.84.2 peer group CORE\n   neighbor 192.53.84.2
+    allowas-in 6\n   !\n   address-family ipv4\n      network 192.168.0.53/32\n      redistribute
+    connected\n!\nend\n"
   AVD_P21: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     P21\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
-    Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.53.54.2/24\n!\ninterface
+    Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.53.54.2/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.54.2/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.25.54.2/24\n!\ninterface
     Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.54.83.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.54.84.1/24\n!\ninterface
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.54.75.1/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.54.2/24\n!\ninterface
-    Loopback0\n   description Region2_P21_lo0\n   no shutdown\n   ip address 192.168.0.54/32\n!\ninterface
-    Vxlan1\n   description VTEP_Interface\n   vxlan source-interface Dps1\n   vxlan
-    udp-port 4789\n   vxlan vrf default vni 101\n   vxlan vrf VRF_A vni 19\n!\nip
+    Loopback0\n   description Region2_P21_lo0\n   no shutdown\n   ip address 192.168.0.54/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.54\n   neighbor CORE peer
     group\n   neighbor CORE remote-as 65001\n   neighbor ISP-3 peer group\n   neighbor
-    ISP-3 remote-as 65002\n   neighbor 192.24.54.1 remote-as 65000\n   neighbor 192.25.54.1
-    remote-as 65000\n   neighbor 192.26.54.1 remote-as 65000\n   neighbor 192.54.75.2
-    peer group ISP-3\n   neighbor 192.54.83.2 peer group CORE\n   neighbor 192.54.84.2
-    peer group CORE\n   !\n   address-family ipv4\n      network 192.168.0.54/32\n
-    \     redistribute connected\n!\nend\n"
+    ISP-3 remote-as 65002\n   neighbor 192.25.54.1 remote-as 65202\n   neighbor 192.25.54.1
+    allowas-in 6\n   neighbor 192.26.54.1 remote-as 65203\n   neighbor 192.26.54.1
+    allowas-in 6\n   neighbor 192.54.75.2 peer group ISP-3\n   neighbor 192.54.75.2
+    allowas-in 6\n   neighbor 192.54.83.2 peer group CORE\n   neighbor 192.54.83.2
+    allowas-in 6\n   neighbor 192.54.84.2 peer group CORE\n   neighbor 192.54.84.2
+    allowas-in 6\n   !\n   address-family ipv4\n      network 192.168.0.54/32\n      redistribute
+    connected\n!\nend\n"
   AVD_P3: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P3\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
@@ -744,14 +733,15 @@ cvp_configlets:
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.15.2/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.15.2/24\n!\ninterface
     Ethernet8\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.13.15.2/24\n!\ninterface
-    Ethernet9\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.15.2/24\n!\ninterface
+    Ethernet9\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.15.2/24\n!\ninterface
     Loopback0\n   description R2-PE2_lo0\n   no shutdown\n   ip address 192.168.0.15/32\n!\nip
-    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.15\n   neighbor 192.10.15.1
+    routing\n!\nrouter bgp 65102\n   router-id 192.168.0.15\n   neighbor 192.10.15.1
     remote-as 65000\n   neighbor 192.11.15.1 remote-as 65000\n   neighbor 192.12.15.1
-    remote-as 65000\n   neighbor 192.13.15.1 remote-as 65000\n   neighbor 192.15.51.2
-    remote-as 65000\n   neighbor 192.15.52.2 remote-as 65000\n   neighbor 192.15.71.2
-    remote-as 65000\n   neighbor 192.15.72.2 remote-as 65000\n   !\n   address-family
-    ipv4\n      network 192.168.0.15/32\n      redistribute connected\n!\nend\n"
+    remote-as 65000\n   neighbor 192.13.15.1 remote-as 65000\n   neighbor 192.14.15.1
+    remote-as 65000\n   neighbor 192.15.51.2 remote-as 65000\n   neighbor 192.15.52.2
+    remote-as 65000\n   neighbor 192.15.71.2 remote-as 65000\n   neighbor 192.15.72.2
+    remote-as 65000\n   !\n   address-family ipv4\n      network 192.168.0.15/32\n
+    \     redistribute connected\n!\nend\n"
   AVD_R2-PE2: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     R2-PE2\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.25.53.1/24\n!\ninterface
@@ -762,14 +752,15 @@ cvp_configlets:
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.25.2/24\n!\ninterface
     Ethernet7\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.25.2/24\n!\ninterface
     Ethernet8\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.23.25.2/24\n!\ninterface
-    Ethernet9\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.25.2/24\n!\ninterface
+    Ethernet9\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.25.2/24\n!\ninterface
     Loopback0\n   description R2-PE2_lo0\n   no shutdown\n   ip address 192.168.0.25/32\n!\nip
-    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.25\n   neighbor 192.20.25.1
+    routing\n!\nrouter bgp 65202\n   router-id 192.168.0.25\n   neighbor 192.20.25.1
     remote-as 65000\n   neighbor 192.21.25.1 remote-as 65000\n   neighbor 192.22.25.1
-    remote-as 65000\n   neighbor 192.23.25.1 remote-as 65000\n   neighbor 192.25.53.2
-    remote-as 65000\n   neighbor 192.25.54.2 remote-as 65000\n   neighbor 192.25.76.2
-    remote-as 65000\n   neighbor 192.25.77.2 remote-as 65000\n   !\n   address-family
-    ipv4\n      network 192.168.0.25/32\n      redistribute connected\n!\nend\n"
+    remote-as 65000\n   neighbor 192.23.25.1 remote-as 65000\n   neighbor 192.24.25.1
+    remote-as 65000\n   neighbor 192.25.53.2 remote-as 65000\n   neighbor 192.25.54.2
+    remote-as 65000\n   neighbor 192.25.76.2 remote-as 65000\n   neighbor 192.25.77.2
+    remote-as 65000\n   !\n   address-family ipv4\n      network 192.168.0.25/32\n
+    \     redistribute connected\n!\nend\n"
   AVD_RR1: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     RR1\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.71.72.1/24\n!\ninterface
@@ -777,10 +768,11 @@ cvp_configlets:
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.16.71.2/24\n!\ninterface
     Dps1\n   no shutdown\n   ip address 71.71.71.71/32\n!\ninterface Loopback0\n   description
     RR1_lo0\n   no shutdown\n   ip address 192.168.0.71/32\n!\nip routing\n!\nrouter
-    bgp 65000\n   router-id 192.168.0.71\n   neighbor 192.15.71.1 remote-as 65000\n
-    \  neighbor 192.16.71.1 remote-as 65000\n   neighbor 192.71.72.2 remote-as 65000\n
-    \  !\n   address-family ipv4\n      network 192.168.0.71/32\n      redistribute
-    connected\n!\nend\n"
+    bgp 65000\n   router-id 192.168.0.71\n   neighbor 192.15.71.1 remote-as 65102\n
+    \  neighbor 192.15.71.1 allowas-in 6\n   neighbor 192.16.71.1 remote-as 65103\n
+    \  neighbor 192.16.71.1 allowas-in 6\n   neighbor 192.71.72.2 remote-as 65000\n
+    \  neighbor 192.71.72.2 allowas-in 6\n   !\n   address-family ipv4\n      network
+    192.168.0.71/32\n      redistribute connected\n!\nend\n"
   AVD_RR2: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     RR2\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.71.72.2/24\n!\ninterface
@@ -788,10 +780,11 @@ cvp_configlets:
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.16.72.2/24\n!\ninterface
     Dps1\n   no shutdown\n   ip address 72.72.72.72/32\n!\ninterface Loopback0\n   description
     RR2_lo0\n   no shutdown\n   ip address 192.168.0.72/32\n!\nip routing\n!\nrouter
-    bgp 65000\n   router-id 192.168.0.72\n   neighbor 192.15.72.1 remote-as 65000\n
-    \  neighbor 192.16.72.1 remote-as 65000\n   neighbor 192.71.72.1 remote-as 65000\n
-    \  !\n   address-family ipv4\n      network 192.168.0.72/32\n      redistribute
-    connected\n!\nend\n"
+    bgp 65000\n   router-id 192.168.0.72\n   neighbor 192.15.72.1 remote-as 65102\n
+    \  neighbor 192.15.72.1 allowas-in 6\n   neighbor 192.16.72.1 remote-as 65103\n
+    \  neighbor 192.16.72.1 allowas-in 6\n   neighbor 192.71.72.1 remote-as 65000\n
+    \  neighbor 192.71.72.1 allowas-in 6\n   !\n   address-family ipv4\n      network
+    192.168.0.72/32\n      redistribute connected\n!\nend\n"
   AVD_RR3: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     RR3\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.76.77.1/24\n!\ninterface
@@ -799,9 +792,10 @@ cvp_configlets:
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.76.2/24\n!\ninterface
     Loopback0\n   description RR3_lo0\n   no shutdown\n   ip address 192.168.0.76/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.76\n   neighbor 192.25.76.1
-    remote-as 65000\n   neighbor 192.26.76.1 remote-as 65000\n   neighbor 192.76.77.2
-    remote-as 65000\n   !\n   address-family ipv4\n      network 192.168.0.76/32\n
-    \     redistribute connected\n!\nend\n"
+    remote-as 65202\n   neighbor 192.25.76.1 allowas-in 6\n   neighbor 192.26.76.1
+    remote-as 65203\n   neighbor 192.26.76.1 allowas-in 6\n   neighbor 192.76.77.2
+    remote-as 65000\n   neighbor 192.76.77.2 allowas-in 6\n   !\n   address-family
+    ipv4\n      network 192.168.0.76/32\n      redistribute connected\n!\nend\n"
   AVD_RR4: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     RR4\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.76.77.2/24\n!\ninterface
@@ -809,9 +803,10 @@ cvp_configlets:
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.77.2/24\n!\ninterface
     Loopback0\n   description RR4_lo0\n   no shutdown\n   ip address 192.168.0.77/32\n!\nip
     routing\n!\nrouter bgp 65000\n   router-id 192.168.0.77\n   neighbor 192.25.77.1
-    remote-as 65000\n   neighbor 192.26.77.1 remote-as 65000\n   neighbor 192.76.77.1
-    remote-as 65000\n   !\n   address-family ipv4\n      network 192.168.0.77/32\n
-    \     redistribute connected\n!\nend\n"
+    remote-as 65202\n   neighbor 192.25.77.1 allowas-in 6\n   neighbor 192.26.77.1
+    remote-as 65203\n   neighbor 192.26.77.1 allowas-in 6\n   neighbor 192.76.77.1
+    remote-as 65000\n   neighbor 192.76.77.1 allowas-in 6\n   !\n   address-family
+    ipv4\n      network 192.168.0.77/32\n      redistribute connected\n!\nend\n"
   AVD_RR5: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname RR5\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno

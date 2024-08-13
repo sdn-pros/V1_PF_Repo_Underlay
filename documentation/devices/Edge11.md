@@ -149,9 +149,9 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.11.15.2 | 65102 | default | - | - | - | - | - | - | - | - | - |
-| 192.11.16.2 | 65103 | default | - | - | - | - | - | - | - | - | - |
-| 192.11.31.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.11.15.2 | 65102 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.11.16.2 | 65103 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.11.31.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -160,8 +160,11 @@ ASN Notation: asplain
 router bgp 65000
    router-id 192.168.0.11
    neighbor 192.11.15.2 remote-as 65102
+   neighbor 192.11.15.2 allowas-in 6
    neighbor 192.11.16.2 remote-as 65103
+   neighbor 192.11.16.2 allowas-in 6
    neighbor 192.11.31.2 remote-as 65000
+   neighbor 192.11.31.2 allowas-in 6
    redistribute connected
    !
    address-family ipv4
