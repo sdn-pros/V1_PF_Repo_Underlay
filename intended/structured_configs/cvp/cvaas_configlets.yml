@@ -177,12 +177,16 @@ cvp_configlets:
     Ethernet9\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.14.16.2/24\n!\ninterface
     Loopback0\n   description ISP_lo0\n   no shutdown\n   ip address 192.168.0.16/32\n!\nip
     routing\n!\nrouter bgp 65103\n   router-id 192.168.0.16\n   neighbor 192.10.16.1
-    remote-as 65000\n   neighbor 192.11.16.1 remote-as 65000\n   neighbor 192.12.16.1
-    remote-as 65000\n   neighbor 192.13.16.1 remote-as 65000\n   neighbor 192.14.16.1
-    remote-as 65000\n   neighbor 192.16.51.2 remote-as 65000\n   neighbor 192.16.52.2
-    remote-as 65000\n   neighbor 192.16.71.2 remote-as 65000\n   neighbor 192.16.72.2
-    remote-as 65000\n   redistribute connected\n   !\n   address-family ipv4\n      network
-    192.168.0.16/32\n!\nend\n"
+    remote-as 65000\n   neighbor 192.10.16.1 allowas-in 6\n   neighbor 192.11.16.1
+    remote-as 65000\n   neighbor 192.11.16.1 allowas-in 6\n   neighbor 192.12.16.1
+    remote-as 65000\n   neighbor 192.12.16.1 allowas-in 6\n   neighbor 192.13.16.1
+    remote-as 65000\n   neighbor 192.13.16.1 allowas-in 6\n   neighbor 192.14.16.1
+    remote-as 65000\n   neighbor 192.14.16.1 allowas-in 6\n   neighbor 192.16.51.2
+    remote-as 65000\n   neighbor 192.16.51.2 allowas-in 6\n   neighbor 192.16.52.2
+    remote-as 65000=\n   neighbor 192.16.52.2 allowas-in 6\n   neighbor 192.16.71.2
+    remote-as 65000\n   neighbor 192.16.71.2 allowas-in 6\n   neighbor 192.16.72.2
+    remote-as 65000\n   neighbor 192.16.72.2 allowas-in 6\n   redistribute connected\n
+    \  !\n   address-family ipv4\n      network 192.168.0.16/32\n!\nend\n"
   AVD_ISP-2: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     ISP-2\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.53.1/24\n!\ninterface
@@ -196,12 +200,16 @@ cvp_configlets:
     Ethernet9\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.24.26.2/24\n!\ninterface
     Loopback0\n   description ISP_lo0\n   no shutdown\n   ip address 192.168.0.26/32\n!\nip
     routing\n!\nrouter bgp 65203\n   router-id 192.168.0.26\n   neighbor 192.20.26.1
-    remote-as 65000\n   neighbor 192.21.26.1 remote-as 65000\n   neighbor 192.22.26.1
-    remote-as 65000\n   neighbor 192.23.26.1 remote-as 65000\n   neighbor 192.24.26.1
-    remote-as 65000\n   neighbor 192.26.53.2 remote-as 65000\n   neighbor 192.26.54.2
-    remote-as 65000\n   neighbor 192.26.76.2 remote-as 65000\n   neighbor 192.26.77.2
-    remote-as 65000\n   !\n   address-family ipv4\n      network 192.168.0.26/32\n
-    \     redistribute connected\n!\nend\n"
+    remote-as 65000\n   neighbor 192.20.26.1 allowas-in 6\n   neighbor 192.21.26.1
+    remote-as 65000\n   neighbor 192.21.26.1 allowas-in 6\n   neighbor 192.22.26.1
+    remote-as 65000\n   neighbor 192.22.26.1 allowas-in 6\n   neighbor 192.23.26.1
+    remote-as 65000\n   neighbor 192.23.26.1 allowas-in 6\n   neighbor 192.24.26.1
+    remote-as 65000\n   neighbor 192.24.26.1 allowas-in 6\n   neighbor 192.26.53.2
+    remote-as 65000\n   neighbor 192.26.53.2 allowas-in 6\n   neighbor 192.26.54.2
+    remote-as 65000\n   neighbor 192.26.54.2 allowas-in 6\n   neighbor 192.26.76.2
+    remote-as 65000\n   neighbor 192.26.76.2 allowas-in 6\n   neighbor 192.26.77.2
+    remote-as 65000\n   neighbor 192.26.77.2 allowas-in 6\n   !\n   address-family
+    ipv4\n      network 192.168.0.26/32\n      redistribute connected\n!\nend\n"
   AVD_ISP-3: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     ISP-3\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.51.75.2/24\n!\ninterface
@@ -215,8 +223,10 @@ cvp_configlets:
     REGION1 remote-as 65000\n   neighbor REGION2 peer group\n   neighbor REGION2 remote-as
     65000\n   !\n   address-family ipv4\n      network 192.168.0.75/32\n      redistribute
     connected\n   !\n   vrf default\n      neighbor 192.51.75.1 peer group REGION1\n
-    \     neighbor 192.52.75.1 peer group REGION1\n      neighbor 192.53.75.1 peer
-    group REGION2\n      neighbor 192.54.75.1 peer group REGION2\n!\nend\n"
+    \     neighbor 192.51.75.1 allowas-in 6\n      neighbor 192.52.75.1 peer group
+    REGION1\n      neighbor 192.52.75.1 allowas-in 6\n      neighbor 192.53.75.1 peer
+    group REGION2\n      neighbor 192.53.75.1 allowas-in 6\n      neighbor 192.54.75.1
+    peer group REGION2\n      neighbor 192.54.75.1 allowas-in 6\n!\nend\n"
   AVD_Leaf11: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Leaf11\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n

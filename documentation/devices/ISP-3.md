@@ -157,10 +157,10 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.51.75.1 | Inherited from peer group REGION1 | default | - | - | - | - | - | - | - | - | - |
-| 192.52.75.1 | Inherited from peer group REGION1 | default | - | - | - | - | - | - | - | - | - |
-| 192.53.75.1 | Inherited from peer group REGION2 | default | - | - | - | - | - | - | - | - | - |
-| 192.54.75.1 | Inherited from peer group REGION2 | default | - | - | - | - | - | - | - | - | - |
+| 192.51.75.1 | Inherited from peer group REGION1 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.52.75.1 | Inherited from peer group REGION1 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.53.75.1 | Inherited from peer group REGION2 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.54.75.1 | Inherited from peer group REGION2 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 
 #### Router BGP VRFs
 
@@ -185,7 +185,11 @@ router bgp 65002
    !
    vrf default
       neighbor 192.51.75.1 peer group REGION1
+      neighbor 192.51.75.1 allowas-in 6
       neighbor 192.52.75.1 peer group REGION1
+      neighbor 192.52.75.1 allowas-in 6
       neighbor 192.53.75.1 peer group REGION2
+      neighbor 192.53.75.1 allowas-in 6
       neighbor 192.54.75.1 peer group REGION2
+      neighbor 192.54.75.1 allowas-in 6
 ```
