@@ -151,7 +151,13 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 192.12.15.2 | 65102 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.12.16.2 | 65103 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
-| 192.12.32.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.12.32.2 | 65000 | VRF_A | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+
+#### Router BGP VRFs
+
+| VRF | Route-Distinguisher | Redistribute |
+| --- | ------------------- | ------------ |
+| VRF_A | - | connected |
 
 #### Router BGP Device Configuration
 
@@ -163,15 +169,18 @@ router bgp 65000
    neighbor 192.12.15.2 allowas-in 6
    neighbor 192.12.16.2 remote-as 65103
    neighbor 192.12.16.2 allowas-in 6
-   neighbor 192.12.32.2 remote-as 65000
-   neighbor 192.12.32.2 allowas-in 6
    redistribute connected
    !
    address-family ipv4
       neighbor 192.12.15.2 activate
       neighbor 192.12.16.2 activate
-      neighbor 192.12.32.2 activate
       network 192.168.0.12/32
+   !
+   vrf VRF_A
+      neighbor 192.12.32.2 remote-as 65000
+      neighbor 192.12.32.2 allowas-in 6
+      network 192.168.0.12/32
+      redistribute connected
 ```
 
 ## VRF Instances

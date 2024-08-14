@@ -140,4 +140,5 @@ router bgp 65000
    address-family ipv4
       neighbor 192.22.34.1 activate
       network 192.168.0.34/32
+      redistribute connected
 ```
