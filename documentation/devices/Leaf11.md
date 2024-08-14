@@ -148,5 +148,7 @@ router bgp 65000
    neighbor 192.11.31.1 allowas-in 6
    !
    address-family ipv4
+      neighbor 192.10.31.1 activate
+      neighbor 192.11.31.1 activate
       network 192.168.0.31/32
 ```

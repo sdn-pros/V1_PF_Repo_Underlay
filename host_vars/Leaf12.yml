@@ -37,5 +37,8 @@ router_bgp:
         # Number of local ASNs allowed in a BGP update.
         times: 6
   address_family_ipv4:
+    neighbors:
+        - ip_address: 192.12.32.1
+          activate: true
     networks: 
       - prefix: 192.168.0.32/32

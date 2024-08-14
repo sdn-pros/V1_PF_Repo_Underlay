@@ -42,7 +42,7 @@ spanning-tree mode none
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | - | routed | - | 172.16.12.254/24 | VRF_A | 1500 | False | - | - |
+| Ethernet1 | - | routed | - | 172.16.12.254/24 | default | 1500 | False | - | - |
 | Ethernet2 | - | routed | - | 192.12.32.2/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.11.32.2/24 | default | 1500 | False | - | - |
 
@@ -54,7 +54,6 @@ interface Ethernet1
    no shutdown
    mtu 1500
    no switchport
-   vrf VRF_A
    ip address 172.16.12.254/24
 !
 interface Ethernet2
@@ -139,5 +138,6 @@ router bgp 65000
    neighbor 192.12.32.1 allowas-in 6
    !
    address-family ipv4
+      neighbor 192.12.32.1 activate
       network 192.168.0.32/32
 ```
