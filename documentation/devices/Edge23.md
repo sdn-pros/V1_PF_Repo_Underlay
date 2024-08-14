@@ -20,13 +20,13 @@
 
 ### Spanning Tree Summary
 
-STP mode: **mstp**
+STP mode: **none**
 
 ### Spanning Tree Device Configuration
 
 ```eos
 !
-spanning-tree mode mstp
+spanning-tree mode none
 ```
 
 ## Interfaces
@@ -46,7 +46,7 @@ spanning-tree mode mstp
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | - | routed | - | 172.16.24.254/24 | VRF_A | 1500 | False | - | - |
+| Ethernet1 | - | routed | - | 172.16.23.254/24 | VRF_A | 1500 | False | - | - |
 | Ethernet2 | - | routed | - | 192.23.25.1/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.23.26.1/24 | default | 1500 | False | - | - |
 
@@ -59,7 +59,7 @@ interface Ethernet1
    mtu 1500
    no switchport
    vrf VRF_A
-   ip address 172.16.24.254/24
+   ip address 172.16.23.254/24
 !
 interface Ethernet2
    no shutdown

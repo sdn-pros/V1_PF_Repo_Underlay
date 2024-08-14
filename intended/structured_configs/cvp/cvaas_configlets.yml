@@ -1,48 +1,52 @@
 cvp_configlets:
   AVD_Edge10: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Edge10\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
-    Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet2\n
-    \  shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet3\n   no shutdown\n
-    \  mtu 1500\n   no switchport\n   ip address 192.10.31.1/24\n!\ninterface Ethernet4\n
-    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.10.15.1/24\n!\ninterface
+    Edge10\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
+    instance VRF_A\n!\ninterface Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface
+    Ethernet2\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet3\n
+    \  no shutdown\n   mtu 1500\n   no switchport\n   vrf VRF_A\n   ip address 192.10.31.1/24\n!\ninterface
+    Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.10.15.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.10.16.1/24\n!\ninterface
     Loopback10\n   description Edge-10_l10\n   no shutdown\n   ip address 192.168.0.10/32\n!\nip
-    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.10\n   neighbor 192.10.15.2
-    remote-as 65102\n   neighbor 192.10.15.2 allowas-in 6\n   neighbor 192.10.16.2
-    remote-as 65103\n   neighbor 192.10.16.2 allowas-in 6\n   neighbor 192.10.31.2
-    remote-as 65000\n   neighbor 192.10.31.2 allowas-in 6\n   redistribute connected\n
-    \  !\n   address-family ipv4\n      neighbor 192.10.15.2 activate\n      neighbor
-    192.10.16.2 activate\n      neighbor 192.10.31.2 activate\n      network 192.168.0.10/32\n!\nend\n"
+    routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.10\n
+    \  neighbor 192.10.15.2 remote-as 65102\n   neighbor 192.10.15.2 allowas-in 6\n
+    \  neighbor 192.10.16.2 remote-as 65103\n   neighbor 192.10.16.2 allowas-in 6\n
+    \  neighbor 192.10.31.2 remote-as 65000\n   neighbor 192.10.31.2 allowas-in 6\n
+    \  redistribute connected\n   !\n   address-family ipv4\n      neighbor 192.10.15.2
+    activate\n      neighbor 192.10.16.2 activate\n      neighbor 192.10.31.2 activate\n
+    \     network 192.168.0.10/32\n!\nend\n"
   AVD_Edge11: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Edge11\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
-    Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet2\n
-    \  shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet3\n   no shutdown\n
-    \  mtu 1500\n   no switchport\n   ip address 192.11.31.1/24\n!\ninterface Ethernet4\n
-    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.15.1/24\n!\ninterface
+    Edge11\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
+    instance VRF_A\n!\ninterface Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface
+    Ethernet2\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet3\n
+    \  no shutdown\n   mtu 1500\n   no switchport\n   vrf VRF_A\n   ip address 192.11.31.1/24\n!\ninterface
+    Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.15.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.16.1/24\n!\ninterface
     Ethernet6\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.32.1/24\n!\ninterface
     Loopback10\n   description Edge-11_lo10\n   no shutdown\n   ip address 192.168.0.11/32\n!\nip
-    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.11\n   neighbor 192.11.15.2
-    remote-as 65102\n   neighbor 192.11.15.2 allowas-in 6\n   neighbor 192.11.16.2
-    remote-as 65103\n   neighbor 192.11.16.2 allowas-in 6\n   neighbor 192.11.31.2
-    remote-as 65000\n   neighbor 192.11.31.2 allowas-in 6\n   redistribute connected\n
-    \  !\n   address-family ipv4\n      neighbor 192.11.15.2 activate\n      neighbor
-    192.11.16.2 activate\n      neighbor 192.11.31.2 activate\n      network 192.168.0.11/32\n!\nend\n"
+    routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.11\n
+    \  neighbor 192.11.15.2 remote-as 65102\n   neighbor 192.11.15.2 allowas-in 6\n
+    \  neighbor 192.11.16.2 remote-as 65103\n   neighbor 192.11.16.2 allowas-in 6\n
+    \  neighbor 192.11.31.2 remote-as 65000\n   neighbor 192.11.31.2 allowas-in 6\n
+    \  redistribute connected\n   !\n   address-family ipv4\n      neighbor 192.11.15.2
+    activate\n      neighbor 192.11.16.2 activate\n      neighbor 192.11.31.2 activate\n
+    \     network 192.168.0.11/32\n!\nend\n"
   AVD_Edge12: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Edge12\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
-    Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.32.1/24\n!\ninterface
-    Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.15.1/24\n!\ninterface
-    Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.16.1/24\n!\ninterface
+    Edge12\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
+    instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
+    \  vrf VRF_A\n   ip address 192.12.32.1/24\n!\ninterface Ethernet2\n   no shutdown\n
+    \  mtu 1500\n   no switchport\n   ip address 192.12.15.1/24\n!\ninterface Ethernet3\n
+    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.16.1/24\n!\ninterface
     Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.31.1/24\n!\ninterface
     Loopback10\n   description Edge-12_lo10\n   no shutdown\n   ip address 192.168.0.12/32\n!\nip
-    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.12\n   neighbor 192.12.15.2
-    remote-as 65102\n   neighbor 192.12.15.2 allowas-in 6\n   neighbor 192.12.16.2
-    remote-as 65103\n   neighbor 192.12.16.2 allowas-in 6\n   neighbor 192.12.32.2
-    remote-as 65000\n   neighbor 192.12.32.2 allowas-in 6\n   redistribute connected\n
-    \  !\n   address-family ipv4\n      neighbor 192.12.15.2 activate\n      neighbor
-    192.12.16.2 activate\n      neighbor 192.12.32.2 activate\n      network 192.168.0.12/32\n!\nend\n"
+    routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.12\n
+    \  neighbor 192.12.15.2 remote-as 65102\n   neighbor 192.12.15.2 allowas-in 6\n
+    \  neighbor 192.12.16.2 remote-as 65103\n   neighbor 192.12.16.2 allowas-in 6\n
+    \  neighbor 192.12.32.2 remote-as 65000\n   neighbor 192.12.32.2 allowas-in 6\n
+    \  redistribute connected\n   !\n   address-family ipv4\n      neighbor 192.12.15.2
+    activate\n      neighbor 192.12.16.2 activate\n      neighbor 192.12.32.2 activate\n
+    \     network 192.168.0.12/32\n!\nend\n"
   AVD_Edge13: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Edge13\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
+    Edge13\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
     \  vrf VRF_A\n   ip address 172.16.13.254/24\n!\ninterface Ethernet2\n   no shutdown\n
     \  mtu 1500\n   no switchport\n   ip address 192.13.15.1/24\n!\ninterface Ethernet3\n
@@ -55,7 +59,7 @@ cvp_configlets:
     activate\n      neighbor 192.13.16.2 activate\n      network 172.16.13.0/24\n
     \     network 192.168.0.13/32\n!\nend\n"
   AVD_Edge14: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Edge14\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
+    Edge14\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
     \  vrf VRF_A\n   ip address 172.16.14.254/24\n!\ninterface Ethernet2\n   no shutdown\n
     \  mtu 1500\n   no switchport\n   ip address 192.14.15.1/24\n!\ninterface Ethernet3\n
@@ -70,51 +74,55 @@ cvp_configlets:
     activate\n      neighbor 192.13.16.2 activate\n      network 172.16.14.0/24\n
     \     network 192.168.0.14/32\n!\nend\n"
   AVD_Edge20: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Edge20\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
-    Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet2\n
-    \  shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet3\n   no shutdown\n
-    \  mtu 1500\n   no switchport\n   ip address 192.20.33.1/24\n!\ninterface Ethernet4\n
-    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.20.25.1/24\n!\ninterface
+    Edge20\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
+    instance VRF_A\n!\ninterface Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface
+    Ethernet2\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet3\n
+    \  no shutdown\n   no switchport\n   vrf VRF_A\n   ip address 192.20.33.1/24\n!\ninterface
+    Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.20.25.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.20.26.1/24\n!\ninterface
     Loopback10\n   description Edge-20_lo10\n   no shutdown\n   ip address 192.168.0.20/32\n!\nip
-    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.20\n   neighbor 192.20.25.2
-    remote-as 65202\n   neighbor 192.20.25.2 allowas-in 6\n   neighbor 192.20.26.2
-    remote-as 65203\n   neighbor 192.20.26.2 allowas-in 6\n   neighbor 192.20.33.2
-    remote-as 65000\n   neighbor 192.20.33.2 allowas-in 6\n   redistribute connected\n
-    \  !\n   address-family ipv4\n      neighbor 192.20.25.2 activate\n      neighbor
-    192.20.26.2 activate\n      neighbor 192.20.33.2 activate\n      network 192.168.0.20/32\n!\nend\n"
+    routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.20\n
+    \  neighbor 192.20.25.2 remote-as 65202\n   neighbor 192.20.25.2 allowas-in 6\n
+    \  neighbor 192.20.26.2 remote-as 65203\n   neighbor 192.20.26.2 allowas-in 6\n
+    \  neighbor 192.20.33.2 remote-as 65000\n   neighbor 192.20.33.2 allowas-in 6\n
+    \  redistribute connected\n   !\n   address-family ipv4\n      neighbor 192.20.25.2
+    activate\n      neighbor 192.20.26.2 activate\n      neighbor 192.20.33.2 activate\n
+    \     network 192.168.0.20/32\n!\nend\n"
   AVD_Edge21: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Edge21\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
-    Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet2\n
-    \  shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet3\n   no shutdown\n
-    \  mtu 1500\n   no switchport\n   ip address 192.21.33.1/24\n!\ninterface Ethernet4\n
-    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.25.1/24\n!\ninterface
+    Edge21\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
+    instance VRF_A\n!\ninterface Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface
+    Ethernet2\n   shutdown\n   mtu 1500\n   no switchport\n!\ninterface Ethernet3\n
+    \  no shutdown\n   mtu 1500\n   no switchport\n   vrf VRF_A\n   ip address 192.21.33.1/24\n!\ninterface
+    Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.25.1/24\n!\ninterface
     Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.26.1/24\n!\ninterface
     Ethernet6\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.34.1/24\n!\ninterface
     Loopback10\n   description Edge-21_lo10\n   no shutdown\n   ip address 192.168.0.21/32\n!\nip
-    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.21\n   neighbor 192.21.25.2
-    remote-as 65202\n   neighbor 192.21.25.2 allowas-in 6\n   neighbor 192.21.26.2
-    remote-as 65203\n   neighbor 192.21.26.2 allowas-in 6\n   neighbor 192.21.33.2
-    remote-as 65000\n   neighbor 192.21.33.2 allowas-in 6\n   redistribute connected\n
-    \  !\n   address-family ipv4\n      neighbor 192.21.25.2 activate\n      neighbor
-    192.21.26.2 activate\n      neighbor 192.21.33.2 activate\n      network 192.168.0.21/32\n!\nend\n"
+    routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.21\n
+    \  neighbor 192.21.25.2 remote-as 65202\n   neighbor 192.21.25.2 allowas-in 6\n
+    \  neighbor 192.21.26.2 remote-as 65203\n   neighbor 192.21.26.2 allowas-in 6\n
+    \  neighbor 192.21.33.2 remote-as 65000\n   neighbor 192.21.33.2 allowas-in 6\n
+    \  redistribute connected\n   !\n   address-family ipv4\n      neighbor 192.21.25.2
+    activate\n      neighbor 192.21.26.2 activate\n      neighbor 192.21.33.2 activate\n
+    \     network 192.168.0.21/32\n!\nend\n"
   AVD_Edge22: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Edge22\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
-    Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.34.1/24\n!\ninterface
-    Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.25.1/24\n!\ninterface
-    Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.26.1/24\n!\ninterface
+    Edge22\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
+    instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
+    \  vrf VRF_A\n   ip address 192.22.34.1/24\n!\ninterface Ethernet2\n   no shutdown\n
+    \  mtu 1500\n   no switchport\n   ip address 192.22.25.1/24\n!\ninterface Ethernet3\n
+    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.26.1/24\n!\ninterface
     Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.33.1/24\n!\ninterface
     Loopback10\n   description Edge-22_lo10\n   no shutdown\n   ip address 192.168.0.22/32\n!\nip
-    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.22\n   neighbor 192.22.25.2
-    remote-as 65202\n   neighbor 192.22.25.2 allowas-in 6\n   neighbor 192.22.26.2
-    remote-as 65203\n   neighbor 192.22.26.2 allowas-in 6\n   neighbor 192.22.34.2
-    remote-as 65000\n   neighbor 192.22.34.2 allowas-in 6\n   redistribute connected\n
-    \  !\n   address-family ipv4\n      neighbor 192.22.25.2 activate\n      neighbor
-    192.22.26.2 activate\n      neighbor 192.22.34.2 activate\n      network 192.168.0.22/32\n!\nend\n"
+    routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.22\n
+    \  neighbor 192.22.25.2 remote-as 65202\n   neighbor 192.22.25.2 allowas-in 6\n
+    \  neighbor 192.22.26.2 remote-as 65203\n   neighbor 192.22.26.2 allowas-in 6\n
+    \  neighbor 192.22.34.2 remote-as 65000\n   neighbor 192.22.34.2 allowas-in 6\n
+    \  redistribute connected\n   !\n   address-family ipv4\n      neighbor 192.22.25.2
+    activate\n      neighbor 192.22.26.2 activate\n      neighbor 192.22.34.2 activate\n
+    \     network 192.168.0.22/32\n!\nend\n"
   AVD_Edge23: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Edge23\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
+    Edge23\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
-    \  vrf VRF_A\n   ip address 172.16.24.254/24\n!\ninterface Ethernet2\n   no shutdown\n
+    \  vrf VRF_A\n   ip address 172.16.23.254/24\n!\ninterface Ethernet2\n   no shutdown\n
     \  mtu 1500\n   no switchport\n   ip address 192.23.25.1/24\n!\ninterface Ethernet3\n
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.23.26.1/24\n!\ninterface
     Loopback10\n   description Edge-23_lo10\n   no shutdown\n   ip address 192.168.0.23/32\n!\nip
@@ -125,7 +133,7 @@ cvp_configlets:
     activate\n      neighbor 192.23.26.2 activate\n      network 172.16.23.0/24\n
     \     network 192.168.0.23/32\n!\nend\n"
   AVD_Edge24: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Edge24\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
+    Edge24\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
     \  vrf VRF_A\n   ip address 172.16.24.254/24\n!\ninterface Ethernet2\n   no shutdown\n
     \  mtu 1500\n   no switchport\n   ip address 192.24.25.1/24\n!\ninterface Ethernet3\n
@@ -140,39 +148,39 @@ cvp_configlets:
     activate\n      neighbor 192.24.26.2 activate\n      network 172.16.24.0/24\n
     \     network 192.168.0.24/32\n!\nend\n"
   AVD_H11: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    H11\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    H11\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.16.11.41/24\n!\nip
     routing\n!\nip route 0.0.0.0/0 172.16.11.254\n!\nend\n"
   AVD_H12: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    H12\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    H12\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.16.12.42/24\n!\nip
     routing\n!\nip route 0.0.0.0/0 172.16.12.254\n!\nend\n"
   AVD_H13: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    H13\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    H13\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.16.13.43/24\n!\nip
     routing\n!\nip route 0.0.0.0/0 172.16.13.254\n!\nend\n"
   AVD_H14: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    H14\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    H14\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.16.14.43/24\n!\nip
     routing\n!\nip route 0.0.0.0/0 172.16.14.254\n!\nend\n"
   AVD_H21: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    H21\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf instance
+    H21\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf instance
     VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
     \  ip address 172.16.21.21/24\n!\nip routing\n!\nip route 0.0.0.0/0 172.16.21.254\n!\nend\n"
   AVD_H22: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    H22\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    H22\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.16.22.22/24\n!\nip
     routing\n!\nip route 0.0.0.0/0 172.16.22.254\n!\nend\n"
   AVD_H23: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    H23\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    H23\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.16.23.23/24\n!\nip
     routing\n!\nip route 0.0.0.0/0 172.16.23.254\n!\nend\n"
   AVD_H24: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    H24\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    H24\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.16.24.24/24\n!\nip
     routing\n!\nip route 0.0.0.0/0 172.16.24.254\n!\nend\n"
   AVD_ISP-1: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    ISP-1\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    ISP-1\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.16.51.1/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.16.52.1/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.16.71.1/24\n!\ninterface
@@ -199,7 +207,7 @@ cvp_configlets:
     \     neighbor 192.16.52.2 activate\n      neighbor 192.16.71.2 activate\n      neighbor
     192.16.72.2 activate\n      network 192.168.0.16/32\n!\nend\n"
   AVD_ISP-2: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    ISP-2\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    ISP-2\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.53.1/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.54.1/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.76.1/24\n!\ninterface
@@ -226,7 +234,7 @@ cvp_configlets:
     activate\n      neighbor 192.26.76.2 activate\n      neighbor 192.26.77.2 activate\n
     \     network 192.168.0.26/32\n      redistribute connected\n!\nend\n"
   AVD_ISP-3: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    ISP-3\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    ISP-3\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.51.75.2/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.52.75.2/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.54.75.2/24\n!\ninterface
@@ -242,49 +250,46 @@ cvp_configlets:
     \  address-family ipv4\n      neighbor REGION1 activate\n      neighbor REGION2
     activate\n      network 192.168.0.75/32\n      redistribute connected\n!\nend\n"
   AVD_Leaf11: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Leaf11\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
-    instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
-    \  vrf VRF_A\n   ip address 172.16.11.254/24\n!\ninterface Ethernet2\n   no shutdown\n
-    \  mtu 1500\n   no switchport\n   ip address 192.10.31.2/24\n!\ninterface Ethernet3\n
-    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.31.2/24\n!\ninterface
+    Leaf11\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
+    Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.16.11.254/24\n!\ninterface
+    Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.10.31.2/24\n!\ninterface
+    Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.31.2/24\n!\ninterface
     Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.12.31.2/24\n!\ninterface
-    Loopback0\n   description Leaf11_lo0\n   no shutdown\n   ip address 192.168.0.31/32\n!\nip
-    routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.31\n
-    \  neighbor 192.10.31.1 remote-as 65000\n   neighbor 192.10.31.1 allowas-in 6\n
-    \  neighbor 192.11.31.1 remote-as 65000\n   neighbor 192.11.31.1 allowas-in 6\n
-    \  !\n   address-family ipv4\n      network 192.168.0.31/32\n!\nend\n"
+    Loopback10\n   description Leaf11_lo10\n   no shutdown\n   ip address 192.168.0.31/32\n!\nip
+    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.31\n   neighbor 192.10.31.1
+    remote-as 65000\n   neighbor 192.10.31.1 allowas-in 6\n   neighbor 192.11.31.1
+    remote-as 65000\n   neighbor 192.11.31.1 allowas-in 6\n   !\n   address-family
+    ipv4\n      network 192.168.0.31/32\n!\nend\n"
   AVD_Leaf12: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Leaf12\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
-    instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
-    \  vrf VRF_A\n   ip address 172.16.12.254/24\n!\ninterface Ethernet2\n   no shutdown\n
-    \  mtu 1500\n   no switchport\n   ip address 192.12.32.2/24\n!\ninterface Ethernet3\n
-    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.32.2/24\n!\ninterface
-    Loopback0\n   description Leaf12_lo0\n   no shutdown\n   ip address 192.168.0.32/32\n!\nip
-    routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.32\n
-    \  neighbor 192.12.32.1 remote-as 65000\n   neighbor 192.12.32.1 allowas-in 6\n
-    \  !\n   address-family ipv4\n      network 192.168.0.32/32\n!\nend\n"
+    Leaf12\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
+    Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   vrf VRF_A\n   ip
+    address 172.16.12.254/24\n!\ninterface Ethernet2\n   no shutdown\n   mtu 1500\n
+    \  no switchport\n   ip address 192.12.32.2/24\n!\ninterface Ethernet3\n   no
+    shutdown\n   mtu 1500\n   no switchport\n   ip address 192.11.32.2/24\n!\ninterface
+    Loopback10\n   description Leaf12_lo10\n   no shutdown\n   ip address 192.168.0.32/32\n!\nip
+    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.32\n   neighbor 192.12.32.1
+    remote-as 65000\n   neighbor 192.12.32.1 allowas-in 6\n   !\n   address-family
+    ipv4\n      network 192.168.0.32/32\n!\nend\n"
   AVD_Leaf21: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Leaf21\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
-    instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
-    \  vrf VRF_A\n   ip address 172.16.21.254/24\n!\ninterface Ethernet2\n   no shutdown\n
-    \  mtu 1500\n   no switchport\n   ip address 192.20.33.2/24\n!\ninterface Ethernet3\n
-    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.33.2/24\n!\ninterface
+    Leaf21\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
+    Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.16.21.254/24\n!\ninterface
+    Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.20.33.2/24\n!\ninterface
+    Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.33.2/24\n!\ninterface
     Ethernet4\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.33.2/24\n!\ninterface
-    Loopback0\n   description Leaf21_lo0\n   no shutdown\n   ip address 192.168.0.33/32\n!\nip
-    routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.33\n
-    \  neighbor 192.20.33.1 remote-as 65000\n   neighbor 192.20.33.1 allowas-in 6\n
-    \  neighbor 192.21.33.1 remote-as 65000\n   neighbor 192.21.33.1 allowas-in 6\n
-    \  !\n   address-family ipv4\n      network 192.168.0.33/32\n!\nend\n"
+    Loopback10\n   description Leaf21_lo10\n   no shutdown\n   ip address 192.168.0.33/32\n!\nip
+    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.33\n   neighbor 192.20.33.1
+    remote-as 65000\n   neighbor 192.20.33.1 allowas-in 6\n   neighbor 192.21.33.1
+    remote-as 65000\n   neighbor 192.21.33.1 allowas-in 6\n   !\n   address-family
+    ipv4\n      network 192.168.0.33/32\n!\nend\n"
   AVD_Leaf22: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    Leaf22\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\nvrf
-    instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
-    \  vrf VRF_A\n   ip address 172.16.22.254/24\n!\ninterface Ethernet2\n   no shutdown\n
-    \  mtu 1500\n   no switchport\n   ip address 192.22.34.2/24\n!\ninterface Ethernet3\n
-    \  shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.34.2/24\n!\ninterface
-    Loopback0\n   description Leaf22_lo0\n   no shutdown\n   ip address 192.168.0.34/32\n!\nip
-    routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.34\n
-    \  neighbor 192.22.34.1 remote-as 65000\n   neighbor 192.22.34.1 allowas-in 6\n
-    \  !\n   address-family ipv4\n      network 192.168.0.34/32\n!\nend\n"
+    Leaf22\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
+    Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.16.22.254/24\n!\ninterface
+    Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.22.34.2/24\n!\ninterface
+    Ethernet3\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.21.34.2/24\n!\ninterface
+    Loopback10\n   description Leaf22_lo10\n   no shutdown\n   ip address 192.168.0.34/32\n!\nip
+    routing\n!\nrouter bgp 65000\n   router-id 192.168.0.34\n   neighbor 192.22.34.1
+    remote-as 65000\n   neighbor 192.22.34.1 allowas-in 6\n   !\n   address-family
+    ipv4\n      network 192.168.0.34/32\n!\nend\n"
   AVD_P1: "!RANCID-CONTENT-TYPE: arista\n!\nvlan internal order ascending range 1006
     1199\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model
     multi-agent\n!\nhostname P1\ndns domain atd.lab\n!\nspanning-tree mode none\n!\nno
@@ -314,7 +319,7 @@ cvp_configlets:
     api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n      no
     shutdown\n!\nend\n"
   AVD_P10: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    P10\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    P10\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.51.52.1/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.15.51.2/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.16.51.2/24\n!\ninterface
@@ -333,7 +338,7 @@ cvp_configlets:
     \     neighbor CORE activate\n      neighbor ISP3 activate\n      neighbor 192.16.51.1
     activate\n      network 192.168.0.51/32\n      redistribute connected\n!\nend\n"
   AVD_P11: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    P11\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    P11\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.51.52.2/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.16.52.2/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.15.52.2/24\n!\ninterface
@@ -381,7 +386,7 @@ cvp_configlets:
     api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n      no
     shutdown\n!\nend\n"
   AVD_P20: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    P20\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    P20\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   shutdown\n   mtu 1500\n   no switchport\n   ip address 192.53.54.1/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.25.53.2/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.53.2/24\n!\ninterface
@@ -401,7 +406,7 @@ cvp_configlets:
     activate\n      neighbor 192.26.53.1 activate\n      network 192.168.0.53/32\n
     \     redistribute connected\n!\nend\n"
   AVD_P21: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    P21\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    P21\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.53.54.2/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.54.2/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.25.54.2/24\n!\ninterface
@@ -759,7 +764,7 @@ cvp_configlets:
     address 192.53.84.2/24\n!\ninterface Ethernet5\n  description REGION2\n  no switchport\n
     \ ip address 192.54.84.2/24\n!\nend\n"
   AVD_R1-PE1: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    R1-PE1\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    R1-PE1\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.15.51.1/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.15.52.1/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.15.71.1/24\n!\ninterface
@@ -786,7 +791,7 @@ cvp_configlets:
     activate\n      neighbor 192.15.71.2 activate\n      neighbor 192.15.72.2 activate\n
     \     network 192.168.0.15/32\n      redistribute connected\n!\nend\n"
   AVD_R2-PE2: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    R2-PE2\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    R2-PE2\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.25.53.1/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.25.54.1/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.25.76.1/24\n!\ninterface
@@ -813,7 +818,7 @@ cvp_configlets:
     activate\n      neighbor 192.25.76.2 activate\n      neighbor 192.25.77.2 activate\n
     \     network 192.168.0.25/32\n      redistribute connected\n!\nend\n"
   AVD_RR1: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    RR1\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    RR1\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.71.72.1/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.15.71.2/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.16.71.2/24\n!\ninterface
@@ -827,7 +832,7 @@ cvp_configlets:
     \     neighbor 192.71.72.2 activate\n      network 192.168.0.71/32\n      redistribute
     connected\n!\nend\n"
   AVD_RR2: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    RR2\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    RR2\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.71.72.2/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.15.72.2/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.16.72.2/24\n!\ninterface
@@ -841,7 +846,7 @@ cvp_configlets:
     \     neighbor 192.71.72.1 activate\n      network 192.168.0.72/32\n      redistribute
     connected\n!\nend\n"
   AVD_RR3: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    RR3\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    RR3\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.76.77.1/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.25.76.2/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.76.2/24\n!\ninterface
@@ -854,7 +859,7 @@ cvp_configlets:
     \     neighbor 192.76.77.2 activate\n      network 192.168.0.76/32\n      redistribute
     connected\n!\nend\n"
   AVD_RR4: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
-    RR4\n!\nspanning-tree mode mstp\n!\nno enable password\nno aaa root\n!\ninterface
+    RR4\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.76.77.2/24\n!\ninterface
     Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.25.77.2/24\n!\ninterface
     Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.77.2/24\n!\ninterface

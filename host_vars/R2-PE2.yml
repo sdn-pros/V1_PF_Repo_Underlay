@@ -1,7 +1,7 @@
 hostname: R2-PE2
 ip_routing: true
 spanning_tree:
-  mode: mstp
+  mode: none
 loopback_interfaces:
 - name: Loopback10
   description: R2-PE2_lo10

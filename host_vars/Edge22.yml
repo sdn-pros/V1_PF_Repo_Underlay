@@ -1,7 +1,10 @@
 hostname: Edge22
 ip_routing: true
 spanning_tree:
-  mode: mstp
+  mode: none
+vrfs:
+- name: VRF_A
+  ip_routing: true
 loopback_interfaces:
 - name: Loopback10
   description: Edge-22_lo10
@@ -13,6 +16,7 @@ ethernet_interfaces:
   type: routed
   shutdown: false
   mtu: 1500
+  vrf: VRF_A
   ip_address: 192.22.34.1/24
 - name: Ethernet2
   peer: R2-PE2

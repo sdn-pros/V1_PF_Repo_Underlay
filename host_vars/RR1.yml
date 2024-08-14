@@ -1,7 +1,7 @@
 hostname: RR1
 ip_routing: true
 spanning_tree:
-  mode: mstp
+  mode: none
 loopback_interfaces:
 - name: Loopback10
   description: RR1_lo10

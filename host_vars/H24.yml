@@ -1,7 +1,7 @@
 hostname: H24
 ip_routing: true
 spanning_tree:
-  mode: mstp
+  mode: none
 
 ethernet_interfaces:
 - name: Ethernet1
@@ -16,10 +16,3 @@ static_routes:
     gateway: 172.16.24.254
 
 
-
-
-#interface Ethernet1
-#   no switchport
-#   ip address 172.16.24.24/24
-#
-# ip route 0.0.0.0/0 172.16.24.254

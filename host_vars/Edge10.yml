@@ -1,7 +1,10 @@
 hostname: Edge10
 ip_routing: true
 spanning_tree:
-  mode: mstp
+  mode: none
+vrfs:
+- name: VRF_A
+  ip_routing: true
 loopback_interfaces:
 - name: Loopback10
   description: Edge-10_l10
@@ -23,6 +26,7 @@ ethernet_interfaces:
   type: routed
   shutdown: false
   mtu: 1500
+  vrf: VRF_A
   ip_address: 192.10.31.1/24
 - name: Ethernet4
   peer: R1-PE1

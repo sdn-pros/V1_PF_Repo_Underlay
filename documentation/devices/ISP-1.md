@@ -16,13 +16,13 @@
 
 ### Spanning Tree Summary
 
-STP mode: **mstp**
+STP mode: **none**
 
 ### Spanning Tree Device Configuration
 
 ```eos
 !
-spanning-tree mode mstp
+spanning-tree mode none
 ```
 
 ## Interfaces

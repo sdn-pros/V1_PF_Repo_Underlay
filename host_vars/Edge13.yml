@@ -1,7 +1,7 @@
 hostname: Edge13
 ip_routing: true
 spanning_tree:
-  mode: mstp
+  mode: none
 vrfs:
 - name: VRF_A
   ip_routing: true
@@ -16,8 +16,8 @@ ethernet_interfaces:
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 172.16.13.254/24
   vrf: VRF_A
+  ip_address: 172.16.13.254/24
 - name: Ethernet2
   peer: R1-PE1
   type: routed

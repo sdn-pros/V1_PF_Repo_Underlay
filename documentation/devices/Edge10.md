@@ -10,19 +10,23 @@
   - [Loopback Interfaces](#loopback-interfaces)
 - [Routing](#routing)
   - [IP Routing](#ip-routing)
+  - [IPv6 Routing](#ipv6-routing)
   - [Router BGP](#router-bgp)
+- [VRF Instances](#vrf-instances)
+  - [VRF Instances Summary](#vrf-instances-summary)
+  - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
 
 ## Spanning Tree
 
 ### Spanning Tree Summary
 
-STP mode: **mstp**
+STP mode: **none**
 
 ### Spanning Tree Device Configuration
 
 ```eos
 !
-spanning-tree mode mstp
+spanning-tree mode none
 ```
 
 ## Interfaces
@@ -42,7 +46,7 @@ spanning-tree mode mstp
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet3 | - | routed | - | 192.10.31.1/24 | default | 1500 | False | - | - |
+| Ethernet3 | - | routed | - | 192.10.31.1/24 | VRF_A | 1500 | False | - | - |
 | Ethernet4 | - | routed | - | 192.10.15.1/24 | default | 1500 | False | - | - |
 | Ethernet5 | - | routed | - | 192.10.16.1/24 | default | 1500 | False | - | - |
 
@@ -64,6 +68,7 @@ interface Ethernet3
    no shutdown
    mtu 1500
    no switchport
+   vrf VRF_A
    ip address 192.10.31.1/24
 !
 interface Ethernet4
@@ -114,13 +119,24 @@ interface Loopback10
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | True |
+| VRF_A | True |
 
 #### IP Routing Device Configuration
 
 ```eos
 !
 ip routing
+ip routing vrf VRF_A
 ```
+
+### IPv6 Routing
+
+#### IPv6 Routing Summary
+
+| VRF | Routing Enabled |
+| --- | --------------- |
+| default | False |
+| VRF_A | false |
 
 ### Router BGP
 
@@ -159,4 +175,19 @@ router bgp 65000
       neighbor 192.10.16.2 activate
       neighbor 192.10.31.2 activate
       network 192.168.0.10/32
+```
+
+## VRF Instances
+
+### VRF Instances Summary
+
+| VRF Name | IP Routing |
+| -------- | ---------- |
+| VRF_A | enabled |
+
+### VRF Instances Device Configuration
+
+```eos
+!
+vrf instance VRF_A
 ```

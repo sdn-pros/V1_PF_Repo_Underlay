@@ -1,7 +1,7 @@
 hostname: P20
 ip_routing: true
 spanning_tree:
-  mode: mstp
+  mode: none
 loopback_interfaces:
 - name: Loopback10
   description: Region2_P20_lo10

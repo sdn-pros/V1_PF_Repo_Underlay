@@ -1,7 +1,7 @@
 hostname: H12
 ip_routing: true
 spanning_tree:
-  mode: mstp
+  mode: none
 
 ethernet_interfaces:
 - name: Ethernet1
@@ -15,11 +15,3 @@ static_routes:
     destination_address_prefix: 0.0.0.0/0
     gateway: 172.16.12.254
   
-
-
-#interface Ethernet1
-#   no switchport
-#   ip address 172.16.12.42/24
-#
-# ip route 0.0.0.0/0 172.16.12.254
-
