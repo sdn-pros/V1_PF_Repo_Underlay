@@ -13,7 +13,6 @@ ethernet_interfaces:
   type: routed
   shutdown: false
   mtu: 1500
-  vrf: VRF_A
   ip_address: 172.16.12.254/24
 - name: Ethernet2
   peer: Edge12
