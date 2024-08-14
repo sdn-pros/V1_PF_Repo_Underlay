@@ -3,8 +3,8 @@ ip_routing: true
 spanning_tree:
   mode: mstp
 loopback_interfaces:
-- name: Loopback0
-  description: RR4_lo0
+- name: Loopback10
+  description: RR4_lo10
   shutdown: false
   ip_address: 192.168.0.77/32
 ethernet_interfaces:
@@ -49,6 +49,13 @@ router_bgp:
         # Number of local ASNs allowed in a BGP update.
         times: 6
   address_family_ipv4:
+    neighbors:
+      - ip_address: 192.25.77.1
+        activate: true
+      - ip_address: 192.26.77.1
+        activate: true
+      - ip_address: 192.76.77.1
+        activate: true
     networks: 
       - prefix: 192.168.0.77/32
     redistribute_routes:

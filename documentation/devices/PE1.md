@@ -416,8 +416,8 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.51.81.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
-| 192.51.82.1 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.51.81.1 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.51.82.1 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.168.101.35 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
 | 192.168.101.36 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
 | 192.51.81.1 | 65000 | VRF_A | - | - | - | - | - | - | - | - | - |
@@ -459,7 +459,9 @@ router bgp 65001
    neighbor MPLS-OVERLAY-PEERS send-community
    neighbor MPLS-OVERLAY-PEERS maximum-routes 0
    neighbor 192.51.81.1 remote-as 65000
+   neighbor 192.51.81.1 allowas-in 6
    neighbor 192.51.82.1 remote-as 65000
+   neighbor 192.51.82.1 allowas-in 6
    neighbor 192.168.101.35 peer group MPLS-OVERLAY-PEERS
    neighbor 192.168.101.35 description RR5
    neighbor 192.168.101.36 peer group MPLS-OVERLAY-PEERS
@@ -469,6 +471,8 @@ router bgp 65001
    !
    address-family ipv4
       no neighbor MPLS-OVERLAY-PEERS activate
+      neighbor 192.51.81.1 activate
+      neighbor 192.51.82.1 activate
       network 192.168.0.81/32
       network 192.168.101.21/32
       redistribute connected

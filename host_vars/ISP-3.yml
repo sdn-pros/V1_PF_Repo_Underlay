@@ -4,8 +4,8 @@ ip_routing: true
 spanning_tree:
   mode: mstp
 loopback_interfaces:
-- name: Loopback0
-  description: ISP-3_lo0
+- name: Loopback10
+  description: ISP-3_lo10
   shutdown: false
   ip_address: 192.168.0.75/32
 ethernet_interfaces:
@@ -68,6 +68,12 @@ router_bgp:
     - ip_address: 192.54.75.1
       peer_group: REGION2
   address_family_ipv4:
+    neighbors:
+    peer_groups:
+      - name: REGION1
+        activate: true
+      - name: REGION2
+        activate: true
     networks: 
       - prefix: 192.168.0.75/32
     redistribute_routes:

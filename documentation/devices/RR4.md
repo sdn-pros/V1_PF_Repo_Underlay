@@ -77,20 +77,20 @@ interface Ethernet3
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | RR4_lo0 | default | 192.168.0.77/32 |
+| Loopback10 | RR4_lo10 | default | 192.168.0.77/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | RR4_lo0 | default | - |
+| Loopback10 | RR4_lo10 | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
-interface Loopback0
-   description RR4_lo0
+interface Loopback10
+   description RR4_lo10
    no shutdown
    ip address 192.168.0.77/32
 ```
@@ -144,6 +144,9 @@ router bgp 65000
    neighbor 192.76.77.1 allowas-in 6
    !
    address-family ipv4
+      neighbor 192.25.77.1 activate
+      neighbor 192.26.77.1 activate
+      neighbor 192.76.77.1 activate
       network 192.168.0.77/32
       redistribute connected
 ```

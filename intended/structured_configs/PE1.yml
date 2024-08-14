@@ -23,6 +23,11 @@ router_bgp:
     peer_groups:
     - name: MPLS-OVERLAY-PEERS
       activate: false
+    neighbors:
+    - ip_address: 192.51.81.1
+      activate: true
+    - ip_address: 192.51.82.1
+      activate: true
     networks:
     - prefix: 192.168.0.81/32
     - prefix: 192.168.101.21/32
@@ -45,8 +50,14 @@ router_bgp:
     description: RR6
   - ip_address: 192.51.81.1
     remote_as: '65000'
+    allowas_in:
+      enabled: true
+      times: 6
   - ip_address: 192.51.82.1
     remote_as: '65000'
+    allowas_in:
+      enabled: true
+      times: 6
   vrfs:
   - name: VRF_A
     router_id: 192.168.101.21

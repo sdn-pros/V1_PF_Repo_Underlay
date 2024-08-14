@@ -94,20 +94,20 @@ interface Ethernet6
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | ISP-3_lo0 | default | 192.168.0.75/32 |
+| Loopback10 | ISP-3_lo10 | default | 192.168.0.75/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | ISP-3_lo0 | default | - |
+| Loopback10 | ISP-3_lo10 | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
-interface Loopback0
-   description ISP-3_lo0
+interface Loopback10
+   description ISP-3_lo10
    no shutdown
    ip address 192.168.0.75/32
 ```
@@ -182,6 +182,8 @@ router bgp 65002
    neighbor 192.54.75.1 peer group REGION2
    !
    address-family ipv4
+      neighbor REGION1 activate
+      neighbor REGION2 activate
       network 192.168.0.75/32
       redistribute connected
 ```

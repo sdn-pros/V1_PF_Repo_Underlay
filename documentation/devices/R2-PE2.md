@@ -119,20 +119,20 @@ interface Ethernet9
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | R2-PE2_lo0 | default | 192.168.0.25/32 |
+| Loopback10 | R2-PE2_lo10 | default | 192.168.0.25/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | R2-PE2_lo0 | default | - |
+| Loopback10 | R2-PE2_lo10 | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
-interface Loopback0
-   description R2-PE2_lo0
+interface Loopback10
+   description R2-PE2_lo10
    no shutdown
    ip address 192.168.0.25/32
 ```
@@ -204,6 +204,15 @@ router bgp 65202
    neighbor 192.25.77.2 allowas-in 6
    !
    address-family ipv4
+      neighbor 192.20.25.1 activate
+      neighbor 192.21.25.1 activate
+      neighbor 192.22.25.1 activate
+      neighbor 192.23.25.1 activate
+      neighbor 192.24.25.1 activate
+      neighbor 192.25.53.2 activate
+      neighbor 192.25.54.2 activate
+      neighbor 192.25.76.2 activate
+      neighbor 192.25.77.2 activate
       network 192.168.0.25/32
       redistribute connected
 ```

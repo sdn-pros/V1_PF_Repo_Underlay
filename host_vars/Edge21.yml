@@ -3,8 +3,8 @@ ip_routing: true
 spanning_tree:
   mode: mstp
 loopback_interfaces:
-- name: Loopback0
-  description: Edge-21_lo0
+- name: Loopback10
+  description: Edge-21_lo10
   shutdown: false
   ip_address: 192.168.0.21/32
 ethernet_interfaces:
@@ -65,6 +65,13 @@ router_bgp:
         # Number of local ASNs allowed in a BGP update.
         times: 6
   address_family_ipv4:
+    neighbors:
+      - ip_address: 192.21.25.2
+        activate: true
+      - ip_address: 192.21.26.2
+        activate: true
+      - ip_address: 192.21.33.2
+        activate: true
     networks: 
       - prefix: 192.168.0.21/32
   redistribute_routes:

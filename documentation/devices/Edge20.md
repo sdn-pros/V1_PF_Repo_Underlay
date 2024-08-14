@@ -87,20 +87,20 @@ interface Ethernet5
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | Edge-20_lo0 | default | 192.168.0.20/32 |
+| Loopback10 | Edge-20_lo10 | default | 192.168.0.20/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | Edge-20_lo0 | default | - |
+| Loopback10 | Edge-20_lo10 | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
-interface Loopback0
-   description Edge-20_lo0
+interface Loopback10
+   description Edge-20_lo10
    no shutdown
    ip address 192.168.0.20/32
 ```
@@ -155,5 +155,8 @@ router bgp 65000
    redistribute connected
    !
    address-family ipv4
+      neighbor 192.20.25.2 activate
+      neighbor 192.20.26.2 activate
+      neighbor 192.20.33.2 activate
       network 192.168.0.20/32
 ```
