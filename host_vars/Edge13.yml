@@ -6,8 +6,8 @@ vrfs:
 - name: VRF_A
   ip_routing: true
 loopback_interfaces:
-- name: Loopback0
-  description: Edge-13_lo0
+- name: Loopback10
+  description: Edge-13_lo10
   shutdown: false
   ip_address: 192.168.0.13/32
 ethernet_interfaces:
