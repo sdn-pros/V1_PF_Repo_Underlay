@@ -23,16 +23,6 @@ router_bgp:
     peer_groups:
     - name: MPLS-OVERLAY-PEERS
       activate: false
-    neighbors:
-    - ip_address: 192.51.81.1
-      activate: true
-    - ip_address: 192.51.82.1
-      activate: true
-    networks:
-    - prefix: 192.168.0.81/32
-    - prefix: 192.168.101.21/32
-    redistribute_routes:
-    - source_protocol: connected
   address_family_vpn_ipv4:
     neighbor_default_encapsulation_mpls_next_hop_self:
       source_interface: Loopback0

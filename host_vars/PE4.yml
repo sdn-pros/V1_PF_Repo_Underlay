@@ -14,17 +14,6 @@ custom_router_bgp:
         enabled: true
         # Number of local ASNs allowed in a BGP update.
         times: 6
-  address_family_ipv4:
-    neighbors:
-      - ip_address:  192.53.84.1
-        activate: true
-      - ip_address: 192.54.84.1
-        activate: true
-    networks:
-      - prefix: 192.168.0.83/32
-      - prefix: 192.168.101.24/32
-    redistribute_routes:
-      - source_protocol: connected
 custom_eos_cli: |-
     interface Ethernet4
       description REGION2

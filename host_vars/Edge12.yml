@@ -19,7 +19,7 @@ ethernet_interfaces:
   mtu: 1500
   ip_address: 192.12.32.1/24
 - name: Ethernet2
-  peer: Edge11
+  peer: R1-PE1
   type: routed
   shutdown: false
   mtu: 1500

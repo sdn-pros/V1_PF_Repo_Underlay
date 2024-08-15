@@ -471,11 +471,6 @@ router bgp 65001
    !
    address-family ipv4
       no neighbor MPLS-OVERLAY-PEERS activate
-      neighbor 192.53.83.1 activate
-      neighbor 192.54.83.1 activate
-      network 192.168.0.83/32
-      network 192.168.101.23/32
-      redistribute connected
    !
    address-family vpn-ipv4
       neighbor MPLS-OVERLAY-PEERS activate
