@@ -60,9 +60,9 @@ router_bgp:
         times: 6
   address_family_ipv4:
     neighbors:
-      - ip_address: 192.13.15.2
+      - ip_address: 192.14.15.2
         activate: true
-      - ip_address: 192.13.16.2
+      - ip_address: 192.14.16.2
         activate: true
     networks: 
       - prefix: 192.168.0.14/32
