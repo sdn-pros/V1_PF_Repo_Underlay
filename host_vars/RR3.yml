@@ -9,9 +9,9 @@ loopback_interfaces:
   ip_address: 192.168.0.76/32
 ethernet_interfaces:
 - name: Ethernet1
-  peer: RR2
+  peer: RR4
   type: routed
-  shutdown: false
+  shutdown: true
   mtu: 1500
   ip_address: 192.76.77.1/24
 - name: Ethernet2
@@ -53,8 +53,6 @@ router_bgp:
       - ip_address: 192.25.76.1
         activate: true
       - ip_address: 192.26.76.1
-        activate: true
-      - ip_address: 192.76.77.2
         activate: true
     networks: 
       - prefix: 192.168.0.76/32
