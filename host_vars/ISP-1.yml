@@ -62,6 +62,12 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1500
   ip_address: 192.14.16.2/24
+- name: Ethernet10
+  peer: ISP-3
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.16.75.1/24
 router_bgp:
   as: 65103
   router_id: 192.168.0.16
@@ -120,6 +126,10 @@ router_bgp:
         enabled: true
         # Number of local ASNs allowed in a BGP update.
         times: 6
+    - ip_address: 192.16.75.2
+      remote_as:  65002
+        enabled: true
+        # Number of local ASNs allowed in a BGP update.
   address_family_ipv4:
     neighbors:
       - ip_address: 192.10.16.1
@@ -140,6 +150,8 @@ router_bgp:
         activate: true
       - ip_address: 192.16.72.2
         activate: true 
+      - ip_address: 192.16.75.2
+         activate: true 
     networks: 
       - prefix: 192.168.0.16/32
   redistribute_routes:
