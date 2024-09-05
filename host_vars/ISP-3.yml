@@ -42,7 +42,18 @@ ethernet_interfaces:
   type: routed
   shutdown: true
   mtu: 1500
-
+- name: Ethernet7
+  peer: ISP-1
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.16.75.2/24
+- name: Ethernet8
+  peer: ISP-2
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.26.75.2/24
 router_bgp:
   as: 65002
   router_id: 192.168.0.75
@@ -62,9 +73,13 @@ router_bgp:
       peer_group: REGION1
     - ip_address: 192.52.75.1
       peer_group: REGION1
+   - ip_address: 192.25.75.1
+      peer_group: REGION1
     - ip_address: 192.53.75.1
       peer_group: REGION2
     - ip_address: 192.54.75.1
+      peer_group: REGION2
+    - ip_address: 192.26.75.1
       peer_group: REGION2
   address_family_ipv4:
     neighbors:
