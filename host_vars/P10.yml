@@ -92,7 +92,7 @@ router_bgp:
     peer_groups:
       - name: CORE
         activate: true
-      - name: ISP3
+      - name: ISP-3
         activate: true
     networks:
       - prefix: 192.168.0.51/32
