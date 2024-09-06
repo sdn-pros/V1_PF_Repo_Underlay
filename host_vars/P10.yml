@@ -87,6 +87,8 @@ router_bgp:
         times: 6
   address_family_ipv4:
     neighbors:
+      - ip_address: 192.15.51.1
+        activate: true
       - ip_address: 192.16.51.1
         activate: true
     peer_groups:
