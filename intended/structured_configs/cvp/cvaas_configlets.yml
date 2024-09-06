@@ -29,7 +29,9 @@ cvp_configlets:
     \  !\n   address-family ipv4\n      neighbor 192.11.15.2 activate\n      neighbor
     192.11.16.2 activate\n      network 192.168.0.11/32\n      redistribute connected\n
     \  !\n   vrf VRF_A\n      neighbor 192.11.31.2 remote-as 65000\n      neighbor
-    192.11.31.2 allowas-in 6\n      network 192.168.0.11/32\n      redistribute connected\n!\nend\n"
+    192.11.31.2 allowas-in 6\n      network 192.168.0.11/32\n      redistribute connected\n
+    \     !\n      address-family ipv4\n         neighbor 192.11.31.2 activate\n         network
+    192.168.0.11/32\n         redistribute connected\n!\nend\n"
   AVD_Edge12: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge12\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
@@ -105,7 +107,9 @@ cvp_configlets:
     \  redistribute connected\n   !\n   address-family ipv4\n      neighbor 192.21.25.2
     activate\n      neighbor 192.21.26.2 activate\n      network 192.168.0.21/32\n
     \  !\n   vrf VRF_A\n      neighbor 192.21.33.2 remote-as 65000\n      neighbor
-    192.21.33.2 allowas-in 6\n      network 192.168.0.21/32\n      redistribute connected\n!\nend\n"
+    192.21.33.2 allowas-in 6\n      network 192.168.0.21/32\n      redistribute connected\n
+    \     !\n      address-family ipv4\n         neighbor 192.21.33.2 activate\n         network
+    192.168.0.21/32\n         redistribute connected\n!\nend\n"
   AVD_Edge22: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge22\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n

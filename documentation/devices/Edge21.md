@@ -191,6 +191,11 @@ router bgp 65000
       neighbor 192.21.33.2 allowas-in 6
       network 192.168.0.21/32
       redistribute connected
+      !
+      address-family ipv4
+         neighbor 192.21.33.2 activate
+         network 192.168.0.21/32
+         redistribute connected
 ```
 
 ## VRF Instances
