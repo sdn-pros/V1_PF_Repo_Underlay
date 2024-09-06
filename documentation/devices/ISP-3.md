@@ -46,6 +46,8 @@ spanning-tree mode none
 | Ethernet2 | - | routed | - | 192.52.75.2/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.54.75.2/24 | default | 1500 | False | - | - |
 | Ethernet4 | - | routed | - | 192.53.75.2/24 | default | 1500 | False | - | - |
+| Ethernet7 | - | routed | - | 192.16.75.2/24 | default | 1500 | False | - | - |
+| Ethernet8 | - | routed | - | 192.26.75.2/24 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -84,6 +86,18 @@ interface Ethernet6
    shutdown
    mtu 1500
    no switchport
+!
+interface Ethernet7
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 192.16.75.2/24
+!
+interface Ethernet8
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 192.26.75.2/24
 ```
 
 ### Loopback Interfaces
@@ -159,6 +173,8 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
+| 192.25.75.1 | Inherited from peer group REGION1 | default | - | - | - | Inherited from peer group REGION1 | - | - | - | - | - |
+| 192.26.75.1 | Inherited from peer group REGION2 | default | - | - | - | Inherited from peer group REGION2 | - | - | - | - | - |
 | 192.51.75.1 | Inherited from peer group REGION1 | default | - | - | - | Inherited from peer group REGION1 | - | - | - | - | - |
 | 192.52.75.1 | Inherited from peer group REGION1 | default | - | - | - | Inherited from peer group REGION1 | - | - | - | - | - |
 | 192.53.75.1 | Inherited from peer group REGION2 | default | - | - | - | Inherited from peer group REGION2 | - | - | - | - | - |
@@ -176,6 +192,8 @@ router bgp 65002
    neighbor REGION2 peer group
    neighbor REGION2 remote-as 65000
    neighbor REGION2 allowas-in
+   neighbor 192.25.75.1 peer group REGION1
+   neighbor 192.26.75.1 peer group REGION2
    neighbor 192.51.75.1 peer group REGION1
    neighbor 192.52.75.1 peer group REGION1
    neighbor 192.53.75.1 peer group REGION2

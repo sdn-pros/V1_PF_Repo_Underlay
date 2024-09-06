@@ -73,7 +73,7 @@ router_bgp:
       peer_group: REGION1
     - ip_address: 192.52.75.1
       peer_group: REGION1
-   - ip_address: 192.25.75.1
+    - ip_address: 192.25.75.1
       peer_group: REGION1
     - ip_address: 192.53.75.1
       peer_group: REGION2

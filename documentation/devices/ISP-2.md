@@ -51,6 +51,7 @@ spanning-tree mode none
 | Ethernet7 | - | routed | - | 192.22.26.2/24 | default | 1500 | False | - | - |
 | Ethernet8 | - | routed | - | 192.23.26.2/24 | default | 1500 | False | - | - |
 | Ethernet9 | - | routed | - | 192.24.26.2/24 | default | 1500 | False | - | - |
+| Ethernet10 | - | routed | - | 192.26.75.1/24 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -109,6 +110,12 @@ interface Ethernet9
    mtu 1500
    no switchport
    ip address 192.24.26.2/24
+!
+interface Ethernet10
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 192.26.75.1/24
 ```
 
 ### Loopback Interfaces
@@ -175,6 +182,7 @@ ASN Notation: asplain
 | 192.24.26.1 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.26.53.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.26.54.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
+| 192.26.75.2 | 65002 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.26.76.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.26.77.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 
@@ -198,6 +206,8 @@ router bgp 65203
    neighbor 192.26.53.2 allowas-in 6
    neighbor 192.26.54.2 remote-as 65000
    neighbor 192.26.54.2 allowas-in 6
+   neighbor 192.26.75.2 remote-as 65002
+   neighbor 192.26.75.2 allowas-in 6
    neighbor 192.26.76.2 remote-as 65000
    neighbor 192.26.76.2 allowas-in 6
    neighbor 192.26.77.2 remote-as 65000

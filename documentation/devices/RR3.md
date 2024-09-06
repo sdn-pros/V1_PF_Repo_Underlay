@@ -42,7 +42,7 @@ spanning-tree mode none
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | - | routed | - | 192.76.77.1/24 | default | 1500 | False | - | - |
+| Ethernet1 | - | routed | - | 192.76.77.1/24 | default | 1500 | True | - | - |
 | Ethernet2 | - | routed | - | 192.25.76.2/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.26.76.2/24 | default | 1500 | False | - | - |
 
@@ -51,7 +51,7 @@ spanning-tree mode none
 ```eos
 !
 interface Ethernet1
-   no shutdown
+   shutdown
    mtu 1500
    no switchport
    ip address 192.76.77.1/24
@@ -146,7 +146,6 @@ router bgp 65000
    address-family ipv4
       neighbor 192.25.76.1 activate
       neighbor 192.26.76.1 activate
-      neighbor 192.76.77.2 activate
       network 192.168.0.76/32
       redistribute connected
 ```

@@ -2,9 +2,9 @@
 all:
   hosts: 
     cvaas: 
-      ansible_host: www.arista.io
+      ansible_host: www.cv-prod-us-central1-c.arista.io
       ansible_user: cvaas
-      ansible_password: "token"
+      ansible_password: "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjcyMzEyODYwODY2NTAxODAwMzUsImRzbiI6InBhdGhmaW5kZXItMjEiLCJkc3QiOiJhY2NvdW50IiwiZXhwIjoxNzg4NjE2OTc5LCJpYXQiOjE3MjU2MzEzODIsIm9naSI6NzIzMTI4NjA4NjY1MDE3NTgxMSwib2duIjoicGF0aGZpbmRlci0yMSIsInNpZCI6IjA5NzlkMzAzYTkyZjQyYWNhOWEyYWJlMzg0OTE3ZWMxNjQ5NmY3ZTE4ZjdmZDRhYmY2MmQ2MTcxNjllZDVmMmMtV0w5amNjU29GZTFmMXM2cU9xd1l4NDEtNFpLWUtmTjM1UVo0a01qTyJ9.JwebCIPCQp8XmkBxx_dDUpvl9Y4EG5dGkgPxvAFJm0zRJi8fV5fQtAra76oM47QsazOpYp1tKWSyWSjNfF5mKw"
       ansible_connection: httpapi
       ansible_httpapi_use_ssl: True
       ansible_httpapi_validate_certs: False
