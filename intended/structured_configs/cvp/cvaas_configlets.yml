@@ -248,15 +248,17 @@ cvp_configlets:
     \  mtu 1500\n   no switchport\n   ip address 192.16.75.2/24\n!\ninterface Ethernet8\n
     \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 192.26.75.2/24\n!\ninterface
     Loopback10\n   description ISP-3_lo10\n   no shutdown\n   ip address 192.168.0.75/32\n!\nip
-    routing\n!\nrouter bgp 65002\n   router-id 192.168.0.75\n   neighbor REGION1 peer
-    group\n   neighbor REGION1 remote-as 65000\n   neighbor REGION1 allowas-in\n   neighbor
+    routing\n!\nrouter bgp 65002\n   router-id 192.168.0.75\n   neighbor R1Internet
+    peer group\n   neighbor R1Internet remote-as 65103\n   neighbor R2Internet peer
+    group\n   neighbor R2Internet remote-as 65203\n   neighbor REGION1 peer group\n
+    \  neighbor REGION1 remote-as 65000\n   neighbor REGION1 allowas-in\n   neighbor
     REGION2 peer group\n   neighbor REGION2 remote-as 65000\n   neighbor REGION2 allowas-in\n
-    \  neighbor 192.25.75.1 peer group REGION1\n   neighbor 192.26.75.1 peer group
-    REGION2\n   neighbor 192.51.75.1 peer group REGION1\n   neighbor 192.52.75.1 peer
-    group REGION1\n   neighbor 192.53.75.1 peer group REGION2\n   neighbor 192.54.75.1
-    peer group REGION2\n   !\n   address-family ipv4\n      neighbor REGION1 activate\n
-    \     neighbor REGION2 activate\n      network 192.168.0.75/32\n      redistribute
-    connected\n!\nend\n"
+    \  neighbor 192.16.75.1 peer group R1Internet\n   neighbor 192.26.75.1 peer group
+    R2Internet\n   neighbor 192.51.75.1 peer group REGION1\n   neighbor 192.52.75.1
+    peer group REGION1\n   neighbor 192.53.75.1 peer group REGION2\n   neighbor 192.54.75.1
+    peer group REGION2\n   !\n   address-family ipv4\n      neighbor R1Internet activate\n
+    \     neighbor R2Internet activate\n      neighbor REGION1 activate\n      neighbor
+    REGION2 activate\n      network 192.168.0.75/32\n      redistribute connected\n!\nend\n"
   AVD_Leaf11: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Leaf11\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\ninterface
     Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.16.11.254/24\n!\ninterface

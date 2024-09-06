@@ -68,18 +68,22 @@ router_bgp:
       allowas_in:
         enabled: true
         # Number of local ASNs allowed in a BGP update.
+    - name: R1Internet
+      remote_as: 65103
+    - name: R2Internet
+      remote_as: 65203
   neighbors:
     - ip_address: 192.51.75.1
       peer_group: REGION1
     - ip_address: 192.52.75.1
       peer_group: REGION1
     - ip_address: 192.16.75.1
-      peer_group: REGION1
+      peer_group: R1Internet
+    - ip_address: 192.26.75.1
+      peer_group: R2Internet
     - ip_address: 192.53.75.1
       peer_group: REGION2
     - ip_address: 192.54.75.1
-      peer_group: REGION2
-    - ip_address: 192.26.75.1
       peer_group: REGION2
   address_family_ipv4:
     neighbors:
@@ -87,6 +91,10 @@ router_bgp:
       - name: REGION1
         activate: true
       - name: REGION2
+        activate: true
+      - name: R1Internet
+        activate: true
+      - name: R2Internet
         activate: true
     networks: 
       - prefix: 192.168.0.75/32

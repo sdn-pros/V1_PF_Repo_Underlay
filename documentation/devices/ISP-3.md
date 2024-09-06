@@ -155,6 +155,18 @@ ASN Notation: asplain
 
 #### Router BGP Peer Groups
 
+##### R1Internet
+
+| Settings | Value |
+| -------- | ----- |
+| Remote AS | 65103 |
+
+##### R2Internet
+
+| Settings | Value |
+| -------- | ----- |
+| Remote AS | 65203 |
+
 ##### REGION1
 
 | Settings | Value |
@@ -173,8 +185,8 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.25.75.1 | Inherited from peer group REGION1 | default | - | - | - | Inherited from peer group REGION1 | - | - | - | - | - |
-| 192.26.75.1 | Inherited from peer group REGION2 | default | - | - | - | Inherited from peer group REGION2 | - | - | - | - | - |
+| 192.16.75.1 | Inherited from peer group R1Internet | default | - | - | - | - | - | - | - | - | - |
+| 192.26.75.1 | Inherited from peer group R2Internet | default | - | - | - | - | - | - | - | - | - |
 | 192.51.75.1 | Inherited from peer group REGION1 | default | - | - | - | Inherited from peer group REGION1 | - | - | - | - | - |
 | 192.52.75.1 | Inherited from peer group REGION1 | default | - | - | - | Inherited from peer group REGION1 | - | - | - | - | - |
 | 192.53.75.1 | Inherited from peer group REGION2 | default | - | - | - | Inherited from peer group REGION2 | - | - | - | - | - |
@@ -186,20 +198,26 @@ ASN Notation: asplain
 !
 router bgp 65002
    router-id 192.168.0.75
+   neighbor R1Internet peer group
+   neighbor R1Internet remote-as 65103
+   neighbor R2Internet peer group
+   neighbor R2Internet remote-as 65203
    neighbor REGION1 peer group
    neighbor REGION1 remote-as 65000
    neighbor REGION1 allowas-in
    neighbor REGION2 peer group
    neighbor REGION2 remote-as 65000
    neighbor REGION2 allowas-in
-   neighbor 192.25.75.1 peer group REGION1
-   neighbor 192.26.75.1 peer group REGION2
+   neighbor 192.16.75.1 peer group R1Internet
+   neighbor 192.26.75.1 peer group R2Internet
    neighbor 192.51.75.1 peer group REGION1
    neighbor 192.52.75.1 peer group REGION1
    neighbor 192.53.75.1 peer group REGION2
    neighbor 192.54.75.1 peer group REGION2
    !
    address-family ipv4
+      neighbor R1Internet activate
+      neighbor R2Internet activate
       neighbor REGION1 activate
       neighbor REGION2 activate
       network 192.168.0.75/32
