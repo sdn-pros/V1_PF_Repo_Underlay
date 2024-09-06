@@ -41,6 +41,12 @@ router_bgp:
   as: 65000
   router_id: 192.168.0.22
   neighbors:
+    - ip_address: 192.22.34.2
+      remote_as:  65000
+      allowas_in:
+        enabled: true
+        # Number of local ASNs allowed in a BGP update.
+        times: 6
     - ip_address: 192.22.25.2
       remote_as:  65202
       allowas_in:
@@ -71,6 +77,14 @@ router_bgp:
                 allowas_in:
                   enabled: true
                   times: 6
+            address_family_ipv4:
+              neighbors:
+              - ip_address:  192.22.34.2
+                activate: true  
+              networks: 
+              - prefix: 192.168.0.22/32
+              redistribute_routes:
+              - source_protocol: connected
             networks: 
               - prefix: 192.168.0.22/32
             redistribute_routes:

@@ -44,7 +44,9 @@ cvp_configlets:
     \  redistribute connected\n   !\n   address-family ipv4\n      neighbor 192.12.15.2
     activate\n      neighbor 192.12.16.2 activate\n      network 192.168.0.12/32\n
     \  !\n   vrf VRF_A\n      neighbor 192.12.32.2 remote-as 65000\n      neighbor
-    192.12.32.2 allowas-in 6\n      network 192.168.0.12/32\n      redistribute connected\n!\nend\n"
+    192.12.32.2 allowas-in 6\n      network 192.168.0.12/32\n      redistribute connected\n
+    \     !\n      address-family ipv4\n         neighbor 192.12.32.2 activate\n         network
+    192.168.0.12/32\n         redistribute connected\n!\nend\n"
   AVD_Edge13: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge13\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
@@ -115,10 +117,13 @@ cvp_configlets:
     routing\nip routing vrf VRF_A\n!\nrouter bgp 65000\n   router-id 192.168.0.22\n
     \  neighbor 192.22.25.2 remote-as 65202\n   neighbor 192.22.25.2 allowas-in 6\n
     \  neighbor 192.22.26.2 remote-as 65203\n   neighbor 192.22.26.2 allowas-in 6\n
+    \  neighbor 192.22.34.2 remote-as 65000\n   neighbor 192.22.34.2 allowas-in 6\n
     \  redistribute connected\n   !\n   address-family ipv4\n      neighbor 192.22.25.2
     activate\n      neighbor 192.22.26.2 activate\n      network 192.168.0.22/32\n
     \  !\n   vrf VRF_A\n      neighbor 192.22.34.2 remote-as 65000\n      neighbor
-    192.22.34.2 allowas-in 6\n      network 192.168.0.22/32\n      redistribute connected\n!\nend\n"
+    192.22.34.2 allowas-in 6\n      network 192.168.0.22/32\n      redistribute connected\n
+    \     !\n      address-family ipv4\n         neighbor 192.22.34.2 activate\n         network
+    192.168.0.22/32\n         redistribute connected\n!\nend\n"
   AVD_Edge23: "!RANCID-CONTENT-TYPE: arista\n!\ntransceiver qsfp default-mode 4x10G\n!\nhostname
     Edge23\n!\nspanning-tree mode none\n!\nno enable password\nno aaa root\n!\nvrf
     instance VRF_A\n!\ninterface Ethernet1\n   no shutdown\n   mtu 1500\n   no switchport\n
