@@ -42,12 +42,6 @@ router_bgp:
         enabled: true
         # Number of local ASNs allowed in a BGP update.
         times: 6
-    - ip_address: 192.76.77.2
-      remote_as:  65000
-      allowas_in:
-        enabled: true
-        # Number of local ASNs allowed in a BGP update.
-        times: 6
   address_family_ipv4:
     neighbors:
       - ip_address: 192.25.76.1
