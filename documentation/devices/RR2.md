@@ -134,7 +134,6 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 192.15.72.1 | 65102 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.16.72.1 | 65103 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
-| 192.71.72.1 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -146,8 +145,6 @@ router bgp 65000
    neighbor 192.15.72.1 allowas-in 6
    neighbor 192.16.72.1 remote-as 65103
    neighbor 192.16.72.1 allowas-in 6
-   neighbor 192.71.72.1 remote-as 65000
-   neighbor 192.71.72.1 allowas-in 6
    !
    address-family ipv4
       neighbor 192.15.72.1 activate

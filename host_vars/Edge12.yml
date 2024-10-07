@@ -33,7 +33,7 @@ ethernet_interfaces:
 - name: Ethernet4
   peer: Leaf11
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.12.31.1/24
 router_bgp:
@@ -80,5 +80,6 @@ router_bgp:
           - source_protocol: connected              
       networks: 
         - prefix: 192.168.0.12/32
+        - prefix: 172.16.12.0/24
       redistribute_routes:
         - source_protocol: connected

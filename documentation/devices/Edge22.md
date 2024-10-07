@@ -151,7 +151,6 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 192.22.25.2 | 65202 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.22.26.2 | 65203 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
-| 192.22.34.2 | 65000 | default | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 | 192.22.34.2 | 65000 | VRF_A | - | - | - | Allowed, allowed 6 times | - | - | - | - | - |
 
 #### Router BGP VRFs
@@ -170,8 +169,6 @@ router bgp 65000
    neighbor 192.22.25.2 allowas-in 6
    neighbor 192.22.26.2 remote-as 65203
    neighbor 192.22.26.2 allowas-in 6
-   neighbor 192.22.34.2 remote-as 65000
-   neighbor 192.22.34.2 allowas-in 6
    redistribute connected
    !
    address-family ipv4
@@ -182,6 +179,7 @@ router bgp 65000
    vrf VRF_A
       neighbor 192.22.34.2 remote-as 65000
       neighbor 192.22.34.2 allowas-in 6
+      network 172.16.22.0/24
       network 192.168.0.22/32
       redistribute connected
       !

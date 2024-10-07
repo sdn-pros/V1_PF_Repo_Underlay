@@ -49,7 +49,7 @@ spanning-tree mode none
 | Ethernet1 | - | routed | - | 192.12.32.1/24 | VRF_A | 1500 | False | - | - |
 | Ethernet2 | - | routed | - | 192.12.15.1/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.12.16.1/24 | default | 1500 | False | - | - |
-| Ethernet4 | - | routed | - | 192.12.31.1/24 | default | 1500 | True | - | - |
+| Ethernet4 | - | routed | - | 192.12.31.1/24 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -75,7 +75,7 @@ interface Ethernet3
    ip address 192.12.16.1/24
 !
 interface Ethernet4
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.12.31.1/24
@@ -179,6 +179,7 @@ router bgp 65000
    vrf VRF_A
       neighbor 192.12.32.2 remote-as 65000
       neighbor 192.12.32.2 allowas-in 6
+      network 172.16.12.0/24
       network 192.168.0.12/32
       redistribute connected
       !
