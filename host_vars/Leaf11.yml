@@ -33,7 +33,7 @@ ethernet_interfaces:
   mtu: 1500
   ip_address: 192.12.31.2/24
 router_bgp:
-  as: 65000
+  as: 65111
   router_id: 192.168.0.31
   neighbors:
     - ip_address: 192.10.31.1

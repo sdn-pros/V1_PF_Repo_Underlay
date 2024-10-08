@@ -62,6 +62,8 @@ router_bgp:
           activate: true
         - ip_address: 192.10.16.2
           activate: true
+        # - ip_address: 192.10.31.2
+        #   activate: true
     networks: 
       - prefix: 192.168.0.10/32
     redistribute_routes:
@@ -70,13 +72,17 @@ router_bgp:
     - name: VRF_A
       neighbors:
         - ip_address: 192.10.31.2
-          remote_as:  65000
+          remote_as:  65111
           allowas_in:
             enabled: true
             times: 6
+      address_family_ipv4:
+        neighbors:
+          - ip_address: 192.10.31.2
+            activate: true
       networks: 
         - prefix: 192.168.0.10/32
-        - prefix: 172.16.10.0/24
+        - prefix: 172.16.1.0/24
       redistribute_routes:
         - source_protocol: connected
 

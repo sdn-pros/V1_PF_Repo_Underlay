@@ -70,7 +70,7 @@ router_bgp:
       - name: VRF_A
         neighbors:
           - ip_address: 192.20.33.2
-            remote_as:  65000
+            remote_as:  65444
             allowas_in:
               enabled: true
               times: 6
