@@ -136,23 +136,89 @@ router_bgp:
     neighbors:
       - ip_address: 192.20.26.1
         activate: true
+        route_map_out: DEFAULTONLY
       - ip_address: 192.21.26.1
         activate: true
+        route_map_out: DEFAULTONLY
       - ip_address: 192.22.26.1
         activate: true
+        route_map_out: DEFAULTONLY
       - ip_address: 192.23.26.1
         activate: true
+        route_map_out: DEFAULTONLY
       - ip_address: 192.24.26.1
         activate: true
+        route_map_out: DEFAULTONLY
       - ip_address: 192.26.53.2
         activate: true
+        route_map_out: DEFAULTONLY
       - ip_address: 192.26.54.2
         activate: true
+        route_map_out: DEFAULTONLY
       - ip_address: 192.26.76.2
         activate: true
       - ip_address: 192.26.77.2
         activate: true
+      - ip_address: 192.26.75.2
+        activate: true
     networks: 
+      - prefix: 192.26.76.0/24
+      - prefix: 192.26.77.0/24
       - prefix: 192.168.0.26/32
+      - prefix: 0.0.0.0/0
     redistribute_routes:
-    - source_protocol: connected
+      - source_protocol: connected
+
+static_routes:
+  - vrf: default
+    destination_address_prefix: 0.0.0.0/0
+    interface: Null0
+
+
+prefix_lists:
+  - name: DEFAULTONLY
+    sequence_numbers:
+      - sequence: 10
+        action: permit 0.0.0.0/0
+
+
+  - name: ISP2CONNECTED
+    sequence_numbers:
+      - sequence: 10
+        action: permit 192.26.76.0/24
+      - sequence: 20
+        action: permit 192.26.77.0/24
+      - sequence: 30
+        action: permit 192.20.26.0/24
+      - sequence: 40
+        action: permit 192.21.26.0/24
+      - sequence: 50
+        action: permit 192.22.26.0/24
+      - sequence: 60
+        action: permit 192.23.26.0/24
+      - sequence: 70
+        action: permit 192.24.26.0/24
+
+route_maps:
+  # Route-map Name.
+  - name: DEFAULTONLY
+    sequence_numbers:
+        # Sequence ID.
+      - sequence: 10
+        type: permit
+        # List of "match" statements.
+        match:
+            # Match as string.
+            # Example: "ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY"
+          - ip address prefix-list DEFAULTONLY
+  
+  - name: ISP2CONNECTED
+    sequence_numbers:
+      - sequence: 10
+        type: permit
+        match:
+          - ip address prefix-list ISP2CONNECTED
+         
+        
+ 
+

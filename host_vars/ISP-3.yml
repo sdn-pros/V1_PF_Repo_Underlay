@@ -11,25 +11,25 @@ ethernet_interfaces:
 - name: Ethernet1
   peer: P10
   type: routed
-  shutdown: false
+  shutdown: true
   mtu: 1500
   ip_address: 192.51.75.2/24
 - name: Ethernet2
   peer: P11
   type: routed
-  shutdown: false
+  shutdown: true
   mtu: 1500
   ip_address: 192.52.75.2/24
 - name: Ethernet3
   peer: P21
   type: routed
-  shutdown: false
+  shutdown: true
   mtu: 1500
   ip_address: 192.54.75.2/24
 - name: Ethernet4
   peer: P20
   type: routed
-  shutdown: false
+  shutdown: true
   mtu: 1500
   ip_address: 192.53.75.2/24
 - name: Ethernet5
@@ -89,16 +89,37 @@ router_bgp:
     neighbors:
     peer_groups:
       - name: REGION1
-        activate: true
+        activate: false
+        route_map_out: DEFAULTONLY
       - name: REGION2
-        activate: true
+        activate: false
+        route_map_out: DEFAULTONLY
       - name: R1Internet
         activate: true
       - name: R2Internet
         activate: true
     networks: 
       - prefix: 192.168.0.75/32
+      - prefix: 0.0.0.0/0
     redistribute_routes:
       - source_protocol: connected
 
+static_routes:
+  - vrf: default
+    destination_address_prefix: 0.0.0.0/0
+    interface: Null0
 
+prefix_lists:
+  - name: DEFAULTONLY
+    sequence_numbers:
+      - sequence: 10
+        action: permit 0.0.0.0/0
+
+route_maps:
+  - name: DEFAULTONLY
+    sequence_numbers:
+      - sequence: 10
+        type: permit
+        match:
+          - ip address prefix-list DEFAULTONLY
+        
