@@ -28,6 +28,8 @@ ethernet_interfaces:
   mtu: 1500
   vrf: VRF_A
   ip_address: 192.10.31.1/24
+  ospf_area: 0
+  ospf_network_point_to_point: true
 - name: Ethernet4
   peer: R1-PE1
   type: routed
@@ -70,20 +72,18 @@ router_bgp:
       - source_protocol: connected
   vrfs:
     - name: VRF_A
-      neighbors:
-        - ip_address: 192.10.31.2
-          remote_as:  65111
-          allowas_in:
-            enabled: true
-            times: 6
-      address_family_ipv4:
-        neighbors:
-          - ip_address: 192.10.31.2
-            activate: true
-      networks: 
-        - prefix: 192.168.0.10/32
-        - prefix: 172.16.1.0/24
       redistribute_routes:
         - source_protocol: connected
+        - source_protocol: ospf
+
+
+router_ospf:
+  process_ids:
+    - id: 10
+      router_id: 192.168.0.10
+      vrf: VRF_A
+      redistribute:
+        bgp:
+
 
       

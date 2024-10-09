@@ -14,12 +14,16 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1500
   ip_address: 172.16.11.254/24
+  ospf_area: 0
+
 - name: Ethernet2
   peer: Edge10
   type: routed
   shutdown: false
   mtu: 1500
   ip_address: 192.10.31.2/24
+  ospf_area: 0
+  ospf_network_point_to_point: true
 - name: Ethernet3
   peer: Edge11
   type: routed
@@ -32,29 +36,9 @@ ethernet_interfaces:
   shutdown: true
   mtu: 1500
   ip_address: 192.12.31.2/24
-router_bgp:
-  as: 65111
-  router_id: 192.168.0.31
-  neighbors:
-    - ip_address: 192.10.31.1
-      remote_as:  65000
-      allowas_in:
-        enabled: true
-        # Number of local ASNs allowed in a BGP update.
-        times: 6
-    - ip_address: 192.11.31.1
-      remote_as:  65000
-      allowas_in:
-        enabled: true
-        # Number of local ASNs allowed in a BGP update.
-        times: 6
-  address_family_ipv4:
-    neighbors:
-        - ip_address: 192.10.31.1
-          activate: true
-        - ip_address: 192.11.31.1
-          activate: true
-    networks: 
-      - prefix: 192.168.0.31/32
-    redistribute_routes:
-      - source_protocol: connected
+router_ospf:
+  process_ids:
+    - id: 10
+      router_id: 192.168.0.31
+      # redistribute: 
+      #   bgp:

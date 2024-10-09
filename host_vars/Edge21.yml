@@ -27,6 +27,8 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1500
   vrf: VRF_A
+  ospf_area: 0
+  ospf_network_point_to_point: true
   ip_address: 192.21.33.1/24
 - name: Ethernet4
   peer: R2-PE2
@@ -74,23 +76,7 @@ router_bgp:
     - source_protocol: connected
   vrfs:
         - name: VRF_A
-          neighbors:
-            - ip_address: 192.21.33.2
-              remote_as:  65555
-              allowas_in:
-                enabled: true
-                times: 6
-          address_family_ipv4:
-            neighbors:
-            - ip_address:  192.21.33.2
-              activate: true  
-            networks: 
-            - prefix: 192.168.0.21/32
-            redistribute_routes:
-            - source_protocol: connected        
-          networks: 
-            - prefix: 192.168.0.21/32
-            - prefix: 172.16.21.0/24
           redistribute_routes:
             - source_protocol: connected
+            - source_protocol: ospf
 
